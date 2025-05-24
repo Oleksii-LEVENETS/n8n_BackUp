@@ -149,22 +149,6 @@
     },
     {
       "parameters": {
-        "content": "## Backup to GitHub \nThis workflow will backup all instance workflows to GitHub every 24 hours.\n\nThe files are saved into folders using `YYYY/MM/` for the directory path and `ID.json` for the filename.\n\nThe Repo Owner, Repo Name and Main folder are set using the **Variables** feature but can be replaced with the `Config` node in the subworkflow. \n\nThe workflow runs calls itself to help reduce memory usage, Once the workflow has completed it will send an optional notification to Slack.\n\n### Time to Run\nTested with 1423 workflows on `1.44.1` it took under 30 minutes for the first run and under 12 minutes once the initial run is complete.",
-        "height": 417,
-        "width": 385,
-        "color": 4
-      },
-      "id": "6de5af8f-49c5-411e-acc5-0b8131549d00",
-      "name": "Sticky Note1",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -200,
-        -20
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
         "content": "## Main workflow loop",
         "height": 436,
         "width": 1273,
@@ -206,7 +190,7 @@
     {
       "parameters": {
         "chatId": "945884902",
-        "text": "=✅ Backup has completed -- {{ $('n8n').item.json.name }} workflows have been processed.",
+        "text": "=✅ Backup has completed -- workflows have been processed.",
         "additionalFields": {
           "appendAttribution": false
         }
@@ -281,6 +265,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-24T18:33:44.036Z",
-  "versionId": "2f3c687f-a2eb-43fa-967f-bd2f9b06ab3d"
+  "updatedAt": "2025-05-24T18:36:27.126Z",
+  "versionId": "b95f8749-7599-4fe5-8f56-bf392d012487"
 }
