@@ -1,0 +1,80 @@
+{
+  "active": false,
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-21T12:22:49.871Z",
+  "id": "bVbSoouoJTyzrhju",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ADMIN_Error_Handling",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -160
+      ],
+      "id": "b6fffb7a-9c83-4450-b770-79b437c55c4d",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "945884902",
+        "text": "=The workflow {{ $json.workflow.name }} failed, with the error message: \"{{ $json.execution.error.message }}\". Last node executed: {{ $json.execution.lastNodeExecuted }}. Check this workflow execution here: {{ $json.execution.url }}.",
+        "replyMarkup": "=none",
+        "forceReply": {},
+        "replyKeyboardOptions": {},
+        "replyKeyboardRemove": {},
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        620,
+        -160
+      ],
+      "id": "96047243-9ea4-4653-a339-edb930cd3ae8",
+      "name": "Telegram",
+      "webhookId": "de175987-89e9-4789-b967-115acf500ca8",
+      "credentials": {
+        "telegramApi": {
+          "id": "CA9N3xYvuDtCZxG7",
+          "name": "Telegram_n8n_ErrorHandling_OL_bot"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n_BackUp",
+  "repo_owner": "Oleksii-Levenets",
+  "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-21T12:22:32.212Z",
+      "updatedAt": "2025-05-21T12:22:32.212Z",
+      "id": "Ng84NmfdapGV7CdJ",
+      "name": "ADMIN"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-22T16:49:13.277Z",
+  "versionId": "6afd2b38-88b4-4d4d-8d9e-c8b69106dfd5"
+}
