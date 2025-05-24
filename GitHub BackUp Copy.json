@@ -206,7 +206,7 @@
     {
       "parameters": {
         "chatId": "945884902",
-        "text": "=✅ Backup has completed -- {{ $('n8n').item.json.name }} workflows have been processed.",
+        "text": "=✅ Backup has completed -- workflows have been processed.",
         "additionalFields": {
           "appendAttribution": false
         }
@@ -281,6 +281,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-24T18:19:16.554Z",
-  "versionId": "bfda1dbd-6d96-4e4a-8aaa-9f8d594d0712"
+  "updatedAt": "2025-05-24T18:25:06.581Z",
+  "versionId": "0a11f89a-7bcb-4029-86c4-0907edb74859"
 }
