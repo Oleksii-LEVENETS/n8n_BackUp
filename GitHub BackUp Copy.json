@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "On clicking 'execute'": {
       "main": [
@@ -132,7 +132,8 @@
         "rule": {
           "interval": [
             {
-              "field": "minutes"
+              "field": "hours",
+              "hoursInterval": 12
             }
           ]
         }
@@ -280,6 +281,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-24T18:05:36.766Z",
-  "versionId": "db2cb17c-782a-4d9c-83ec-02ac7e2e01ad"
+  "updatedAt": "2025-05-24T18:14:51.635Z",
+  "versionId": "7d58c1ca-9344-4469-a289-72bd002d30c5"
 }
