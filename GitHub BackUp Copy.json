@@ -1,0 +1,279 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Telegram Starting Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "n8n": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Telegram Completed Notification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram Starting Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Starting Message": {
+      "main": [
+        [
+          {
+            "node": "n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-22T16:35:01.448Z",
+  "id": "DYWpDM34g1iYPlPc",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "GitHub BackUp Copy",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "425ac2b3-2147-4340-a673-fe660b5a03af",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        280,
+        60
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "filters": {},
+        "requestOptions": {}
+      },
+      "id": "77bb940a-689f-4a69-b167-72fba152ac0f",
+      "name": "n8n",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        680,
+        160
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "AAN1Y3oRy8DUSJ4D",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "0e0596a1-f533-4f59-ad9a-71d7f4b4d3e1",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        880,
+        160
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 17
+            }
+          ]
+        }
+      },
+      "id": "cccdb604-37f0-44f6-82a3-18f565e6310b",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        280,
+        260
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "content": "## Backup to GitHub \nThis workflow will backup all instance workflows to GitHub every 24 hours.\n\nThe files are saved into folders using `YYYY/MM/` for the directory path and `ID.json` for the filename.\n\nThe Repo Owner, Repo Name and Main folder are set using the **Variables** feature but can be replaced with the `Config` node in the subworkflow. \n\nThe workflow runs calls itself to help reduce memory usage, Once the workflow has completed it will send an optional notification to Slack.\n\n### Time to Run\nTested with 1423 workflows on `1.44.1` it took under 30 minutes for the first run and under 12 minutes once the initial run is complete.",
+        "height": 417,
+        "width": 385,
+        "color": 4
+      },
+      "id": "6de5af8f-49c5-411e-acc5-0b8131549d00",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -200,
+        -20
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Main workflow loop",
+        "height": 436,
+        "width": 1273,
+        "color": 7
+      },
+      "id": "b156cea5-2b71-4943-b271-bc15dac46745",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        240,
+        -40
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chatId": "945884902",
+        "text": "Starting Workflow Backup",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        500,
+        160
+      ],
+      "id": "3784668e-7513-4135-8535-a85bb265cb88",
+      "name": "Telegram Starting Message",
+      "webhookId": "03150a97-6d91-4b79-ae92-0cdc3be82f10",
+      "credentials": {
+        "telegramApi": {
+          "id": "CA9N3xYvuDtCZxG7",
+          "name": "Telegram_n8n_ErrorHandling_OL_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "945884902",
+        "text": "✅ Backup has completed -- workflows have been processed.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1240,
+        -20
+      ],
+      "id": "e33a3ee6-09cf-4ef6-a1ac-4b6083d99160",
+      "name": "Telegram Completed Notification",
+      "webhookId": "03150a97-6d91-4b79-ae92-0cdc3be82f10",
+      "credentials": {
+        "telegramApi": {
+          "id": "CA9N3xYvuDtCZxG7",
+          "name": "Telegram_n8n_ErrorHandling_OL_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "iZFZvSHshNiqXmsO",
+          "mode": "list",
+          "cachedResultName": "GitHub BackUp Copy Sub Workflow"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1100,
+        160
+      ],
+      "id": "a0dfe2b8-cdde-49dc-8b36-27d9e1497952",
+      "name": "Execute Workflow"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n_BackUp",
+  "repo_owner": "Oleksii-Levenets",
+  "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Kyiv",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-21T12:22:32.212Z",
+      "updatedAt": "2025-05-21T12:22:32.212Z",
+      "id": "Ng84NmfdapGV7CdJ",
+      "name": "ADMIN"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-24T16:55:08.960Z",
+  "versionId": "c08b71b1-7006-4ee3-9bc0-a8584716e781"
+}
