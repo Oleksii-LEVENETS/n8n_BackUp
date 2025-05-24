@@ -206,7 +206,7 @@
     {
       "parameters": {
         "chatId": "945884902",
-        "text": "✅ Backup has completed -- workflows have been processed.",
+        "text": "=✅ Backup has completed -- {{ $('Loop Over Items').item.json.name }} workflows have been processed.",
         "additionalFields": {
           "appendAttribution": false
         }
@@ -281,6 +281,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-24T18:14:51.635Z",
-  "versionId": "7d58c1ca-9344-4469-a289-72bd002d30c5"
+  "updatedAt": "2025-05-24T18:16:36.637Z",
+  "versionId": "a059ee18-2011-4f18-9bb0-40df7771008b"
 }
