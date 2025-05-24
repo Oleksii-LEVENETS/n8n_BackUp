@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "On clicking 'execute'": {
       "main": [
@@ -91,7 +91,8 @@
         280,
         60
       ],
-      "typeVersion": 1
+      "typeVersion": 1,
+      "disabled": true
     },
     {
       "parameters": {
@@ -131,7 +132,7 @@
         "rule": {
           "interval": [
             {
-              "triggerAtHour": 17
+              "field": "minutes"
             }
           ]
         }
@@ -262,9 +263,14 @@
   "settings": {
     "executionOrder": "v1",
     "timezone": "Europe/Kyiv",
-    "callerPolicy": "workflowsFromSameOwner"
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "bVbSoouoJTyzrhju"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [
     {
       "createdAt": "2025-05-21T12:22:32.212Z",
@@ -273,7 +279,7 @@
       "name": "ADMIN"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-05-24T16:55:08.960Z",
-  "versionId": "c08b71b1-7006-4ee3-9bc0-a8584716e781"
+  "triggerCount": 1,
+  "updatedAt": "2025-05-24T18:04:52.447Z",
+  "versionId": "cd8a9245-cc18-45ae-ae37-52dd2c831934"
 }
