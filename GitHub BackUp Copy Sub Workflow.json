@@ -426,7 +426,7 @@
         },
         "repository": {
           "__rl": true,
-          "value": "{{ $('Config').item.json.repo_name }}",
+          "value": "={{ $('Config').item.json.repo_name }}",
           "mode": ""
         },
         "filePath": "={{ $('When Executed by Another Workflow').item.json.name }}.json",
@@ -551,7 +551,10 @@
   "repo_owner": "Oleksii-Levenets",
   "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Europe/Kyiv",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "bVbSoouoJTyzrhju"
   },
   "staticData": null,
   "tags": [
@@ -563,6 +566,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-05-24T16:48:56.368Z",
-  "versionId": "e17a8c35-a44a-4d9e-bc1b-3c32da3fcad9"
+  "updatedAt": "2025-05-24T18:05:24.426Z",
+  "versionId": "72984126-34c2-43ed-9b21-cd51979d5a1a"
 }
