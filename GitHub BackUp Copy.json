@@ -77,6 +77,7 @@
   },
   "createdAt": "2025-05-22T16:35:01.448Z",
   "id": "DYWpDM34g1iYPlPc",
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -132,8 +133,7 @@
         "rule": {
           "interval": [
             {
-              "field": "hours",
-              "hoursInterval": 12
+              "triggerAtHour": 21
             }
           ]
         }
@@ -267,6 +267,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-24T18:37:00.736Z",
-  "versionId": "b95f8749-7599-4fe5-8f56-bf392d012487"
+  "updatedAt": "2025-05-25T09:02:03.088Z",
+  "versionId": "14ae77aa-6ed0-4f45-aea5-a53dfdc6f17d"
 }
