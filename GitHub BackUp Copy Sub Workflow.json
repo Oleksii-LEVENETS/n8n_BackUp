@@ -184,6 +184,7 @@
   },
   "createdAt": "2025-05-23T18:53:11.496Z",
   "id": "iZFZvSHshNiqXmsO",
+  "isArchived": false,
   "meta": null,
   "name": "GitHub BackUp Copy Sub Workflow",
   "nodes": [
