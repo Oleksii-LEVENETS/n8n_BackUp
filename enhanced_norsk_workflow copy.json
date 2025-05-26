@@ -1,0 +1,984 @@
+{
+  "active": false,
+  "connections": {
+    "Simple Input Processor": {
+      "main": [
+        [
+          {
+            "node": "Is Command?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Command?": {
+      "main": [
+        [
+          {
+            "node": "Handle Commands",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Norwegian Translator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle Commands": {
+      "main": [
+        [
+          {
+            "node": "Send Command Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Norwegian Translator": {
+      "main": [
+        [
+          {
+            "node": "Process Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter LLM": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Norwegian Translator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Response": {
+      "main": [
+        [
+          {
+            "node": "Check for Errors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check for Errors": {
+      "main": [
+        [
+          {
+            "node": "Send Error Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Translation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smart Input Analyzer": {
+      "main": [
+        [
+          {
+            "node": "IF: Is Command?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Content Type Router": {
+      "main": [
+        [
+          {
+            "node": "Unified Content Processor Text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Unified Content Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unified Content Processor": {
+      "main": [
+        [
+          {
+            "node": "Enhanced Response Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enhanced Response Processor": {
+      "main": [
+        [
+          {
+            "node": "Parallel Operations Coordinator",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Enhanced Telegram Response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parallel Operations Coordinator": {
+      "main": [
+        [
+          {
+            "node": "Enhanced Google Sheets Storage",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "User Progress Tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM All": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Unified Content Processor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Text": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Unified Content Processor Text",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unified Content Processor Text": {
+      "main": [
+        [
+          {
+            "node": "Enhanced Response Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enhanced Command Handler": {
+      "main": [
+        [
+          {
+            "node": "Telegram Response Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Is Command?": {
+      "main": [
+        [
+          {
+            "node": "Enhanced Command Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Content Type Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Smart Input Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-25T19:43:57.872Z",
+  "id": "iRCnhRUTxFdaE7RR",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "enhanced_norsk_workflow copy",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "// Simple input processing\nconst message = $input.item.json.message;\nconst text = message.text || '';\nconst chatId = message.chat.id;\nconst userId = message.from.id;\nconst userName = message.from.first_name || 'User';\n\n// Check if it's a command\nconst isCommand = text.startsWith('/');\n\nreturn {\n  json: {\n    text: text,\n    chatId: chatId,\n    userId: userId,\n    userName: userName,\n    isCommand: isCommand,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        820
+      ],
+      "id": "6ec276c2-8f42-46fa-87ec-fdd4c74818fc",
+      "name": "Simple Input Processor",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "is-command",
+              "leftValue": "={{ $json.isCommand }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            },
+            {
+              "id": "d675c168-b575-4c65-991d-c229c13299f1",
+              "leftValue": "={{ $json.isCommand }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        640,
+        820
+      ],
+      "id": "dbdb146c-b93f-4c18-88cb-e9fbee25d5c7",
+      "name": "Is Command?",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Handle basic commands\nconst text = $input.item.json.text;\nconst chatId = $input.item.json.chatId;\n\nlet response = '';\n\nswitch(text.toLowerCase()) {\n  case '/start':\n    response = '🇳🇴 Welcome to Simple Norsk Cards!\\n\\nSend me Ukrainian words and I\\'ll translate them to Norwegian.\\n\\nCommands:\\n/help - Show this help\\n/test - Test the bot';\n    break;\n    \n  case '/help':\n    response = '📚 How to use:\\n\\n1. Send Ukrainian words\\n2. Get Norwegian translation\\n3. Practice and learn!\\n\\nExample: Send \"собака\" to get Norwegian translation.';\n    break;\n    \n  case '/test':\n    response = '✅ Bot is working! Send \"собака\" to test translation.';\n    break;\n    \n  default:\n    response = '❓ Unknown command. Use /help for instructions.';\n}\n\nreturn {\n  json: {\n    chatId: chatId,\n    response: response\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        840,
+        720
+      ],
+      "id": "f755faf1-d40f-475c-8618-3e4edae7bab4",
+      "name": "Handle Commands",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "You are a Norwegian language learning assistant. Translate Ukrainian words to Norwegian and provide learning information.\n\nFor the Ukrainian word provided, return ONLY valid JSON in this exact format:\n{\n  \"word_no\": \"Norwegian translation\",\n  \"word_no_ipa\": \"IPA pronunciation\",\n  \"word_en\": \"English translation\",\n  \"word_uk\": \"Original Ukrainian word\",\n  \"examples\": [\"Example 1 in Norwegian\", \"Example 2 in Norwegian\", \"Example 3 in Norwegian\"],\n  \"difficulty\": \"beginner or intermediate or advanced\"\n}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "={{ $('Telegram Trigger').item.json.message.text }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        840,
+        920
+      ],
+      "id": "991bf11c-93bd-4282-9fe7-5e30a4fce80a",
+      "name": "Norwegian Translator",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-prover-v2:free",
+        "options": {
+          "maxTokens": 500,
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        820,
+        1100
+      ],
+      "id": "ed9f8c82-e7b8-404b-a6dd-4bfbaa2fe204",
+      "name": "OpenRouter LLM",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KRtSCc0YBK4WlQBs",
+          "name": "OpenRouter account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process translation response\ntry {\n  const response = $input.item.json.response || $input.item.json.text;\n  const chatId = $('Simple Input Processor').item.json.chatId;\n  \n  // Try to parse JSON\n  let data;\n  try {\n    data = JSON.parse(response);\n  } catch (e) {\n    // If direct parsing fails, try to extract JSON from response\n    const jsonMatch = response.match(/{[\\s\\S]*?}/);\n    if (jsonMatch) {\n      data = JSON.parse(jsonMatch[0]);\n    } else {\n      throw new Error('No valid JSON found');\n    }\n  }\n  \n  // Validate required fields\n  if (!data.word_no || !data.word_en || !data.word_uk) {\n    throw new Error('Missing required translation fields');\n  }\n  \n  return {\n    json: {\n      ...data,\n      chatId: chatId,\n      success: true\n    }\n  };\n  \n} catch (error) {\n  return {\n    json: {\n      chatId: $('Simple Input Processor').item.json.chatId,\n      error: true,\n      errorMessage: error.message,\n      response: '❌ Translation failed. Please try again with a single Ukrainian word.'\n    }\n  };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        920
+      ],
+      "id": "71805dfc-e529-438d-ab83-986b766d94ac",
+      "name": "Process Response",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "has-error",
+              "leftValue": "={{ $json.error }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        920
+      ],
+      "id": "8163ac7f-2ac9-4057-9af9-7de40fdc0172",
+      "name": "Check for Errors",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.response }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1040,
+        720
+      ],
+      "id": "d8318733-8c30-4fb0-ac04-2643ebabac39",
+      "name": "Send Command Response",
+      "webhookId": "8314ea81-6ecd-4130-8463-6b261668f201",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "🇳🇴 **{{ $json.word_no }}** `{{ $json.word_no_ipa || '' }}`\\n🇬🇧 {{ $json.word_en }}\\n🇺🇦 {{ $json.word_uk }}\\n\\n📊 Level: {{ $json.difficulty || 'intermediate' }}\\n\\n📝 **Examples:**\\n• {{ $json.examples[0] || 'Example not available' }}\\n• {{ $json.examples[1] || 'Example not available' }}\\n• {{ $json.examples[2] || 'Example not available' }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1540,
+        1040
+      ],
+      "id": "ad060d71-dcd2-4a81-aa8e-2683dfeed28a",
+      "name": "Send Translation",
+      "webhookId": "3fbc5c35-b2d2-4bc8-af71-b039901dae50",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.response || 'Something went wrong. Please try again.' }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1540,
+        780
+      ],
+      "id": "6a9e1f36-a391-4a21-a99d-81da92794aa9",
+      "name": "Send Error Message",
+      "webhookId": "fdf3bf91-bd5d-48f7-9974-e6275b1a0826",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const message = $input.item.json.message;\nconst text = message.text || '';\nconst userId = message.from.id;\nconst userName = `${message.from.first_name} ${message.from.last_name || ''}`.trim();\n\n// Enhanced input detection\nconst inputType = {\n  isCommand: text.startsWith('/'),\n  isPhoto: message.photo !== undefined,\n  isVoice: message.voice !== undefined,\n  isText: text && !text.startsWith('/'),\n  isBatch: text.includes(',') || text.includes(';') || text.includes('\\n')\n};\n\n// Command parsing\nlet command = null;\nif (inputType.isCommand) {\n  command = text.split(' ')[0].toLowerCase();\n}\n\n// User context setup\nconst userContext = {\n  id: userId,\n  name: userName,\n  username: message.from.username || '',\n  chatId: message.chat.id,\n  timestamp: new Date().toISOString()\n};\n\nreturn {\n  json: {\n    ...userContext,\n    inputType,\n    command,\n    originalMessage: message,\n    processingId: `proc_${userId}_${Date.now()}`\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -20,
+        -720
+      ],
+      "id": "8992ac4d-51d8-408e-9036-9c84e31c3391",
+      "name": "Smart Input Analyzer"
+    },
+    {
+      "parameters": {
+        "jsCode": "const command = $input.item.json.command;\nconst userId = $input.item.json.id;\nconst chatId = $input.item.json.chatId;\n\n// Enhanced command handling\nswitch(command) {\n  case '/start':\n    return {\n      json: {\n        chatId,\n        response: '🇳🇴 Welcome to Enhanced Norsk Cards Bot!\\n\\n📸 Send a photo - I\\'ll identify objects\\n📝 Send Ukrainian text - I\\'ll translate to Norwegian\\n🎤 Send voice message - I\\'ll process speech\\n📚 Use commands:\\n/stats - Your learning progress\\n/review - Practice words\\n/help - Full instructions\\n/settings - Preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/help':\n    return {\n      json: {\n        chatId,\n        response: '🔧 Enhanced Features:\\n\\n📸 Photo Recognition\\n📝 Text Translation (Ukrainian→Norwegian)\\n🎤 Voice Processing\\n📊 Progress Tracking\\n🔄 Batch Processing (comma-separated)\\n📋 IPA Transcription\\n💾 Auto-save to Google Sheets\\n\\n🎯 Commands:\\n/stats - Learning statistics\\n/review - Practice session\\n/settings - User preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/stats':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_stats'\n      }\n    };\n    \n  case '/review':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_review'\n      }\n    };\n    \n  case '/settings':\n    return {\n      json: {\n        chatId,\n        response: '⚙️ Settings:\\n\\n🔊 Audio enabled: Yes\\n📝 IPA transcription: Yes\\n🎯 Difficulty level: Intermediate\\n📊 Progress tracking: Enabled\\n\\nUse inline buttons to modify settings.',\n        action: 'send_message'\n      }\n    };\n    \n  default:\n    return {\n      json: {\n        chatId,\n        response: '❓ Unknown command. Use /help for available commands.',\n        action: 'send_message'\n      }\n    };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        500,
+        -880
+      ],
+      "id": "700c8940-e6b8-475b-a30f-d90e736373d2",
+      "name": "Enhanced Command Handler"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "photo-check",
+              "leftValue": "={{ $json.inputType.isPhoto }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            },
+            {
+              "id": "1d0b4744-6ed0-47ed-a241-755939de6b4c",
+              "leftValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+              "rightValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        500,
+        -540
+      ],
+      "id": "db418a14-64f5-4391-aff4-0d993d13f7d8",
+      "name": "Content Type Router"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Enhanced Norwegian Learning Assistant\n\nYou process images, voice messages, or text for Norwegian language learning.\n\nFor images: Identify the main object and provide Norwegian translation with IPA, English, Ukrainian, and 3 contextual examples.\n\nFor text: Translate Ukrainian words/phrases to Norwegian with comprehensive language data.\n\nReturn ONLY valid JSON in this format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"IPA transcription\",\n  \"word_en\": \"English translation\",\n  \"word_uk\": \"Ukrainian word\",\n  \"difficulty\": \"beginner|intermediate|advanced\",\n  \"frequency\": \"common|uncommon|rare\",\n  \"grammar_notes\": \"Brief grammar context\",\n  \"examples\": [\"3 Norwegian sentences\"],\n  \"examples_IPA\": [\"3 sentences in IPA\"],\n  \"examples_UKR\": [\"3 Ukrainian translations\"],\n  \"pronunciation_tips\": \"Helpful pronunciation guidance\",\n  \"related_words\": [\"2-3 related Norwegian words\"],\n  \"image_prompt\": \"Description for image generation (text input only)\"\n}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Process this input: {{ $json.originalMessage.text || 'Image provided' }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        780,
+        -500
+      ],
+      "id": "0d03eca9-c252-4f0f-bf55-4539e610b139",
+      "name": "Unified Content Processor"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Enhanced response processing with error handling\ntry {\n  const response = $input.item.json.response || $input.item.json.text;\n  let data;\n  \n  // Robust JSON parsing\n  try {\n    data = JSON.parse(response);\n  } catch (e) {\n    const jsonMatch = response.match(/{[\\s\\S]*?}/);\n    if (jsonMatch) {\n      data = JSON.parse(jsonMatch[0]);\n    } else {\n      throw new Error('No valid JSON found in response');\n    }\n  }\n  \n  // Enhanced validation\n  const requiredFields = ['word_no', 'word_en', 'word_uk', 'examples'];\n  const missingFields = requiredFields.filter(field => !data[field]);\n  \n  if (missingFields.length > 0) {\n    throw new Error(`Missing required fields: ${missingFields.join(', ')}`);\n  }\n  \n  // Get previous node data safely\n  const inputAnalyzer = $('Smart Input Analyzer').item.json;\n  \n  // Enrich data with metadata\n  const enrichedData = {\n    ...data,\n    processingId: inputAnalyzer.processingId,\n    userId: inputAnalyzer.id,\n    userName: inputAnalyzer.name,\n    chatId: inputAnalyzer.chatId,\n    inputType: inputAnalyzer.inputType,\n    timestamp: new Date().toISOString(),\n    confidence: 'high',\n    source: 'primary_llm'\n  };\n  \n  return { json: enrichedData };\n  \n} catch (error) {\n  const inputAnalyzer = $('Smart Input Analyzer').item.json;\n  return {\n    json: {\n      error: true,\n      errorMessage: error.message,\n      processingId: inputAnalyzer.processingId,\n      chatId: inputAnalyzer.chatId,\n      fallbackNeeded: true\n    }\n  };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1220,
+        -640
+      ],
+      "id": "4a98a639-64b4-4356-9ef1-b7989e1a7de3",
+      "name": "Enhanced Response Processor"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Norsk": "={{ $json.word_no }}",
+            "English": "={{ $json.word_en }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Photo",
+              "displayName": "Photo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Norsk",
+              "displayName": "Norsk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Norsk (IPA transcription)",
+              "displayName": "Norsk (IPA transcription)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English",
+              "displayName": "English",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Українська",
+              "displayName": "Українська",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Example #1",
+              "displayName": "Example #1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Example #2",
+              "displayName": "Example #2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Example #3",
+              "displayName": "Example #3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1640,
+        -620
+      ],
+      "id": "89648ea6-70a6-452f-8c3c-e124c7b46d24",
+      "name": "Enhanced Google Sheets Storage",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "9Mm6P9gevjQ7fdoN",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Comprehensive error handling and fallback logic\nconst input = $input.item.json;\n\nif (input.error) {\n  // Try fallback LLM or provide graceful degradation\n  return {\n    json: {\n      chatId: input.chatId,\n      text: '⚠️ Processing temporarily unavailable. Please try again or contact support.',\n      error: true,\n      fallbackAction: 'retry_later'\n    }\n  };\n}\n\n// Success path - prepare for parallel operations\nreturn {\n  json: {\n    ...input,\n    readyForStorage: true,\n    readyForResponse: true\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        -560
+      ],
+      "id": "b28fda1f-e768-4912-9009-a6bade8773f2",
+      "name": "Parallel Operations Coordinator"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "user_progress",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "User_ID": "={{ $json.userId }}",
+            "User_Name": "={{ $json.userName }}",
+            "Word_Norwegian": "={{ $json.word_no }}",
+            "Timestamp": "={{ $json.timestamp }}",
+            "Difficulty": "={{ $json.difficulty }}",
+            "Session_ID": "={{ $json.processingId }}",
+            "Input_Method": "={{ $json.inputType.isPhoto ? 'Photo' : $json.inputType.isVoice ? 'Voice' : 'Text' }}",
+            "Success": "TRUE"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1640,
+        -420
+      ],
+      "id": "249f6e3a-a63e-42cc-952d-b504272f9932",
+      "name": "User Progress Tracker",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "9Mm6P9gevjQ7fdoN",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Enhanced Norwegian Learning Assistant for Text\n\nYou process text for Norwegian language learning.\n\nTranslate Ukrainian words/phrases to Norwegian with comprehensive language data.\n\nReturn ONLY valid JSON in this format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"IPA transcription\",\n  \"word_en\": \"English translation\",\n  \"word_uk\": \"Ukrainian word\",\n  \"difficulty\": \"beginner|intermediate|advanced\",\n  \"frequency\": \"common|uncommon|rare\",\n  \"grammar_notes\": \"Brief grammar context\",\n  \"examples\": [\"3 Norwegian sentences\"],\n  \"examples_IPA\": [\"3 sentences in IPA\"],\n  \"examples_UKR\": [\"3 Ukrainian translations\"],\n  \"pronunciation_tips\": \"Helpful pronunciation guidance\",\n  \"related_words\": [\"2-3 related Norwegian words\"],\n  \"image_prompt\": \"Description for image generation\"\n}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Process this input: {{ $json.originalMessage.text || 'Image provided' }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        780,
+        -780
+      ],
+      "id": "6f327fef-bc9d-4c77-93f0-cf464851113d",
+      "name": "Unified Content Processor Text"
+    },
+    {
+      "parameters": {
+        "model": "google/gemma-3n-e4b-it:free",
+        "options": {
+          "maxTokens": 1000,
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        720,
+        -360
+      ],
+      "id": "1eb61755-f2f8-412b-99f4-82834efa8fee",
+      "name": "LLM All",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KRtSCc0YBK4WlQBs",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4.1-nano",
+        "options": {
+          "maxTokens": 1000,
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        740,
+        -660
+      ],
+      "id": "30128e9c-ba83-441a-96d9-a17e6bf39f6a",
+      "name": "LLM Text",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KRtSCc0YBK4WlQBs",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "cmd-check",
+              "leftValue": "={{ $json.inputType.isCommand }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            },
+            {
+              "id": "8004239d-2f92-42c1-9d49-5c2b98c3993b",
+              "leftValue": "={{ $('Smart Input Analyzer').item.json.inputType.isCommand }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        200,
+        -720
+      ],
+      "id": "22035ce9-8250-4bab-ab86-65ccc6042255",
+      "name": "IF: Is Command?"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "*"
+        ],
+        "additionalFields": {
+          "download": true
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -240,
+        -720
+      ],
+      "id": "d084353e-722a-4cce-8c19-31ec7344b45e",
+      "name": "Telegram Trigger",
+      "webhookId": "bb893811-b4e3-41a9-a098-65fb15362e66",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Smart Input Analyzer').item.json.chatId }}",
+        "text": "🇳🇴 **{{ $json.word_no }}** → `{{ $json.word_no_IPA }}`\n🇬🇧 {{ $json.word_en }}\n🇺🇦 {{ $json.word_uk }}\n\n📊 **Level:** {{ $json.difficulty || 'intermediate' }} | **Frequency:** {{ $json.frequency || 'common' }}\n\n📝 **Examples:**\n1️⃣ {{ $json.examples[0] }}\n   → `{{ $json.examples_IPA[0] }}`\n   → {{ $json.examples_UKR[0] }}\n\n2️⃣ {{ $json.examples[1] }}\n   → `{{ $json.examples_IPA[1] }}`\n   → {{ $json.examples_UKR[1] }}\n\n3️⃣ {{ $json.examples[2] }}\n   → `{{ $json.examples_IPA[2] }}`\n   → {{ $json.examples_UKR[2] }}\n\n{{ $json.grammar_notes ? '📚 **Grammar:** ' + $json.grammar_notes + '\\n\\n' : '' }}{{ $json.pronunciation_tips ? '🗣️ **Pronunciation:** ' + $json.pronunciation_tips + '\\n\\n' : '' }}{{ $json.related_words ? '🔗 **Related:** ' + $json.related_words.join(', ') : '' }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1620,
+        -940
+      ],
+      "id": "ae939b72-60fa-43d3-8be1-80878745d0c8",
+      "name": "Enhanced Telegram Response1",
+      "webhookId": "5f94bf85-7d21-49e7-a8ff-706fd6cfc057",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Smart Input Analyzer').item.json.chatId }}",
+        "text": "={{ $('Enhanced Command Handler').item.json.response }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        800,
+        -1020
+      ],
+      "id": "699e5357-73f2-4c03-ba09-89d6d814562b",
+      "name": "Telegram Response Command",
+      "webhookId": "5f94bf85-7d21-49e7-a8ff-706fd6cfc057",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n_BackUp",
+  "repo_owner": "Oleksii-Levenets",
+  "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-26T17:09:26.194Z",
+  "versionId": "ec2f86f5-c569-445c-947b-1d532acfd2cb"
+}
