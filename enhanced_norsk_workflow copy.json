@@ -1,151 +1,14 @@
 {
   "active": false,
   "connections": {
-    "Simple Input Processor": {
-      "main": [
-        [
-          {
-            "node": "Is Command?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Is Command?": {
-      "main": [
-        [
-          {
-            "node": "Handle Commands",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Norwegian Translator",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Handle Commands": {
-      "main": [
-        [
-          {
-            "node": "Send Command Response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Norwegian Translator": {
-      "main": [
-        [
-          {
-            "node": "Process Response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenRouter LLM": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Norwegian Translator",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Process Response": {
-      "main": [
-        [
-          {
-            "node": "Check for Errors",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Check for Errors": {
-      "main": [
-        [
-          {
-            "node": "Send Error Message",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Send Translation",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Smart Input Analyzer": {
-      "main": [
-        [
-          {
-            "node": "IF: Is Command?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Content Type Router": {
-      "main": [
-        [
-          {
-            "node": "Unified Content Processor Text",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Unified Content Processor",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Unified Content Processor": {
       "main": [
-        [
-          {
-            "node": "Enhanced Response Processor",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Enhanced Response Processor": {
       "main": [
-        [
-          {
-            "node": "Parallel Operations Coordinator",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Enhanced Telegram Response1",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Parallel Operations Coordinator": {
@@ -164,34 +27,12 @@
         ]
       ]
     },
-    "LLM All": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Unified Content Processor",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "LLM Text": {
       "ai_languageModel": [
         [
           {
-            "node": "Unified Content Processor Text",
+            "node": "LLM_for_Text",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Unified Content Processor Text": {
-      "main": [
-        [
-          {
-            "node": "Enhanced Response Processor",
-            "type": "main",
             "index": 0
           }
         ]
@@ -210,9 +51,481 @@
     },
     "IF: Is Command?": {
       "main": [
+        [],
+        []
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
         [
           {
-            "node": "Enhanced Command Handler",
+            "node": "Code_Input_Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "LLM: Translate Image to Norsk",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Photo?": {
+      "main": [
+        [
+          {
+            "node": "Telegram: Download the photo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "LLM: Translate Text to Norsk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "LLM: Translate Text to Norsk",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram: Download the photo": {
+      "main": [
+        [
+          {
+            "node": "Code: Fix Image MIME Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Fix Image MIME Type": {
+      "main": [
+        [
+          {
+            "node": "LLM: Translate Image to Norsk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM: Translate Image to Norsk": {
+      "main": [
+        [
+          {
+            "node": "Code: Process Image Recognition",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Process Image Recognition": {
+      "main": [
+        [
+          {
+            "node": "Telegram: Send Word Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram: Send Word Info": {
+      "main": [
+        [
+          {
+            "node": "Code: Combine the data for Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Combine the data for Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM: Translate Text to Norsk": {
+      "main": [
+        [
+          {
+            "node": "Code: Process Text Translation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request FLUX.1-schnell": {
+      "main": [
+        [
+          {
+            "node": "Telegram Send Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Process Text Translation": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request FLUX.1-schnell",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram: Send Word Info1": {
+      "main": [
+        [
+          {
+            "node": "Telegram: Download the photo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram: Download the photo1": {
+      "main": [
+        [
+          {
+            "node": "Code: Fix Image MIME Type1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Send Image": {
+      "main": [
+        [
+          {
+            "node": "Telegram: Send Word Info1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Fix Image MIME Type1": {
+      "main": [
+        [
+          {
+            "node": "Google Drive1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM deepseek/deepseek-prover-v2:free": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "LLM google/gemma-3n-e4b-it:free": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Unified Content Processor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT-4.1-nano": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "NSFW Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Status": {
+      "main": [
+        [
+          {
+            "node": "Is Ready?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Fetch Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Ready?": {
+      "main": [
+        [
+          {
+            "node": "Fetch Result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Submit Request": {
+      "main": [
+        [
+          {
+            "node": "Fetch Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Result": {
+      "main": [
+        [
+          {
+            "node": "Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "NSFW Filter",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NSFW Filter": {
+      "main": [
+        [
+          {
+            "node": "400 Error",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Submit Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "400 Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP_Fetch_Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP_Request_to_Fal_ai": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP_Fetch_Status": {
+      "main": [
+        [
+          {
+            "node": "IF_Is_Ready?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF_Is_Ready?": {
+      "main": [
+        [
+          {
+            "node": "HTTP_Fetch_Result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP_Fetch_Result": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [],
+        [],
+        [],
+        [
+          {
+            "node": "LLM_for_Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code_Input_Analyzer": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM_for_Text": {
+      "main": [
+        [
+          {
+            "node": "Enhanced Telegram Response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "LLM_for_Text",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smart Input Analyzer": {
+      "main": [
+        [
+          {
+            "node": "Command Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Command Router": {
+      "main": [
+        [
+          {
+            "node": "Enhanced Command Handler1",
             "type": "main",
             "index": 0
           }
@@ -226,11 +539,94 @@
         ]
       ]
     },
-    "Telegram Trigger": {
+    "Content Type Router": {
+      "main": [
+        [
+          {
+            "node": "Unified Content Processor1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Unified Content Processor1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Primary LLM (GPT-4o-mini)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Unified Content Processor1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger1": {
       "main": [
         [
           {
             "node": "Smart Input Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unified Content Processor1": {
+      "main": [
+        [
+          {
+            "node": "Enhanced Response Processor1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enhanced Response Processor1": {
+      "main": [
+        [
+          {
+            "node": "Enhanced Telegram Response",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Parallel Operations Coordinator1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parallel Operations Coordinator1": {
+      "main": [
+        [
+          {
+            "node": "Enhanced Google Sheets Storage1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "User Progress Tracker1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enhanced Telegram Response1": {
+      "main": [
+        [
+          {
+            "node": "Enhanced Telegram Response2",
             "type": "main",
             "index": 0
           }
@@ -248,326 +644,25 @@
   "nodes": [
     {
       "parameters": {
-        "jsCode": "// Simple input processing\nconst message = $input.item.json.message;\nconst text = message.text || '';\nconst chatId = message.chat.id;\nconst userId = message.from.id;\nconst userName = message.from.first_name || 'User';\n\n// Check if it's a command\nconst isCommand = text.startsWith('/');\n\nreturn {\n  json: {\n    text: text,\n    chatId: chatId,\n    userId: userId,\n    userName: userName,\n    isCommand: isCommand,\n    timestamp: new Date().toISOString()\n  }\n};"
+        "jsCode": "const command = $input.item.json.command;\nconst userId = $input.item.json.id;\nconst chatId = $input.item.json.chatId;\n\n// Enhanced command handling\nswitch(command) {\n  case '/start':\n    return {\n      json: {\n        chatId,\n        response: '🇳🇴 Welcome to Enhanced Norsk Cards Bot!\\n\\n📸 Send a photo - I\\'ll identify objects\\n📝 Send Ukrainian text - I\\'ll translate to Norwegian\\n🎤 Send voice message - I\\'ll process speech\\n📚 Use commands:\\n/stats - Your learning progress\\n/review - Practice words\\n/help - Full instructions\\n/settings - Preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/help':\n    return {\n      json: {\n        chatId,\n        response: '🔧 Enhanced Features:\\n\\n📸 Photo Recognition\\n📝 Text Translation (Ukrainian→Norwegian)\\n🎤 Voice Processing\\n📊 Progress Tracking\\n🔄 Batch Processing\\n📋 IPA Transcription\\n💾 Auto-save to Google Sheets\\n\\n🎯 Commands:\\n/stats - Learning statistics\\n/review - Practice session\\n/settings - User preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/stats':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_stats'\n      }\n    };\n    \n  case '/review':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_review'\n      }\n    };\n    \n  case '/settings':\n    return {\n      json: {\n        chatId,\n        response: '⚙️ Settings:\\n\\n🔊 Audio enabled: Yes\\n📝 IPA transcription: Yes\\n🎯 Difficulty level: Intermediate\\n📊 Progress tracking: Enabled\\n\\nUse inline buttons to modify settings.',\n        action: 'send_message'\n      }\n    };\n    \n  default:\n    return {\n      json: {\n        chatId,\n        response: '❓ Unknown command. Use /help for available commands.',\n        action: 'send_message'\n      }\n    };\n}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        460,
-        820
-      ],
-      "id": "6ec276c2-8f42-46fa-87ec-fdd4c74818fc",
-      "name": "Simple Input Processor",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose",
-            "version": 1
-          },
-          "conditions": [
-            {
-              "id": "is-command",
-              "leftValue": "={{ $json.isCommand }}",
-              "rightValue": "true",
-              "operator": {
-                "type": "boolean",
-                "operation": "equal"
-              }
-            },
-            {
-              "id": "d675c168-b575-4c65-991d-c229c13299f1",
-              "leftValue": "={{ $json.isCommand }}",
-              "rightValue": "true",
-              "operator": {
-                "type": "string",
-                "operation": "equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        640,
-        820
-      ],
-      "id": "dbdb146c-b93f-4c18-88cb-e9fbee25d5c7",
-      "name": "Is Command?",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "jsCode": "// Handle basic commands\nconst text = $input.item.json.text;\nconst chatId = $input.item.json.chatId;\n\nlet response = '';\n\nswitch(text.toLowerCase()) {\n  case '/start':\n    response = '🇳🇴 Welcome to Simple Norsk Cards!\\n\\nSend me Ukrainian words and I\\'ll translate them to Norwegian.\\n\\nCommands:\\n/help - Show this help\\n/test - Test the bot';\n    break;\n    \n  case '/help':\n    response = '📚 How to use:\\n\\n1. Send Ukrainian words\\n2. Get Norwegian translation\\n3. Practice and learn!\\n\\nExample: Send \"собака\" to get Norwegian translation.';\n    break;\n    \n  case '/test':\n    response = '✅ Bot is working! Send \"собака\" to test translation.';\n    break;\n    \n  default:\n    response = '❓ Unknown command. Use /help for instructions.';\n}\n\nreturn {\n  json: {\n    chatId: chatId,\n    response: response\n  }\n};"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        840,
-        720
-      ],
-      "id": "f755faf1-d40f-475c-8618-3e4edae7bab4",
-      "name": "Handle Commands",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "You are a Norwegian language learning assistant. Translate Ukrainian words to Norwegian and provide learning information.\n\nFor the Ukrainian word provided, return ONLY valid JSON in this exact format:\n{\n  \"word_no\": \"Norwegian translation\",\n  \"word_no_ipa\": \"IPA pronunciation\",\n  \"word_en\": \"English translation\",\n  \"word_uk\": \"Original Ukrainian word\",\n  \"examples\": [\"Example 1 in Norwegian\", \"Example 2 in Norwegian\", \"Example 3 in Norwegian\"],\n  \"difficulty\": \"beginner or intermediate or advanced\"\n}",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "={{ $('Telegram Trigger').item.json.message.text }}"
-            }
-          ]
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.6,
-      "position": [
-        840,
-        920
-      ],
-      "id": "991bf11c-93bd-4282-9fe7-5e30a4fce80a",
-      "name": "Norwegian Translator",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "model": "deepseek/deepseek-prover-v2:free",
-        "options": {
-          "maxTokens": 500,
-          "temperature": 0.3
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        820,
-        1100
-      ],
-      "id": "ed9f8c82-e7b8-404b-a6dd-4bfbaa2fe204",
-      "name": "OpenRouter LLM",
-      "credentials": {
-        "openRouterApi": {
-          "id": "KRtSCc0YBK4WlQBs",
-          "name": "OpenRouter account"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "jsCode": "// Process translation response\ntry {\n  const response = $input.item.json.response || $input.item.json.text;\n  const chatId = $('Simple Input Processor').item.json.chatId;\n  \n  // Try to parse JSON\n  let data;\n  try {\n    data = JSON.parse(response);\n  } catch (e) {\n    // If direct parsing fails, try to extract JSON from response\n    const jsonMatch = response.match(/{[\\s\\S]*?}/);\n    if (jsonMatch) {\n      data = JSON.parse(jsonMatch[0]);\n    } else {\n      throw new Error('No valid JSON found');\n    }\n  }\n  \n  // Validate required fields\n  if (!data.word_no || !data.word_en || !data.word_uk) {\n    throw new Error('Missing required translation fields');\n  }\n  \n  return {\n    json: {\n      ...data,\n      chatId: chatId,\n      success: true\n    }\n  };\n  \n} catch (error) {\n  return {\n    json: {\n      chatId: $('Simple Input Processor').item.json.chatId,\n      error: true,\n      errorMessage: error.message,\n      response: '❌ Translation failed. Please try again with a single Ukrainian word.'\n    }\n  };\n}"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1180,
-        920
-      ],
-      "id": "71805dfc-e529-438d-ab83-986b766d94ac",
-      "name": "Process Response",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 1
-          },
-          "conditions": [
-            {
-              "id": "has-error",
-              "leftValue": "={{ $json.error }}",
-              "rightValue": "true",
-              "operator": {
-                "type": "boolean",
-                "operation": "equal"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        1360,
-        920
-      ],
-      "id": "8163ac7f-2ac9-4057-9af9-7de40fdc0172",
-      "name": "Check for Errors",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "chatId": "={{ $json.chatId }}",
-        "text": "={{ $json.response }}",
-        "additionalFields": {
-          "appendAttribution": false
-        }
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        1040,
-        720
-      ],
-      "id": "d8318733-8c30-4fb0-ac04-2643ebabac39",
-      "name": "Send Command Response",
-      "webhookId": "8314ea81-6ecd-4130-8463-6b261668f201",
-      "credentials": {
-        "telegramApi": {
-          "id": "b1A5LbmUfw9IdV5u",
-          "name": "Telegram_Norsk_Cards_bot"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "chatId": "={{ $json.chatId }}",
-        "text": "🇳🇴 **{{ $json.word_no }}** `{{ $json.word_no_ipa || '' }}`\\n🇬🇧 {{ $json.word_en }}\\n🇺🇦 {{ $json.word_uk }}\\n\\n📊 Level: {{ $json.difficulty || 'intermediate' }}\\n\\n📝 **Examples:**\\n• {{ $json.examples[0] || 'Example not available' }}\\n• {{ $json.examples[1] || 'Example not available' }}\\n• {{ $json.examples[2] || 'Example not available' }}",
-        "additionalFields": {
-          "appendAttribution": false,
-          "parse_mode": "Markdown"
-        }
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        1540,
-        1040
-      ],
-      "id": "ad060d71-dcd2-4a81-aa8e-2683dfeed28a",
-      "name": "Send Translation",
-      "webhookId": "3fbc5c35-b2d2-4bc8-af71-b039901dae50",
-      "credentials": {
-        "telegramApi": {
-          "id": "b1A5LbmUfw9IdV5u",
-          "name": "Telegram_Norsk_Cards_bot"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "chatId": "={{ $json.chatId }}",
-        "text": "={{ $json.response || 'Something went wrong. Please try again.' }}",
-        "additionalFields": {
-          "appendAttribution": false
-        }
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        1540,
-        780
-      ],
-      "id": "6a9e1f36-a391-4a21-a99d-81da92794aa9",
-      "name": "Send Error Message",
-      "webhookId": "fdf3bf91-bd5d-48f7-9974-e6275b1a0826",
-      "credentials": {
-        "telegramApi": {
-          "id": "b1A5LbmUfw9IdV5u",
-          "name": "Telegram_Norsk_Cards_bot"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "jsCode": "const message = $input.item.json.message;\nconst text = message.text || '';\nconst userId = message.from.id;\nconst userName = `${message.from.first_name} ${message.from.last_name || ''}`.trim();\n\n// Enhanced input detection\nconst inputType = {\n  isCommand: text.startsWith('/'),\n  isPhoto: message.photo !== undefined,\n  isVoice: message.voice !== undefined,\n  isText: text && !text.startsWith('/'),\n  isBatch: text.includes(',') || text.includes(';') || text.includes('\\n')\n};\n\n// Command parsing\nlet command = null;\nif (inputType.isCommand) {\n  command = text.split(' ')[0].toLowerCase();\n}\n\n// User context setup\nconst userContext = {\n  id: userId,\n  name: userName,\n  username: message.from.username || '',\n  chatId: message.chat.id,\n  timestamp: new Date().toISOString()\n};\n\nreturn {\n  json: {\n    ...userContext,\n    inputType,\n    command,\n    originalMessage: message,\n    processingId: `proc_${userId}_${Date.now()}`\n  }\n};"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -20,
-        -720
-      ],
-      "id": "8992ac4d-51d8-408e-9036-9c84e31c3391",
-      "name": "Smart Input Analyzer"
-    },
-    {
-      "parameters": {
-        "jsCode": "const command = $input.item.json.command;\nconst userId = $input.item.json.id;\nconst chatId = $input.item.json.chatId;\n\n// Enhanced command handling\nswitch(command) {\n  case '/start':\n    return {\n      json: {\n        chatId,\n        response: '🇳🇴 Welcome to Enhanced Norsk Cards Bot!\\n\\n📸 Send a photo - I\\'ll identify objects\\n📝 Send Ukrainian text - I\\'ll translate to Norwegian\\n🎤 Send voice message - I\\'ll process speech\\n📚 Use commands:\\n/stats - Your learning progress\\n/review - Practice words\\n/help - Full instructions\\n/settings - Preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/help':\n    return {\n      json: {\n        chatId,\n        response: '🔧 Enhanced Features:\\n\\n📸 Photo Recognition\\n📝 Text Translation (Ukrainian→Norwegian)\\n🎤 Voice Processing\\n📊 Progress Tracking\\n🔄 Batch Processing (comma-separated)\\n📋 IPA Transcription\\n💾 Auto-save to Google Sheets\\n\\n🎯 Commands:\\n/stats - Learning statistics\\n/review - Practice session\\n/settings - User preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/stats':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_stats'\n      }\n    };\n    \n  case '/review':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_review'\n      }\n    };\n    \n  case '/settings':\n    return {\n      json: {\n        chatId,\n        response: '⚙️ Settings:\\n\\n🔊 Audio enabled: Yes\\n📝 IPA transcription: Yes\\n🎯 Difficulty level: Intermediate\\n📊 Progress tracking: Enabled\\n\\nUse inline buttons to modify settings.',\n        action: 'send_message'\n      }\n    };\n    \n  default:\n    return {\n      json: {\n        chatId,\n        response: '❓ Unknown command. Use /help for available commands.',\n        action: 'send_message'\n      }\n    };\n}"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        500,
-        -880
+        420,
+        -1560
       ],
       "id": "700c8940-e6b8-475b-a30f-d90e736373d2",
       "name": "Enhanced Command Handler"
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose",
-            "version": 1
-          },
-          "conditions": [
-            {
-              "id": "photo-check",
-              "leftValue": "={{ $json.inputType.isPhoto }}",
-              "rightValue": true,
-              "operator": {
-                "type": "boolean",
-                "operation": "equal"
-              }
-            },
-            {
-              "id": "1d0b4744-6ed0-47ed-a241-755939de6b4c",
-              "leftValue": "={{ $('Telegram Trigger').item.json.message.text }}",
-              "rightValue": "={{ $('Telegram Trigger').item.json.message.text }}",
-              "operator": {
-                "type": "string",
-                "operation": "notEquals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        500,
-        -540
-      ],
-      "id": "db418a14-64f5-4391-aff4-0d993d13f7d8",
-      "name": "Content Type Router"
-    },
-    {
-      "parameters": {
         "promptType": "define",
-        "text": "Enhanced Norwegian Learning Assistant\n\nYou process images, voice messages, or text for Norwegian language learning.\n\nFor images: Identify the main object and provide Norwegian translation with IPA, English, Ukrainian, and 3 contextual examples.\n\nFor text: Translate Ukrainian words/phrases to Norwegian with comprehensive language data.\n\nReturn ONLY valid JSON in this format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"IPA transcription\",\n  \"word_en\": \"English translation\",\n  \"word_uk\": \"Ukrainian word\",\n  \"difficulty\": \"beginner|intermediate|advanced\",\n  \"frequency\": \"common|uncommon|rare\",\n  \"grammar_notes\": \"Brief grammar context\",\n  \"examples\": [\"3 Norwegian sentences\"],\n  \"examples_IPA\": [\"3 sentences in IPA\"],\n  \"examples_UKR\": [\"3 Ukrainian translations\"],\n  \"pronunciation_tips\": \"Helpful pronunciation guidance\",\n  \"related_words\": [\"2-3 related Norwegian words\"],\n  \"image_prompt\": \"Description for image generation (text input only)\"\n}",
-        "hasOutputParser": true,
+        "text": "=Process this input: {{ $json.originalMessage.text || 'Image provided' }}",
         "messages": {
           "messageValues": [
             {
-              "message": "Process this input: {{ $json.originalMessage.text || 'Image provided' }}"
+              "message": "=You process images, voice messages, or text for Norwegian language learning.\n\nFor images: Identify the main object and provide Norwegian translation with IPA, English, Ukrainian, and 3 contextual examples.\n\nFor text: Translate Ukrainian words/phrases to Norwegian with comprehensive language data.\n\nReturn ONLY valid JSON in this format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"IPA transcription\",\n  \"word_en\": \"English translation\",\n  \"word_uk\": \"Ukrainian word\",\n  \"difficulty\": \"beginner|intermediate|advanced\",\n  \"frequency\": \"common|uncommon|rare\",\n  \"grammar_notes\": \"Brief grammar context\",\n  \"examples\": [\"3 Norwegian sentences\"],\n  \"examples_IPA\": [\"3 sentences in IPA\"],\n  \"examples_UKR\": [\"3 Ukrainian translations\"],\n  \"pronunciation_tips\": \"Helpful pronunciation guidance\",\n  \"related_words\": [\"2-3 related Norwegian words\"],\n  \"image_prompt\": \"Description for image generation (text input only)\"\n}"
             }
           ]
         }
@@ -583,16 +678,17 @@
     },
     {
       "parameters": {
-        "jsCode": "// Enhanced response processing with error handling\ntry {\n  const response = $input.item.json.response || $input.item.json.text;\n  let data;\n  \n  // Robust JSON parsing\n  try {\n    data = JSON.parse(response);\n  } catch (e) {\n    const jsonMatch = response.match(/{[\\s\\S]*?}/);\n    if (jsonMatch) {\n      data = JSON.parse(jsonMatch[0]);\n    } else {\n      throw new Error('No valid JSON found in response');\n    }\n  }\n  \n  // Enhanced validation\n  const requiredFields = ['word_no', 'word_en', 'word_uk', 'examples'];\n  const missingFields = requiredFields.filter(field => !data[field]);\n  \n  if (missingFields.length > 0) {\n    throw new Error(`Missing required fields: ${missingFields.join(', ')}`);\n  }\n  \n  // Get previous node data safely\n  const inputAnalyzer = $('Smart Input Analyzer').item.json;\n  \n  // Enrich data with metadata\n  const enrichedData = {\n    ...data,\n    processingId: inputAnalyzer.processingId,\n    userId: inputAnalyzer.id,\n    userName: inputAnalyzer.name,\n    chatId: inputAnalyzer.chatId,\n    inputType: inputAnalyzer.inputType,\n    timestamp: new Date().toISOString(),\n    confidence: 'high',\n    source: 'primary_llm'\n  };\n  \n  return { json: enrichedData };\n  \n} catch (error) {\n  const inputAnalyzer = $('Smart Input Analyzer').item.json;\n  return {\n    json: {\n      error: true,\n      errorMessage: error.message,\n      processingId: inputAnalyzer.processingId,\n      chatId: inputAnalyzer.chatId,\n      fallbackNeeded: true\n    }\n  };\n}"
+        "jsCode": "// Enhanced response processing with error handling\ntry {\n  const response = $input.first().json.response || $input.first().json.text;\n  let data;\n  \n  // Robust JSON parsing\n  try {\n    data = JSON.parse(response);\n  } catch (e) {\n    const jsonMatch = response.match(/{[\\s\\S]*?}/);\n    if (jsonMatch) {\n      data = JSON.parse(jsonMatch[0]);\n    } else {\n      throw new Error('No valid JSON found in response');\n    }\n  }\n  \n  // Enhanced validation\n  const requiredFields = ['word_no', 'word_en', 'word_uk', 'examples'];\n  const missingFields = requiredFields.filter(field => !data[field]);\n  \n  if (missingFields.length > 0) {\n    throw new Error(`Missing required fields: ${missingFields.join(', ')}`);\n  }\n  \n  // Get previous node data safely\n  const inputAnalyzer = $('Code_Input_Analyzer').first().json;\n  \n  // Enrich data with metadata\n  const enrichedData = {\n    ...data,\n    processingId: inputAnalyzer.processingId,\n    userId: inputAnalyzer.id,\n    userName: inputAnalyzer.name,\n    chatId: inputAnalyzer.chatId,\n    inputType: inputAnalyzer.inputType,\n    timestamp: new Date().toISOString(),\n    confidence: 'high',\n    source: 'primary_llm'\n  };\n  \n  return { json: enrichedData };\n  \n} catch (error) {\n  const inputAnalyzer = $('Code_Input_Analyzer').first().json;\n  return {\n    json: {\n      error: true,\n      errorMessage: error.message,\n      processingId: inputAnalyzer.processingId,\n      chatId: inputAnalyzer.chatId,\n      fallbackNeeded: true\n    }\n  };\n}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1220,
-        -640
+        -220,
+        260
       ],
       "id": "4a98a639-64b4-4356-9ef1-b7989e1a7de3",
-      "name": "Enhanced Response Processor"
+      "name": "Enhanced Response Processor",
+      "disabled": true
     },
     {
       "parameters": {
@@ -600,12 +696,16 @@
         "documentId": {
           "__rl": true,
           "value": "1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8",
-          "mode": "list"
+          "mode": "list",
+          "cachedResultName": "Norsk_Cards",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
-          "mode": "list"
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -743,25 +843,255 @@
         "documentId": {
           "__rl": true,
           "value": "1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8",
-          "mode": "list"
+          "mode": "list",
+          "cachedResultName": "Norsk_Cards",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": "user_progress",
-          "mode": "list"
+          "value": 2011555885,
+          "mode": "list",
+          "cachedResultName": "user_progress",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8/edit#gid=2011555885"
         },
         "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "User_ID": "={{ $json.userId }}",
-            "User_Name": "={{ $json.userName }}",
-            "Word_Norwegian": "={{ $json.word_no }}",
-            "Timestamp": "={{ $json.timestamp }}",
-            "Difficulty": "={{ $json.difficulty }}",
-            "Session_ID": "={{ $json.processingId }}",
-            "Input_Method": "={{ $json.inputType.isPhoto ? 'Photo' : $json.inputType.isVoice ? 'Voice' : 'Text' }}",
-            "Success": "TRUE"
-          }
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "word_no",
+              "displayName": "word_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "word_no_IPA",
+              "displayName": "word_no_IPA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "word_en",
+              "displayName": "word_en",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "word_uk",
+              "displayName": "word_uk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "difficulty",
+              "displayName": "difficulty",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "frequency",
+              "displayName": "frequency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "grammar_notes",
+              "displayName": "grammar_notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "examples",
+              "displayName": "examples",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "examples_IPA",
+              "displayName": "examples_IPA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "examples_UKR",
+              "displayName": "examples_UKR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "pronunciation_tips",
+              "displayName": "pronunciation_tips",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "related_words",
+              "displayName": "related_words",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "image_prompt",
+              "displayName": "image_prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "processingId",
+              "displayName": "processingId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "userId",
+              "displayName": "userId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "userName",
+              "displayName": "userName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "chatId",
+              "displayName": "chatId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "inputType",
+              "displayName": "inputType",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidence",
+              "displayName": "confidence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "readyForStorage",
+              "displayName": "readyForStorage",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "readyForResponse",
+              "displayName": "readyForResponse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         },
         "options": {}
       },
@@ -782,62 +1112,17 @@
     },
     {
       "parameters": {
-        "promptType": "define",
-        "text": "Enhanced Norwegian Learning Assistant for Text\n\nYou process text for Norwegian language learning.\n\nTranslate Ukrainian words/phrases to Norwegian with comprehensive language data.\n\nReturn ONLY valid JSON in this format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"IPA transcription\",\n  \"word_en\": \"English translation\",\n  \"word_uk\": \"Ukrainian word\",\n  \"difficulty\": \"beginner|intermediate|advanced\",\n  \"frequency\": \"common|uncommon|rare\",\n  \"grammar_notes\": \"Brief grammar context\",\n  \"examples\": [\"3 Norwegian sentences\"],\n  \"examples_IPA\": [\"3 sentences in IPA\"],\n  \"examples_UKR\": [\"3 Ukrainian translations\"],\n  \"pronunciation_tips\": \"Helpful pronunciation guidance\",\n  \"related_words\": [\"2-3 related Norwegian words\"],\n  \"image_prompt\": \"Description for image generation\"\n}",
-        "hasOutputParser": true,
-        "messages": {
-          "messageValues": [
-            {
-              "message": "Process this input: {{ $json.originalMessage.text || 'Image provided' }}"
-            }
-          ]
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.6,
-      "position": [
-        780,
-        -780
-      ],
-      "id": "6f327fef-bc9d-4c77-93f0-cf464851113d",
-      "name": "Unified Content Processor Text"
-    },
-    {
-      "parameters": {
-        "model": "google/gemma-3n-e4b-it:free",
+        "model": "google/gemini-flash-1.5-8b",
         "options": {
           "maxTokens": 1000,
-          "temperature": 0.3
+          "temperature": 0.1
         }
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        720,
-        -360
-      ],
-      "id": "1eb61755-f2f8-412b-99f4-82834efa8fee",
-      "name": "LLM All",
-      "credentials": {
-        "openRouterApi": {
-          "id": "KRtSCc0YBK4WlQBs",
-          "name": "OpenRouter account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "model": "openai/gpt-4.1-nano",
-        "options": {
-          "maxTokens": 1000,
-          "temperature": 0.3
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        740,
-        -660
+        140,
+        80
       ],
       "id": "30128e9c-ba83-441a-96d9-a17e6bf39f6a",
       "name": "LLM Text",
@@ -869,7 +1154,7 @@
             },
             {
               "id": "8004239d-2f92-42c1-9d49-5c2b98c3993b",
-              "leftValue": "={{ $('Smart Input Analyzer').item.json.inputType.isCommand }}",
+              "leftValue": "={{ $('Code_Input_Analyzer').item.json.inputType.isCommand }}",
               "rightValue": "",
               "operator": {
                 "type": "boolean",
@@ -887,8 +1172,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        200,
-        -720
+        2020,
+        -700
       ],
       "id": "22035ce9-8250-4bab-ab86-65ccc6042255",
       "name": "IF: Is Command?"
@@ -905,7 +1190,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
       "position": [
-        -240,
+        -320,
         -720
       ],
       "id": "d084353e-722a-4cce-8c19-31ec7344b45e",
@@ -920,8 +1205,8 @@
     },
     {
       "parameters": {
-        "chatId": "={{ $('Smart Input Analyzer').item.json.chatId }}",
-        "text": "🇳🇴 **{{ $json.word_no }}** → `{{ $json.word_no_IPA }}`\n🇬🇧 {{ $json.word_en }}\n🇺🇦 {{ $json.word_uk }}\n\n📊 **Level:** {{ $json.difficulty || 'intermediate' }} | **Frequency:** {{ $json.frequency || 'common' }}\n\n📝 **Examples:**\n1️⃣ {{ $json.examples[0] }}\n   → `{{ $json.examples_IPA[0] }}`\n   → {{ $json.examples_UKR[0] }}\n\n2️⃣ {{ $json.examples[1] }}\n   → `{{ $json.examples_IPA[1] }}`\n   → {{ $json.examples_UKR[1] }}\n\n3️⃣ {{ $json.examples[2] }}\n   → `{{ $json.examples_IPA[2] }}`\n   → {{ $json.examples_UKR[2] }}\n\n{{ $json.grammar_notes ? '📚 **Grammar:** ' + $json.grammar_notes + '\\n\\n' : '' }}{{ $json.pronunciation_tips ? '🗣️ **Pronunciation:** ' + $json.pronunciation_tips + '\\n\\n' : '' }}{{ $json.related_words ? '🔗 **Related:** ' + $json.related_words.join(', ') : '' }}",
+        "chatId": "={{ $('Code_Input_Analyzer').item.json.chatId }}",
+        "text": "=🇳🇴 **{{ $('LLM_for_Text').item.json.output.word_no }}** → `{{ $('LLM_for_Text').item.json.output.word_no_IPA }}`\n🇬🇧 {{ $('LLM_for_Text').item.json.output.word_en }}\n🇺🇦 {{ $('LLM_for_Text').item.json.output.word_ukr }}\n\n📊 **Level:** {{ $('LLM_for_Text').item.json.difficulty || 'intermediate' }} | **Frequency:** {{ $('LLM_for_Text').item.json.frequency || 'common' }}\n\n📝 **Examples:**\n1️⃣ {{ $('LLM_for_Text').item.json.output.example[0] }}\n   → `{{ $('LLM_for_Text').item.json.output.examples_IPA[0] }}`\n   → {{ $('LLM_for_Text').item.json.output.examples_ukr[0] }}\n\n2️⃣ {{ $('LLM_for_Text').item.json.output.example[1] }}\n   → `{{ $('LLM_for_Text').item.json.output.examples_IPA[1] }}`\n   → {{ $('LLM_for_Text').item.json.output.examples_ukr[1] }}\n\n3️⃣ {{ $('LLM_for_Text').item.json.output.example[2] }}\n   → `{{ $('LLM_for_Text').item.json.output.examples_IPA[2] }}`\n   → {{ $('LLM_for_Text').item.json.output.examples_ukr[2] }}\n\n{{ $('LLM_for_Text').item.json.output.grammar_notes ? '📚 **Grammar:** ' + $('LLM_for_Text').item.json.output.grammar_notes + '\\n\\n' : '' }}",
         "additionalFields": {
           "appendAttribution": false,
           "parse_mode": "Markdown"
@@ -930,8 +1215,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1620,
-        -940
+        500,
+        -80
       ],
       "id": "ae939b72-60fa-43d3-8be1-80878745d0c8",
       "name": "Enhanced Telegram Response1",
@@ -945,7 +1230,7 @@
     },
     {
       "parameters": {
-        "chatId": "={{ $('Smart Input Analyzer').item.json.chatId }}",
+        "chatId": "={{ $('Code_Input_Analyzer').item.json.chatId }}",
         "text": "={{ $('Enhanced Command Handler').item.json.response }}",
         "additionalFields": {
           "appendAttribution": false,
@@ -955,8 +1240,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        800,
-        -1020
+        600,
+        -1560
       ],
       "id": "699e5357-73f2-4c03-ba09-89d6d814562b",
       "name": "Telegram Response Command",
@@ -967,9 +1252,1877 @@
           "name": "Telegram_Norsk_Cards_bot"
         }
       }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        140,
+        2280
+      ],
+      "id": "1b45d667-079a-4275-97af-30fd75257e17",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KRtSCc0YBK4WlQBs",
+          "name": "OpenRouter account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "355a67bc-5279-41f7-a480-c3f94519dc27",
+              "leftValue": "={{$node[\"Telegram Trigger1\"].json[\"message\"][\"photo\"] !== undefined}}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -520,
+        2300
+      ],
+      "id": "5ff4c723-3f7c-4975-bc9b-7ca3f1a60624",
+      "name": "If Photo?",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4.1-nano",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        2560
+      ],
+      "id": "b6dff05a-dee7-4d62-9e04-395fe1bf271b",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KRtSCc0YBK4WlQBs",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8",
+          "mode": "list",
+          "cachedResultName": "Norsk_Cards",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Photo": "==IMAGE(\"{{ $json.webContentLink }}\")",
+            "Norsk": "={{ $('Code: Process Image Recognition').item.json.word_no }}",
+            "English": "={{ $('Code: Process Image Recognition').item.json.word_en }}",
+            "Українська": "={{ $('Code: Process Image Recognition').item.json.word_uk }}",
+            "Example #1": "={{ $('Code: Process Image Recognition').item.json.examples[0] }} --> {{ $('Code: Process Image Recognition').item.json.examples_IPA[0] }} --> {{ $('Code: Process Image Recognition').item.json.examples_UKR[0] }}",
+            "Example #2": "={{ $('Code: Process Image Recognition').item.json.examples[1] }} --> {{ $('Code: Process Image Recognition').item.json.examples_IPA[1] }} --> {{ $('Code: Process Image Recognition').item.json.examples_UKR[1] }}",
+            "Example #3": "={{ $('Code: Process Image Recognition').item.json.examples[2] }} --> {{ $('Code: Process Image Recognition').item.json.examples_IPA[2] }} --> {{ $('Code: Process Image Recognition').item.json.examples_UKR[2] }}",
+            "Norsk (IPA transcription)": "={{ $('Code: Process Image Recognition').item.json.word_no_IPA }}",
+            "Name": "={{ $('Telegram Trigger1').item.json.message.from.last_name }} {{ $('Telegram Trigger1').item.json.message.from.first_name }}: {{ $('Telegram Trigger1').item.json.message.from.username }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Photo",
+              "displayName": "Photo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Norsk",
+              "displayName": "Norsk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Norsk (IPA transcription)",
+              "displayName": "Norsk (IPA transcription)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English",
+              "displayName": "English",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Українська",
+              "displayName": "Українська",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Example #1",
+              "displayName": "Example #1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Example #2",
+              "displayName": "Example #2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Example #3",
+              "displayName": "Example #3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1360,
+        2140
+      ],
+      "id": "4d45c3b7-bae1-4794-8d42-7cba08e830cf",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "9Mm6P9gevjQ7fdoN",
+          "name": "Google Sheets account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "={{ $now.format('yyyy-MM-dd_HH-mm') }}_{{ $('Code: Process Image Recognition').item.json.word_en }}.jpg",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1yXgbRlQNUtex7PjdTrNFUvNuhCjDlOJp",
+          "mode": "list",
+          "cachedResultName": "Imagies",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1yXgbRlQNUtex7PjdTrNFUvNuhCjDlOJp"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1200,
+        2140
+      ],
+      "id": "222bc354-8b4f-418a-9f24-3b940b32b9d3",
+      "name": "Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "mYfDOqdxlUrejckA",
+          "name": "Google Drive account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Telegram Trigger1').item.json.message.photo[0].file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -300,
+        2140
+      ],
+      "id": "1ad7f164-796d-480e-ad98-e9898be070ae",
+      "name": "Telegram: Download the photo",
+      "webhookId": "4cc896c0-8311-48ce-b20b-bb13027b52bd",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = JSON.parse(JSON.stringify($input.item));\n\n// Check if we have binary data\nif (item.binary && item.binary.data) {\n  // Fix the MIME type\n  item.binary.data.mimeType = 'image/jpeg';\n  \n  // If the file has a .jpg or .jpeg extension\n  if (item.binary.data.fileName.endsWith('.jpg') || item.binary.data.fileName.endsWith('.jpeg')) {\n    item.binary.data.mimeType = 'image/jpeg';\n  }\n  // If the file has a .png extension\n  else if (item.binary.data.fileName.endsWith('.png')) {\n    item.binary.data.mimeType = 'image/png';\n  }\n}\n\nreturn {json: item.json, binary: item.binary};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        2140
+      ],
+      "id": "26ecf6eb-55e0-4497-a272-aae407d4c646",
+      "name": "Code: Fix Image MIME Type",
+      "notesInFlow": true,
+      "disabled": true,
+      "notes": "Fix Image MIME Type"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Please identify what's in this image. Return only the JSON with the Norwegian (+ transcription), English, and Ukrainian words for the main object or subject, along with 3 simple example sentences in Norwegian (+ Norwegian IPA transcription and + Ukrainian translation of each example).",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are an image recognition assistant that identifies objects in images and returns in one-two words their names in \n- Norwegian + transcription: add the IPA transcription for the Norwegian word and examples; use standard Norwegian Bokmål pronunciation. For example: snegl --> ˈsnæʏl;\n- English; and \n- Ukrainian.\n\nTranslate all the examples from Norvegian to Ukrainian.\n\nWhen you see an image, identify the main object or subject in the image and respond ONLY with a JSON object in this format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"Norwegian word in IPA transcription\",\n  \"word_en\": \"English word\",\n  \"word_uk\": \"Ukrainian word\",\n  \"examples\": [\"Example sentence 1 in Norwegian\", \"Example sentence 2 in Norwegian\", \"Example sentence 3 in Norwegian\"],\n  \"examples_IPA\": [\"Example sentence 1 in Norwegian in IPA transcription\", \"Example sentence 2 in Norwegian in IPA transcription\", \"Example sentence 3 in Norwegian in IPA transcription\"],\n  \"examples_UKR\": [\"Example sentence 1 in Ukrainian\", \"Example sentence 2 in in Ukrainian\", \"Example sentence 3 in in Ukrainian\"]\n}\n\nThe examples should be very simple but easy to remember sentences using the Norwegian word. Do not include any explanation or additional text."
+            },
+            {
+              "type": "HumanMessagePromptTemplate",
+              "messageType": "imageBinary"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        80,
+        2140
+      ],
+      "id": "828f624b-a5ca-4b48-b70c-ccf4a186e412",
+      "name": "LLM: Translate Image to Norsk",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the JSON from the LLM response\nlet responseData;\ntry {\n  const responseText = $input.item.json.response || $input.item.json.text;\n  \n  // Try to parse the JSON response\n  try {\n    responseData = JSON.parse(responseText);\n  } catch (e) {\n    // If direct parsing fails, try to extract JSON from text\n    const jsonMatch = responseText.match(/```json\\s*([\\s\\S]*?)\\s*```/) || \n                     responseText.match(/```\\s*([\\s\\S]*?)\\s*```/) || \n                     responseText.match(/{[\\s\\S]*?}/);\n                     \n    if (jsonMatch) {\n      responseData = JSON.parse(jsonMatch[0]);\n    } else {\n      throw new Error(\"Could not find JSON in response\");\n    }\n  }\n  \n} catch (error) {\n  return {\n    json: {\n      chatId: $input.item.json.chatId,\n      error: \"Could not parse LLM response: \" + error.message,\n      raw_response: $input.item.json.response\n    }\n  };\n}\n\nreturn {\n  json: {\n    chatId: $input.item.json.chatId,\n    messageId: $input.item.json.messageId,\n    word_no: responseData.word_no,\n    word_no_IPA: responseData.word_no_IPA,\n    word_en: responseData.word_en,\n    word_uk: responseData.word_uk,\n    examples: responseData.examples || [],\n    examples_IPA: responseData.examples_IPA || [],\n    examples_UKR: responseData.examples_UKR || [],\n    original_type: \"image\",\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        2140
+      ],
+      "id": "263f4528-2759-4beb-a318-bafee2035dbc",
+      "name": "Code: Process Image Recognition",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').first().json.message.chat.id }}",
+        "text": "=🇳🇴 Norwegian: {{ $('Code: Process Image Recognition').item.json.word_no }} --> {{ $('Code: Process Image Recognition').item.json.word_no_IPA }}\n🇬🇧 English: {{ $('Code: Process Image Recognition').item.json.word_en }}\n🇺🇦 Ukrainian: {{ $('Code: Process Image Recognition').item.json.word_uk }}\n📝 Examples:\n1. {{ $('Code: Process Image Recognition').item.json.examples[0] }} --> {{ $('Code: Process Image Recognition').item.json.examples_IPA[0] }} --> {{ $('Code: Process Image Recognition').item.json.examples_UKR[0] }} \n2. {{ $('Code: Process Image Recognition').item.json.examples[1] }} --> {{ $('Code: Process Image Recognition').item.json.examples_IPA[1] }} --> {{ $('Code: Process Image Recognition').item.json.examples_UKR[1] }}\n3. {{ $('Code: Process Image Recognition').item.json.examples[2] }} --> {{ $('Code: Process Image Recognition').item.json.examples_IPA[2] }} --> {{ $('Code: Process Image Recognition').item.json.examples_UKR[2] }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        2140
+      ],
+      "id": "cbc8e540-9a8c-49d2-ab12-66e6fc04df0d",
+      "name": "Telegram: Send Word Info",
+      "webhookId": "0a3ba496-acb9-4ec0-a19a-084ce4d18df9",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const imageData = $(\"Telegram: Download the photo\").first().binary.data;\nconst recognizedText = $('Code: Process Image Recognition').first().json.word_en;\n\nreturn {\n  json: {\n    recognizedText: recognizedText\n  },\n  binary: {\n    data: imageData\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        2140
+      ],
+      "id": "1ea173fd-ae52-4a11-8153-f775426bfd59",
+      "name": "Code: Combine the data for Google Drive",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=1) Translate this Ukrainian word to Norwegian (+ transcription) and English: \"{{ $('If Photo?').item.json.message.text }}\"\n\n2) Create a detailed description for generating an image of this word. Make it simple, clear, and suitable for image generation.\n\nReturn only the JSON with the Norwegian (+ transcription), English, and Ukrainian words, along with 3 simple example sentences in Norwegian (+ Norwegian IPA transcription and + Ukrainian translation of each example), and an image generation prompt for this word.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a language translation and an image generation assistant. When given a Ukrainian word, translate it in one-two words in:\n- Norwegian + transcription: add the IPA transcription for the Norwegian word; use standard Norwegian Bokmål pronunciation. For example: snegl --> ˈsnæʏl;\n- English.\n\nCreate a detailed description for generating a simple, clear image that represents the given word/concept. The description should be suitable for an image generation AI.\n\nAnd provide 3 simple example sentences in Norwegian. Respond ONLY with valid JSON in this exact format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"Norwegian word in IPA transcription\",\n  \"word_en\": \"English word\",\n  \"word_uk\": \"Ukrainian word\",\n  \"examples\": [\"Example sentence 1 in Norwegian\", \"Example sentence 2 in Norwegian\", \"Example sentence 3 in Norwegian\"],\n  \"examples_IPA\": [\"Example sentence 1 in Norwegian in IPA transcription\", \"Example sentence 2 in Norwegian in IPA transcription\", \"Example sentence 3 in Norwegian in IPA transcription\"],\n  \"examples_UKR\": [\"Example sentence 1 in Ukrainian\", \"Example sentence 2 in in Ukrainian\", \"Example sentence 3 in in Ukrainian\"]\n  \"image_prompt\": \"A clear description for generating an image of this word/concept\"\n}\n\nThe examples should be very simple but easy to remember sentences using the Norwegian word. Do not include any explanation or additional text."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        -320,
+        2420
+      ],
+      "id": "407bb517-0561-47b0-9456-16f96051f921",
+      "name": "LLM: Translate Text to Norsk",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "inputs",
+              "value": "={{ $('LLM: Translate Text to Norsk').item.json.text.parseJson().image_prompt }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        2420
+      ],
+      "id": "980fb80d-a430-4fd3-9088-cd8b5082f16d",
+      "name": "HTTP Request FLUX.1-schnell",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "fWd6Ag8SUAcPb1xf",
+          "name": "Header Auth account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the JSON from the LLM response\nlet responseData;\ntry {\n  const responseText = $input.item.json.response || $input.item.json.text;\n  \n  // Try to parse the JSON response\n  try {\n    responseData = JSON.parse(responseText);\n  } catch (e) {\n    // If direct parsing fails, try to extract JSON from text\n    const jsonMatch = responseText.match(/```json\\s*([\\s\\S]*?)\\s*```/) || \n                     responseText.match(/```\\s*([\\s\\S]*?)\\s*```/) || \n                     responseText.match(/{[\\s\\S]*?}/);\n                     \n    if (jsonMatch) {\n      responseData = JSON.parse(jsonMatch[0]);\n    } else {\n      throw new Error(\"Could not find JSON in response\");\n    }\n  }\n  \n} catch (error) {\n  return {\n    json: {\n      chatId: $input.item.json.chatId,\n      error: \"Could not parse LLM response: \" + error.message,\n      raw_response: $input.item.json.response\n    }\n  };\n}\n\nreturn {\n  json: {\n    chatId: $input.item.json.chatId,\n    messageId: $input.item.json.messageId,\n    word_no: responseData.word_no,\n    word_en: responseData.word_en,\n    word_uk: responseData.word_uk,\n    examples: responseData.examples || [],\n    examples_IPA: responseData.examples_IPA || [],\n    examples_UKR: responseData.examples_UKR || [],\n    original_type: \"text\",\n    image_url: $input.item.json.fileLink || $input.item.json.file_path\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        20,
+        2420
+      ],
+      "id": "f3ccaecd-f940-4594-984c-39a23434fd4f",
+      "name": "Code: Process Text Translation",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').first().json.message.chat.id }}",
+        "text": "=🇳🇴 Norwegian: {{ $('Code: Process Text Translation').first().json.word_no }} --> {{ $('LLM: Translate Text to Norsk').first().json.text.parseJson().word_no_IPA }}\n🇬🇧 English: {{ $('Code: Process Text Translation').first().json.word_en }}\n🇺🇦 Ukrainian: {{ $('Code: Process Text Translation').first().json.word_uk }}\n📝 Examples:\n1. {{ $('Code: Process Text Translation').first().json.examples[0] }} --> {{ $('Code: Process Text Translation').item.json.examples_IPA[0] }} --> {{ $('Code: Process Text Translation').item.json.examples_UKR[0] }} \n2. {{ $('Code: Process Text Translation').first().json.examples[1] }} --> {{ $('Code: Process Text Translation').item.json.examples_IPA[1] }} --> {{ $('Code: Process Text Translation').item.json.examples_UKR[1] }} \n3. {{ $('Code: Process Text Translation').first().json.examples[2] }} --> {{ $('Code: Process Text Translation').item.json.examples_IPA[2] }} --> {{ $('Code: Process Text Translation').item.json.examples_UKR[2] }} ",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        2420
+      ],
+      "id": "56cdd8b7-186e-4017-8f9f-59c59578f384",
+      "name": "Telegram: Send Word Info1",
+      "webhookId": "0a3ba496-acb9-4ec0-a19a-084ce4d18df9",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8",
+          "mode": "list",
+          "cachedResultName": "Norsk_Cards",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Photo": "==IMAGE(\"{{ $('Google Drive1').first().json.webContentLink }}\")",
+            "Norsk": "={{ $('Code: Process Text Translation').first().json.word_no }}",
+            "English": "={{ $('Code: Process Text Translation').first().json.word_en }}",
+            "Українська": "={{ $('Code: Process Text Translation').first().json.word_uk }}",
+            "Example #1": "={{ $('Code: Process Text Translation').first().json.examples[0] }} --> {{ $('Code: Process Text Translation').item.json.examples_IPA[0] }} --> {{ $('Code: Process Text Translation').item.json.examples_UKR[0] }} ",
+            "Example #2": "={{ $('Code: Process Text Translation').first().json.examples[1] }} --> {{ $('Code: Process Text Translation').item.json.examples_IPA[1] }} --> {{ $('Code: Process Text Translation').item.json.examples_UKR[1] }} ",
+            "Example #3": "={{ $('Code: Process Text Translation').first().json.examples[2] }} --> {{ $('Code: Process Text Translation').item.json.examples_IPA[2] }} --> {{ $('Code: Process Text Translation').item.json.examples_UKR[2] }} ",
+            "Norsk (IPA transcription)": "={{ $('LLM: Translate Text to Norsk').first().json.text.parseJson().word_no_IPA }}",
+            "Name": "={{ $('Telegram Trigger1').item.json.message.from.first_name }} {{ $('Telegram Trigger1').item.json.message.from.last_name }}: {{ $('Telegram Trigger1').item.json.message.from.username }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Photo",
+              "displayName": "Photo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Norsk",
+              "displayName": "Norsk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Norsk (IPA transcription)",
+              "displayName": "Norsk (IPA transcription)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English",
+              "displayName": "English",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Українська",
+              "displayName": "Українська",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Example #1",
+              "displayName": "Example #1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Example #2",
+              "displayName": "Example #2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Example #3",
+              "displayName": "Example #3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1360,
+        2420
+      ],
+      "id": "769c1cac-ddfe-4106-ab49-113c249b5a5b",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "9Mm6P9gevjQ7fdoN",
+          "name": "Google Sheets account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "=data",
+        "name": "={{ $now.format('yyyy-MM-dd_HH-mm') }}_{{ $('Code: Process Text Translation').first().json.word_en }}.jpg",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1yXgbRlQNUtex7PjdTrNFUvNuhCjDlOJp",
+          "mode": "list",
+          "cachedResultName": "Imagies",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1yXgbRlQNUtex7PjdTrNFUvNuhCjDlOJp"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1200,
+        2420
+      ],
+      "id": "5c2a8c22-f3f1-46c2-978a-4b4d6885d9f6",
+      "name": "Google Drive1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "mYfDOqdxlUrejckA",
+          "name": "Google Drive account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Telegram Send Image').first().json.result.photo[0].file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        840,
+        2420
+      ],
+      "id": "f066de60-11ea-4af9-b8db-b05e23c4786e",
+      "name": "Telegram: Download the photo1",
+      "webhookId": "4cc896c0-8311-48ce-b20b-bb13027b52bd",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "={{ $('Telegram Trigger1').first().json.message.from.id }}",
+        "binaryData": true,
+        "additionalFields": {
+          "fileName": "={{ $now.format('yyyy-MM-dd_HH-mm') }}_{{ $('Code: Process Text Translation').first().json.word_en }}.jpeg"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        440,
+        2420
+      ],
+      "id": "741a6c1b-b9d4-4aea-9687-f5bb444ddfa6",
+      "name": "Telegram Send Image",
+      "webhookId": "7bf2b87b-3654-4120-b493-32f5ea62ae1e",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = JSON.parse(JSON.stringify($input.item));\n\n// Check if we have binary data\nif (item.binary && item.binary.data) {\n  // Fix the MIME type\n  item.binary.data.mimeType = 'image/jpeg';\n  \n  // If the file has a .jpg or .jpeg extension\n  if (item.binary.data.fileName.endsWith('.jpg') || item.binary.data.fileName.endsWith('.jpeg')) {\n    item.binary.data.mimeType = 'image/jpeg';\n  }\n  // If the file has a .png extension\n  else if (item.binary.data.fileName.endsWith('.png')) {\n    item.binary.data.mimeType = 'image/png';\n  }\n}\n\nreturn {json: item.json, binary: item.binary};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        2420
+      ],
+      "id": "c7fe861f-dbc4-4502-9e64-5386ae1c3fa0",
+      "name": "Code: Fix Image MIME Type1",
+      "notesInFlow": true,
+      "disabled": true,
+      "notes": "Fix Image MIME Type"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.0-flash-exp:free",
+        "options": {
+          "maxTokens": 1000,
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        940,
+        -300
+      ],
+      "id": "0afe6ba4-045c-4d2f-8fa7-696df88819c3",
+      "name": "LLM google/gemma-3n-e4b-it:free",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KRtSCc0YBK4WlQBs",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-prover-v2:free",
+        "options": {
+          "maxTokens": 1000,
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        740,
+        -320
+      ],
+      "id": "1eb61755-f2f8-412b-99f4-82834efa8fee",
+      "name": "LLM deepseek/deepseek-prover-v2:free",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KRtSCc0YBK4WlQBs",
+          "name": "OpenRouter account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4.1-nano",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        580,
+        -320
+      ],
+      "id": "ca2f3ae8-5404-4f0e-a78f-7adf43125a88",
+      "name": "GPT-4.1-nano",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KRtSCc0YBK4WlQBs",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai_text_to_image_generator",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "3bb93a00-3360-45f3-9502-9c515d0d47a4",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        -120,
+        3100
+      ],
+      "webhookId": "5cca11bb-eaea-4c3a-86f7-16d5802b6ac8",
+      "typeVersion": 2,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/flux/requests/{{ $json.request_id }}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "d5c04c03-a995-4ab3-87a7-0c8b671d53ed",
+      "name": "Fetch Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        620,
+        3100
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "fWd6Ag8SUAcPb1xf",
+          "name": "Header Auth account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "id": "79df402f-e6a0-44d9-bc25-4bbf3917d949",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1000,
+        3280
+      ],
+      "webhookId": "150069ed-885b-497f-a32a-09e7088136e6",
+      "typeVersion": 1.1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "ac50759b-e2f3-4efd-a2af-f28b7d209b45",
+              "operator": {
+                "name": "filter.operator.equals",
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "COMPLETED"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8217de7c-f7df-402e-9b22-422c13a07c77",
+      "name": "Is Ready?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        800,
+        3100
+      ],
+      "typeVersion": 2.2,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/flux/schnell",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"prompt\": \"{{ $json.body.prompt }}\"}",
+        "options": {}
+      },
+      "id": "1185f0b7-cff2-4e38-8598-2ac86fe7b5f9",
+      "name": "Submit Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        420,
+        3100
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "fWd6Ag8SUAcPb1xf",
+          "name": "Header Auth account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.response_url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "7824738b-6950-4afd-a029-3b8b972777da",
+      "name": "Fetch Result",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1000,
+        3100
+      ],
+      "typeVersion": 4.2,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "230d7ba2-f7b3-4e4c-a66a-4c00151dae44",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        60,
+        3260
+      ],
+      "typeVersion": 1.1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{\n{\n  \"error\": \"Prompt is in violation of terms of use. Please try again.\",\n  \"result\": []\n}\n}}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "f3e90647-4548-4ab3-9c3f-39c63b28d058",
+      "name": "400 Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        420,
+        3460
+      ],
+      "typeVersion": 1.1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{\n{\n  \"error\": null,\n  \"result\": $json.images\n}\n}}",
+        "options": {}
+      },
+      "id": "9551dfb7-1fde-49d6-9752-f7af977debeb",
+      "name": "Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        1220,
+        3100
+      ],
+      "typeVersion": 1.1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.body.prompt }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "NSFW",
+              "description": "text is NSFW"
+            },
+            {
+              "category": "SFW",
+              "description": "text is SFW"
+            }
+          ]
+        },
+        "options": {
+          "fallback": "other"
+        }
+      },
+      "id": "9fea549b-b8a5-4bc1-a7b2-40c62a71ecdf",
+      "name": "NSFW Filter",
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "position": [
+        60,
+        3100
+      ],
+      "typeVersion": 1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Receives text prompt through a webhook endpoint and filters the prompt for inappropriate content using AI moderation",
+        "height": 460,
+        "width": 540
+      },
+      "id": "c8fbf3a9-3177-4b61-a67e-8809dad6878c",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -160,
+        2940
+      ],
+      "typeVersion": 1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Submits valid prompts to the Fal.ai and polls for completion status and retrieves the generated image when ready\n\nFal.ai is a model inference and finetuning service dedicated to AI image and video. It hosts many popular third party models including Flux by Black Forest Labs.\n\nSign up here - https://fal.ai - for an api key.",
+        "height": 580,
+        "width": 540
+      },
+      "id": "c94341a7-87e9-4cf3-8ee3-d8e2e44e94ec",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        400,
+        2820
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "id": "49461ca3-032f-4bd6-8dfc-b205b0f0e9fc",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1120,
+        -60
+      ],
+      "webhookId": "150069ed-885b-497f-a32a-09e7088136e6",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/flux/schnell",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"prompt\": \"A simple illustration of a small, brown squirrel with bushy tail, sitting on a tree branch with green leaves around, depicted in a natural outdoor setting.\"}",
+        "options": {}
+      },
+      "id": "d75f6077-60ac-4ae9-ad59-eface9e05152",
+      "name": "HTTP_Request_to_Fal_ai",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        900,
+        -60
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "fWd6Ag8SUAcPb1xf",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/flux/requests/{{ $('HTTP_Request_to_Fal_ai').first().json.request_id }}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "c07feaad-0c6e-4137-8618-8c94d929e6cd",
+      "name": "HTTP_Fetch_Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1320,
+        -60
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "fWd6Ag8SUAcPb1xf",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "ac50759b-e2f3-4efd-a2af-f28b7d209b45",
+              "operator": {
+                "name": "filter.operator.equals",
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $('HTTP_Fetch_Status').item.json.status }}",
+              "rightValue": "COMPLETED"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b3110ffa-768f-4231-b798-56e8ba87d93c",
+      "name": "IF_Is_Ready?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1520,
+        -60
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "url": "={{ $('IF_Is_Ready?').item.json.response_url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "abfb7713-0f78-473c-9ef3-d33c4446fdb6",
+      "name": "HTTP_Fetch_Result",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1720,
+        -60
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "fWd6Ag8SUAcPb1xf",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "=",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1900,
+        -60
+      ],
+      "id": "9e3db2c8-ea79-4cae-8c8e-815ace046401",
+      "name": "Telegram",
+      "webhookId": "e64b1cf6-0464-4304-ab54-3348c551ffdd",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Code_Input_Analyzer').item.json.inputType.isCommand }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "33628395-1763-4ba1-b93d-50fd494cf1a2"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "is_Command"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ccda781f-de53-4739-b899-08bae8d4fc49",
+                    "leftValue": "={{ $('Code_Input_Analyzer').item.json.inputType.isPhoto }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "is_Photo"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4089e351-bfb2-4e15-9ee5-9a8c0a6e87de",
+                    "leftValue": "={{ $('Code_Input_Analyzer').item.json.inputType.isVoice }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "is_Voice"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5d8833d3-fc0e-40da-acbe-4000e3585cfb",
+                    "leftValue": "={{ $('Code_Input_Analyzer').item.json.inputType.isText }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "is_Text"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        80,
+        -760
+      ],
+      "id": "7c089cec-42e9-488d-b953-58c6afe84f75",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "jsCode": "const message = $input.item.json.message;\nconst text = message.text || '';\nconst userId = message.from.id;\nconst userName = `${message.from.first_name} ${message.from.last_name || ''}`.trim();\n\n// Enhanced input detection\nconst inputType = {\n  isCommand: text.startsWith('/'),\n  isPhoto: message.photo !== undefined,\n  isVoice: message.voice !== undefined,\n  isText: text && !text.startsWith('/'),\n};\n\n// Command parsing\nlet command = null;\nif (inputType.isCommand) {\n  command = text.split(' ')[0].toLowerCase();\n}\n\n// User context setup\nconst userContext = {\n  id: userId,\n  name: userName,\n  username: message.from.username || '',\n  chatId: message.chat.id,\n  timestamp: new Date().toISOString()\n};\n\nreturn {\n  json: {\n    ...userContext,\n    inputType,\n    command,\n    originalMessage: message,\n    processingId: `proc_${userId}_${Date.now()}`\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        -720
+      ],
+      "id": "8992ac4d-51d8-408e-9036-9c84e31c3391",
+      "name": "Code_Input_Analyzer"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Process this input: {{ $('Switch').item.json.originalMessage.text }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You process text for Norwegian language learning.\n\nTranslate Ukrainian word/words/phrase/phrases to Norwegian with comprehensive language data.\n\nReturn ONLY valid JSON in this format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"IPA transcription\",\n  \"word_en\": \"English translation\",\n  \"word_ukr\": \"Ukrainian word\",\n  \"difficulty\": \"beginner|intermediate|advanced\",\n  \"frequency\": \"common|uncommon|rare\",\n  \"grammar_notes\": \"Brief grammar context\",\n  \"example\": [\"3 Norwegian sentences\"],\n  \"examples_IPA\": [\"3 sentences in IPA\"],\n  \"examples_ukr\": [\"3 Ukrainian translations\"],\n  \"pronunciation_tips\": \"Helpful pronunciation guidance\",\n  \"related_words\": [\"2-3 related Norwegian words witn IPA transcription and Ukrainian translation\"],\n  \"image_prompt\": \"Description for image generation AI FLUX-schnell\"\n}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        120,
+        -80
+      ],
+      "id": "6f327fef-bc9d-4c77-93f0-cf464851113d",
+      "name": "LLM_for_Text"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"IPA transcription\",\n  \"word_en\": \"English translation\",\n  \"word_ukr\": \"Ukrainian word\",\n  \"difficulty\": \"beginner|intermediate|advanced\",\n  \"frequency\": \"common|uncommon|rare\",\n  \"grammar_notes\": \"Brief grammar context\",\n  \"example\": [\"3 Norwegian sentences\"],\n  \"examples_IPA\": [\"3 sentences in IPA\"],\n  \"examples_ukr\": [\"3 Ukrainian translations\"],\n  \"pronunciation_tips\": \"Helpful pronunciation guidance\",\n  \"related_words\": [\"2-3 related Norwegian words\"],\n  \"image_prompt\": \"Description for image generation (flux-schnell)\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        80
+      ],
+      "id": "c78eb88b-295c-4d66-ab93-864ea261f4df",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "jsCode": "const message = $input.item.json.message;\nconst text = message.text || '';\nconst userId = message.from.id;\nconst userName = `${message.from.first_name} ${message.from.last_name || ''}`.trim();\n\n// Enhanced input detection\nconst inputType = {\n  isCommand: text.startsWith('/'),\n  isPhoto: message.photo !== undefined,\n  isVoice: message.voice !== undefined,\n  isText: text && !text.startsWith('/'),\n  isBatch: text.includes(',') || text.includes(';') || text.includes('\\n')\n};\n\n// Command parsing\nlet command = null;\nif (inputType.isCommand) {\n  command = text.split(' ')[0].toLowerCase();\n}\n\n// User context setup\nconst userContext = {\n  id: userId,\n  name: userName,\n  username: message.from.username || '',\n  chatId: message.chat.id,\n  timestamp: new Date().toISOString()\n};\n\nreturn {\n  json: {\n    ...userContext,\n    inputType,\n    command,\n    originalMessage: message,\n    processingId: `proc_${userId}_${Date.now()}`\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        440
+      ],
+      "id": "39b51056-5c2b-4fee-a354-b252ccadc32e",
+      "name": "Smart Input Analyzer",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cmd-check",
+              "leftValue": "={{ $json.inputType.isCommand }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        60,
+        440
+      ],
+      "id": "be1fb406-61d8-4454-ae29-1c711b2a7258",
+      "name": "Command Router",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "photo-check",
+              "leftValue": "={{ $json.inputType.isPhoto }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        260,
+        520
+      ],
+      "id": "c734b381-22e9-43e1-9169-4950dc85964e",
+      "name": "Content Type Router",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {
+          "maxTokens": 1000,
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        660,
+        440
+      ],
+      "id": "6ed4530d-80a3-4b71-a4f2-800cb5a8f145",
+      "name": "Primary LLM (GPT-4o-mini)",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KRtSCc0YBK4WlQBs",
+          "name": "OpenRouter account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": "anthropic/claude-3-haiku",
+        "options": {
+          "maxTokens": 800,
+          "temperature": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        660,
+        540
+      ],
+      "id": "a54738a2-350f-404a-ba0c-aeed36035067",
+      "name": "Fallback LLM (Claude-3-Haiku)",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KRtSCc0YBK4WlQBs",
+          "name": "OpenRouter account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "=🇳🇴 **{{ $json.word_no }}** → `{{ $json.word_no_IPA }}`\n🇬🇧 {{ $json.word_en }}\n🇺🇦 {{ $json.word_uk }}\n\n📊 **Level:** {{ $json.difficulty || 'intermediate' }} | **Frequency:** {{ $json.frequency || 'common' }}\n\n📝 **Examples:**\n1️⃣ {{ $json.examples[0] }}\n   → `{{ $json.examples_IPA[0] }}`\n   → {{ $json.examples_UKR[0] }}\n\n2️⃣ {{ $json.examples[1] }}\n   → `{{ $json.examples_IPA[1] }}`\n   → {{ $json.examples_UKR[1] }}\n\n3️⃣ {{ $json.examples[2] }}\n   → `{{ $json.examples_IPA[2] }}`\n   → {{ $json.examples_UKR[2] }}\n\n{{ $json.grammar_notes ? '📚 **Grammar:** ' + $json.grammar_notes + '\\n\\n' : '' }}{{ $json.pronunciation_tips ? '🗣️ **Pronunciation:** ' + $json.pronunciation_tips + '\\n\\n' : '' }}{{ $json.related_words ? '🔗 **Related:** ' + $json.related_words.join(', ') : '' }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1260,
+        440
+      ],
+      "id": "2cc784f3-8d4a-4d34-ad09-6074a6d84878",
+      "name": "Enhanced Telegram Response",
+      "webhookId": "0ba36d74-3f1f-4e17-a1d8-cea91792f7b6",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "updates": [
+          "*"
+        ],
+        "additionalFields": {
+          "download": true
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -340,
+        440
+      ],
+      "id": "2b39f84e-5327-4e14-bbb7-6aaab2d273fd",
+      "name": "Telegram Trigger1",
+      "webhookId": "c83f95b9-893d-4115-b1a1-bb3e4c7470fc",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const command = $input.item.json.command;\nconst userId = $input.item.json.id;\nconst chatId = $input.item.json.chatId;\n\n// Enhanced command handling\nswitch(command) {\n  case '/start':\n    return {\n      json: {\n        chatId,\n        response: '🇳🇴 Welcome to Enhanced Norsk Cards Bot!\\n\\n📸 Send a photo - I\\'ll identify objects\\n📝 Send Ukrainian text - I\\'ll translate to Norwegian\\n🎤 Send voice message - I\\'ll process speech\\n📚 Use commands:\\n/stats - Your learning progress\\n/review - Practice words\\n/help - Full instructions\\n/settings - Preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/help':\n    return {\n      json: {\n        chatId,\n        response: '🔧 Enhanced Features:\\n\\n📸 Photo Recognition\\n📝 Text Translation (Ukrainian→Norwegian)\\n🎤 Voice Processing\\n📊 Progress Tracking\\n🔄 Batch Processing (comma-separated)\\n📋 IPA Transcription\\n💾 Auto-save to Google Sheets\\n\\n🎯 Commands:\\n/stats - Learning statistics\\n/review - Practice session\\n/settings - User preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/stats':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_stats'\n      }\n    };\n    \n  case '/review':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_review'\n      }\n    };\n    \n  case '/settings':\n    return {\n      json: {\n        chatId,\n        response: '⚙️ Settings:\\n\\n🔊 Audio enabled: Yes\\n📝 IPA transcription: Yes\\n🎯 Difficulty level: Intermediate\\n📊 Progress tracking: Enabled\\n\\nUse inline buttons to modify settings.',\n        action: 'send_message'\n      }\n    };\n    \n  default:\n    return {\n      json: {\n        chatId,\n        response: '❓ Unknown command. Use /help for available commands.',\n        action: 'send_message'\n      }\n    };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        360
+      ],
+      "id": "b39d78bd-8605-40e3-b042-8f45dce00e7b",
+      "name": "Enhanced Command Handler1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Enhanced Norwegian Learning Assistant\n\nYou process images, voice messages, or text for Norwegian language learning.\n\nFor images: Identify the main object and provide Norwegian translation with IPA, English, Ukrainian, and 3 contextual examples.\n\nFor text: Translate Ukrainian words/phrases to Norwegian with comprehensive language data.\n\nReturn ONLY valid JSON in this format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"IPA transcription\",\n  \"word_en\": \"English translation\",\n  \"word_uk\": \"Ukrainian word\",\n  \"difficulty\": \"beginner|intermediate|advanced\",\n  \"frequency\": \"common|uncommon|rare\",\n  \"grammar_notes\": \"Brief grammar context\",\n  \"examples\": [\"3 Norwegian sentences\"],\n  \"examples_IPA\": [\"3 sentences in IPA\"],\n  \"examples_UKR\": [\"3 Ukrainian translations\"],\n  \"pronunciation_tips\": \"Helpful pronunciation guidance\",\n  \"related_words\": [\"2-3 related Norwegian words\"],\n  \"image_prompt\": \"Description for image generation (text input only)\"\n}",
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessage",
+              "message": "Process this input: {{ $json.originalMessage.text || 'Image provided' }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        860,
+        520
+      ],
+      "id": "c419b969-b817-47d5-bf28-e10e79cdfac6",
+      "name": "Unified Content Processor1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Enhanced response processing with error handling\ntry {\n  const response = $input.item.json.response || $input.item.json.text;\n  let data;\n  \n  // Robust JSON parsing\n  try {\n    data = JSON.parse(response);\n  } catch (e) {\n    const jsonMatch = response.match(/{[\\s\\S]*?}/);\n    if (jsonMatch) {\n      data = JSON.parse(jsonMatch[0]);\n    } else {\n      throw new Error('No valid JSON found in response');\n    }\n  }\n  \n  // Enhanced validation\n  const requiredFields = ['word_no', 'word_en', 'word_uk', 'examples'];\n  const missingFields = requiredFields.filter(field => !data[field]);\n  \n  if (missingFields.length > 0) {\n    throw new Error(`Missing required fields: ${missingFields.join(', ')}`);\n  }\n  \n  // Get previous node data safely\n  const inputAnalyzer = $('Smart Input Analyzer').item.json;\n  \n  // Enrich data with metadata\n  const enrichedData = {\n    ...data,\n    processingId: inputAnalyzer.processingId,\n    userId: inputAnalyzer.id,\n    userName: inputAnalyzer.name,\n    chatId: inputAnalyzer.chatId,\n    inputType: inputAnalyzer.inputType,\n    timestamp: new Date().toISOString(),\n    confidence: 'high',\n    source: 'primary_llm'\n  };\n  \n  return { json: enrichedData };\n  \n} catch (error) {\n  const inputAnalyzer = $('Smart Input Analyzer').item.json;\n  return {\n    json: {\n      error: true,\n      errorMessage: error.message,\n      processingId: inputAnalyzer.processingId,\n      chatId: inputAnalyzer.chatId,\n      fallbackNeeded: true\n    }\n  };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        520
+      ],
+      "id": "a528dfd4-157d-4131-9076-b4d53486f987",
+      "name": "Enhanced Response Processor1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $json.processingId }}",
+            "Timestamp": "={{ $json.timestamp }}",
+            "User": "={{ $json.userName }}",
+            "Input_Type": "={{ $json.inputType.isPhoto ? 'Photo' : $json.inputType.isVoice ? 'Voice' : 'Text' }}",
+            "Norsk": "={{ $json.word_no }}",
+            "Norsk_IPA": "={{ $json.word_no_IPA }}",
+            "English": "={{ $json.word_en }}",
+            "Ukrainian": "={{ $json.word_uk }}",
+            "Difficulty": "={{ $json.difficulty }}",
+            "Frequency": "={{ $json.frequency }}",
+            "Grammar_Notes": "={{ $json.grammar_notes }}",
+            "Example_1": "={{ $json.examples[0] }}",
+            "Example_2": "={{ $json.examples[1] }}",
+            "Example_3": "={{ $json.examples[2] }}",
+            "Pronunciation_Tips": "={{ $json.pronunciation_tips }}",
+            "Related_Words": "={{ $json.related_words ? $json.related_words.join(', ') : '' }}",
+            "Confidence": "={{ $json.confidence }}",
+            "Source": "={{ $json.source }}"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1460,
+        520
+      ],
+      "id": "5dcd168d-9783-426e-96a3-89d928d84508",
+      "name": "Enhanced Google Sheets Storage1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "9Mm6P9gevjQ7fdoN",
+          "name": "Google Sheets account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Comprehensive error handling and fallback logic\nconst input = $input.item.json;\n\nif (input.error) {\n  // Try fallback LLM or provide graceful degradation\n  return {\n    json: {\n      chatId: input.chatId,\n      text: '⚠️ Processing temporarily unavailable. Please try again or contact support.',\n      error: true,\n      fallbackAction: 'retry_later'\n    }\n  };\n}\n\n// Success path - prepare for parallel operations\nreturn {\n  json: {\n    ...input,\n    readyForStorage: true,\n    readyForResponse: true\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        600
+      ],
+      "id": "562345f0-f6e9-4a42-b168-a165129d7e9d",
+      "name": "Parallel Operations Coordinator1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1oUKgtN7r_2C8mS4EtKeglwEHJk5MyOkgZieDZPvGnW8",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "user_progress",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "User_ID": "={{ $json.userId }}",
+            "User_Name": "={{ $json.userName }}",
+            "Word_Norwegian": "={{ $json.word_no }}",
+            "Timestamp": "={{ $json.timestamp }}",
+            "Difficulty": "={{ $json.difficulty }}",
+            "Session_ID": "={{ $json.processingId }}",
+            "Input_Method": "={{ $json.inputType.isPhoto ? 'Photo' : $json.inputType.isVoice ? 'Voice' : 'Text' }}",
+            "Success": "TRUE"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1460,
+        640
+      ],
+      "id": "6b8d7a1a-30c9-4f0f-8f33-582e683bfa4d",
+      "name": "User Progress Tracker1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "9Mm6P9gevjQ7fdoN",
+          "name": "Google Sheets account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Code_Input_Analyzer').item.json.chatId }}",
+        "text": "={{ $$('LLM_for_Text').item.json.output.pronunciation_tips ? '🗣️ **Pronunciation:** ' + $json.output.pronunciation_tips + '/n/n' : ''}}\n\n{{ $('LLM_for_Text').item.json.related_words ? '🔗 **Related:** ' + $('LLM_for_Text').item.json.output.related_words.join(', ') : '' }}\n\n\n",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        680,
+        -80
+      ],
+      "id": "94da3f77-387e-43ce-8f1f-190aa21cd2f8",
+      "name": "Enhanced Telegram Response2",
+      "webhookId": "5f94bf85-7d21-49e7-a8ff-706fd6cfc057",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "body": {
+            "prompt": "A person sitting under a moonlit sky",
+            "styleId": "1"
+          },
+          "query": {},
+          "params": {},
+          "headers": {
+            "host": "[insert your host]",
+            "accept": "*/*",
+            "origin": "http://localhost:3000",
+            "pragma": "no-cache",
+            "referer": "http://localhost:3000/",
+            "priority": "u=1, i",
+            "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+            "x-real-ip": "10.255.0.2",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+            "content-type": "multipart/form-data; boundary=----WebKitFormBoundary6KvXTaJpPc6UJTId",
+            "cache-control": "no-cache",
+            "content-length": "268",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7,fr;q=0.6,la;q=0.5,de;q=0.4,sk;q=0.3,nl;q=0.2,mt;q=0.1",
+            "x-forwarded-for": "10.255.0.2",
+            "sec-ch-ua-mobile": "?0",
+            "x-forwarded-host": "[insert your host]",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "x-forwarded-server": "5f641c71d311"
+          },
+          "webhookUrl": "https://[insert your host]/webhook/ai_text_to_image_generator",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 352801861,
+          "message": {
+            "message_id": 381,
+            "from": {
+              "id": 945884902,
+              "is_bot": false,
+              "first_name": "Oleksii",
+              "last_name": "LEVENETS",
+              "username": "oleksii_levenets",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 945884902,
+              "first_name": "Oleksii",
+              "last_name": "LEVENETS",
+              "username": "oleksii_levenets",
+              "type": "private"
+            },
+            "date": 1748343596,
+            "text": "Півень"
+          }
+        }
+      }
+    ],
+    "Code_Input_Analyzer": [
+      {
+        "json": {
+          "id": 945884902,
+          "name": "Oleksii LEVENETS",
+          "username": "oleksii_levenets",
+          "chatId": 945884902,
+          "timestamp": "2025-05-27T11:09:01.806Z",
+          "inputType": {
+            "isCommand": false,
+            "isPhoto": false,
+            "isVoice": false,
+            "isText": true
+          },
+          "command": null,
+          "originalMessage": {
+            "message_id": 381,
+            "from": {
+              "id": 945884902,
+              "is_bot": false,
+              "first_name": "Oleksii",
+              "last_name": "LEVENETS",
+              "username": "oleksii_levenets",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 945884902,
+              "first_name": "Oleksii",
+              "last_name": "LEVENETS",
+              "username": "oleksii_levenets",
+              "type": "private"
+            },
+            "date": 1748343596,
+            "text": "Півень"
+          },
+          "processingId": "proc_945884902_1748344141806"
+        }
+      }
+    ],
+    "LLM_for_Text": [
+      {
+        "json": {
+          "output": {
+            "word_no": "Hane",
+            "word_no_IPA": "/hanə/",
+            "word_en": "Rooster",
+            "word_ukr": "Півень",
+            "difficulty": "beginner",
+            "frequency": "common",
+            "grammar_notes": "Common noun, masculine gender.",
+            "example": [
+              "Han er en vakker hane.",
+              "Høna og hannen gikk sammen.",
+              "Jeg så en hane i hagen."
+            ],
+            "examples_IPA": [
+              "/han ər ən vɑkːər hanə/",
+              "/hœna o hɑnnən gikː sɑmmən/",
+              "/jɛɡ sɔː ən hanə i hɑːɡən/"
+            ],
+            "examples_ukr": [
+              "Він гарний півень.",
+              "Курка і півень ходили разом.",
+              "Я побачив півня в саду."
+            ],
+            "pronunciation_tips": "The 'h' is pronounced like the 'h' in 'house'. The 'a' is pronounced like the 'a' in 'father'. The 'n' is pronounced like the 'n' in 'no'.",
+            "related_words": [
+              {
+                "word_no": "Høne",
+                "word_no_IPA": "/hœnə/",
+                "word_ukr": "Курка"
+              },
+              {
+                "word_no": "Fugl",
+                "word_no_IPA": "/fuɡl/",
+                "word_ukr": "Птах"
+              }
+            ],
+            "image_prompt": "A rooster standing proudly in a garden, with a clear view of its plumage and comb."
+          }
+        }
+      }
+    ]
+  },
   "repo_name": "n8n_BackUp",
   "repo_owner": "Oleksii-Levenets",
   "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
@@ -978,7 +3131,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-05-26T17:09:26.194Z",
-  "versionId": "ec2f86f5-c569-445c-947b-1d532acfd2cb"
+  "triggerCount": 1,
+  "updatedAt": "2025-05-27T17:43:15.902Z",
+  "versionId": "434c5105-4f9b-45af-82b3-953d452e936b"
 }
