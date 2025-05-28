@@ -40,7 +40,9 @@
         "forceReply": {},
         "replyKeyboardOptions": {},
         "replyKeyboardRemove": {},
-        "additionalFields": {}
+        "additionalFields": {
+          "appendAttribution": false
+        }
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
@@ -76,6 +78,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-05-22T16:49:13.277Z",
-  "versionId": "6afd2b38-88b4-4d4d-8d9e-c8b69106dfd5"
+  "updatedAt": "2025-05-28T10:55:02.370Z",
+  "versionId": "08e4459e-c5f0-4e36-ab3a-8411afe21aba"
 }
