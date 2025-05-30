@@ -417,8 +417,8 @@
       "typeVersion": 4.2,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
         }
       }
     },
@@ -439,8 +439,8 @@
       "typeVersion": 4.2,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
         }
       }
     },
@@ -501,8 +501,8 @@
       "typeVersion": 4.2,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
         }
       }
     },
@@ -697,8 +697,8 @@
       "typeVersion": 4.2,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
         }
       }
     },
@@ -744,8 +744,8 @@
       "alwaysOutputData": false,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "id": "u5lrdPk5ng1v2eJs",
+          "name": "Header_Auth_Flux_Shnell"
         }
       },
       "onError": "continueErrorOutput"
@@ -1547,6 +1547,20 @@
       ],
       "id": "6f327fef-bc9d-4c77-93f0-cf464851113d",
       "name": "LLM_For_Text"
+    },
+    {
+      "parameters": {
+        "content": "## Credential Type \nHeader: Authorization\n\nKey *****",
+        "height": 500
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        820,
+        -400
+      ],
+      "id": "189e5be9-87af-47aa-8b7b-d623adc46866",
+      "name": "Sticky Note"
     }
   ],
   "pinData": {},
@@ -1562,6 +1576,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-29T15:49:20.397Z",
-  "versionId": "c41e10c4-d258-4cee-8c98-1fc7ea4ed2bf"
+  "updatedAt": "2025-05-30T15:32:20.779Z",
+  "versionId": "51be5439-b8e9-4701-9786-bb5ccccb8622"
 }
