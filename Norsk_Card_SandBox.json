@@ -79,7 +79,13 @@
             "index": 0
           }
         ],
-        [],
+        [
+          {
+            "node": "Telegram_Download_Audio",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "LLM_For_Text",
@@ -323,71 +329,99 @@
             "node": "HTTP_Request_FLUX.1-schnell",
             "type": "main",
             "index": 0
-          },
+          }
+        ]
+      ]
+    },
+    "Telegram_Download_Audio": {
+      "main": [
+        [
           {
-            "node": "HTTP_Request_to_Fal_ai_Voice",
+            "node": "Upload Audio to Gladia",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "HTTP_Fetch_Status1": {
+    "Upload Audio to Gladia": {
       "main": [
         [
           {
-            "node": "IF_Is_Ready?1",
+            "node": "Request Transcription",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "IF_Is_Ready?1": {
+    "Request Transcription": {
       "main": [
         [
           {
-            "node": "HTTP_Fetch_Result1",
+            "node": "Wait for Processing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait for Processing": {
+      "main": [
+        [
+          {
+            "node": "Get Transcription Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Transcription Result": {
+      "main": [
+        [
+          {
+            "node": "Check if Transcription Done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if Transcription Done": {
+      "main": [
+        [
+          {
+            "node": "Extract Transcript",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Wait_Text1",
+            "node": "Wait Before Retry",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "HTTP_Fetch_Result1": {
+    "Wait Before Retry": {
       "main": [
         [
           {
-            "node": "HTTP_Download_Result1",
+            "node": "Get Transcription Result",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Wait_Text1": {
+    "Extract Transcript": {
       "main": [
         [
           {
-            "node": "HTTP_Fetch_Status1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTTP_Request_to_Fal_ai_Voice": {
-      "main": [
-        [
-          {
-            "node": "Wait_Text1",
+            "node": "LLM_For_Text",
             "type": "main",
             "index": 0
           }
@@ -398,7 +432,9 @@
   "createdAt": "2025-05-28T18:42:16.826Z",
   "id": "61om0QnQqLFnBCSO",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Norsk_Card_SandBox",
   "nodes": [
     {
@@ -476,13 +512,13 @@
       "type": "n8n-nodes-base.httpRequest",
       "position": [
         140,
-        920
+        960
       ],
       "typeVersion": 4.2,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
         }
       }
     },
@@ -498,13 +534,13 @@
       "type": "n8n-nodes-base.httpRequest",
       "position": [
         520,
-        920
+        960
       ],
       "typeVersion": 4.2,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
         }
       }
     },
@@ -538,7 +574,7 @@
       "type": "n8n-nodes-base.if",
       "position": [
         700,
-        920
+        960
       ],
       "typeVersion": 2.2
     },
@@ -560,13 +596,13 @@
       "type": "n8n-nodes-base.httpRequest",
       "position": [
         900,
-        920
+        960
       ],
       "typeVersion": 4.2,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
         }
       }
     },
@@ -726,7 +762,7 @@
       "typeVersion": 1.2,
       "position": [
         1300,
-        820
+        880
       ],
       "id": "0ec023d8-8e32-4d03-9325-18fcfa96210c",
       "name": "Telegram_Send_Image",
@@ -756,13 +792,13 @@
       "type": "n8n-nodes-base.httpRequest",
       "position": [
         1100,
-        920
+        960
       ],
       "typeVersion": 4.2,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
         }
       }
     },
@@ -801,15 +837,15 @@
       "typeVersion": 4.2,
       "position": [
         -60,
-        840
+        880
       ],
       "id": "823c62e0-4f02-4e34-8229-9c5915b21853",
       "name": "HTTP_Request_FLUX.1-schnell",
       "alwaysOutputData": false,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "id": "u5lrdPk5ng1v2eJs",
+          "name": "Header_Auth_Flux_Shnell"
         }
       },
       "onError": "continueErrorOutput"
@@ -1033,8 +1069,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1000,
-        340
+        1040,
+        160
       ],
       "id": "2365039b-6b9e-48e8-962d-68138d21b80d",
       "name": "Google Sheets2",
@@ -1053,8 +1089,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -360,
-        340
+        -320,
+        160
       ],
       "id": "417cb56e-6f09-437e-b3b6-68187f5def3c",
       "name": "Telegram_Download_Photo",
@@ -1077,8 +1113,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        20,
-        520
+        60,
+        340
       ],
       "id": "dd38c919-9052-4f68-9db0-6561cf9ce058",
       "name": "LLM_Text_Gemini_1.5_Flash_8B_Image",
@@ -1101,7 +1137,7 @@
       "typeVersion": 1,
       "position": [
         -440,
-        1020
+        1060
       ],
       "id": "146009b4-0d95-456d-ba7b-3df4f78d2b60",
       "name": "LLM_Text_Gemini_1.5_Flash_8B_Text",
@@ -1121,7 +1157,7 @@
       "typeVersion": 1.2,
       "position": [
         -260,
-        1020
+        1060
       ],
       "id": "984e129a-42c3-4e38-a8e6-b365ac3fad19",
       "name": "Structured_Output_Parser_Text"
@@ -1135,7 +1171,7 @@
       "type": "n8n-nodes-base.wait",
       "position": [
         340,
-        920
+        960
       ],
       "webhookId": "150069ed-885b-497f-a32a-09e7088136e6",
       "typeVersion": 1.1
@@ -1147,8 +1183,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        180,
-        520
+        220,
+        340
       ],
       "id": "f273df2f-797a-41fa-b560-0e233e4d6555",
       "name": "Structured_Output_Parser_Image"
@@ -1165,8 +1201,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        400,
-        340
+        440,
+        160
       ],
       "id": "b3281e04-3c0d-49aa-acaa-7494e59a2478",
       "name": "Telegram_Send_Text_Image",
@@ -1191,7 +1227,7 @@
       "typeVersion": 1.2,
       "position": [
         1500,
-        820
+        880
       ],
       "id": "b3f5d134-fd16-404a-bb8a-02e23245b099",
       "name": "Telegram_Send_Text_Text",
@@ -1223,8 +1259,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.6,
       "position": [
-        40,
-        340
+        80,
+        160
       ],
       "id": "9c3ade93-c46a-4355-b28a-c02232531aa7",
       "name": "LLM_For_Image"
@@ -1251,8 +1287,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        800,
-        340
+        840,
+        160
       ],
       "id": "8453c021-adfb-4f8c-b00d-b2c87a423dbf",
       "name": "Google_Drive_Image",
@@ -1272,7 +1308,7 @@
       "typeVersion": 1.2,
       "position": [
         1720,
-        820
+        880
       ],
       "id": "5421b9f6-fea0-4118-98e9-406aca181e5c",
       "name": "Telegram_Download_Photo1",
@@ -1291,8 +1327,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -160,
-        340
+        -120,
+        160
       ],
       "id": "76320f40-d714-4092-91f1-53c6b0bf0929",
       "name": "Code_Fix_Image_MIME_Type1",
@@ -1306,8 +1342,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        600,
-        340
+        640,
+        160
       ],
       "id": "4f902711-daca-4b25-80bd-b4f4912660d0",
       "name": "Code: Combine the data for Google Drive"
@@ -1532,7 +1568,7 @@
       "typeVersion": 4.5,
       "position": [
         1700,
-        1060
+        1100
       ],
       "id": "6357c535-ff4e-442d-97a5-6cc6a284c6e1",
       "name": "Google Sheets",
@@ -1566,7 +1602,7 @@
       "typeVersion": 3,
       "position": [
         1500,
-        1060
+        1100
       ],
       "id": "357257f6-8d12-4640-9029-66780f40fa4f",
       "name": "Google_Drive_Image1",
@@ -1585,7 +1621,7 @@
       "typeVersion": 2,
       "position": [
         1300,
-        1060
+        1100
       ],
       "id": "44fb8dd7-d905-462a-9ff1-62089048d9e9",
       "name": "Code: Combine the data for Google Drive1"
@@ -1593,12 +1629,12 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Process this input: {{ $('Switch').item.json.originalMessage.text }}",
+        "text": "=Process this input: {{ $('Switch').item.json.originalMessage.text || $('Extract Transcript').item.json.transcript }}",
         "hasOutputParser": true,
         "messages": {
           "messageValues": [
             {
-              "message": "=You process texts for Norwegian language learning.\n\nTranslate Ukrainian word/words/phrase/phrases to Norwegian with comprehensive language data.\n\nReturn ONLY valid JSON in this format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"IPA transcription\",\n  \"word_en\": \"English translation\",\n  \"word_ukr\": \"Ukrainian word\",\n  \"difficulty\": \"beginner|intermediate|advanced\",\n  \"frequency\": \"common|uncommon|rare\",\n  \"grammar_notes\": \"Brief grammar context\",\n  \"example\": [\"3 Norwegian sentences\"],\n  \"examples_IPA\": [\"3 sentences in IPA\"],\n  \"examples_ukr\": [\"3 Ukrainian translations\"],\n  \"pronunciation_tips\": \"Helpful pronunciation guidance\",\n  \"related_word\": {\n      \"related_word_no\": \"Norwegian word\",\n      \"related_word_no_IPA\": \"IPA transcription\",\n      \"related_word_en\": \"English translation\",\n      \"related_word_ukr\": \"Ukrainian word\"\n      },\n  \"image_prompt\": \"Description for image generation AI FLUX-schnell\"\n}\n\nThe examples should be very simple but easy to remember sentences using the Norwegian word. Do not include any explanation or additional text."
+              "message": "=You process texts for Norwegian language learning.\n\nTranslate word/words/phrase/phrases to Norwegian with comprehensive language data.\n\nReturn ONLY valid JSON in this format:\n{\n  \"word_no\": \"Norwegian word\",\n  \"word_no_IPA\": \"IPA transcription\",\n  \"word_en\": \"English translation\",\n  \"word_ukr\": \"Ukrainian word\",\n  \"difficulty\": \"beginner|intermediate|advanced\",\n  \"frequency\": \"common|uncommon|rare\",\n  \"grammar_notes\": \"Brief grammar context\",\n  \"example\": [\"3 Norwegian sentences\"],\n  \"examples_IPA\": [\"3 sentences in IPA\"],\n  \"examples_ukr\": [\"3 Ukrainian translations\"],\n  \"pronunciation_tips\": \"Helpful pronunciation guidance\",\n  \"related_word\": {\n      \"related_word_no\": \"Norwegian word\",\n      \"related_word_no_IPA\": \"IPA transcription\",\n      \"related_word_en\": \"English translation\",\n      \"related_word_ukr\": \"Ukrainian word\"\n      },\n  \"image_prompt\": \"Description for image generation AI FLUX-schnell\"\n}\n\nThe examples should be very simple but easy to remember sentences using the Norwegian word. Do not include any explanation or additional text."
             }
           ]
         }
@@ -1606,142 +1642,71 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.6,
       "position": [
-        -400,
-        840
+        -420,
+        880
       ],
       "id": "502b70d2-4b77-48b3-8a80-dd23aaa6e2e6",
       "name": "LLM_For_Text"
     },
     {
       "parameters": {
-        "url": "=https://queue.fal.run/fal-ai/minimax/requests/{{ $('HTTP_Request_to_Fal_ai_Voice').first().json.request_id }}/status",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "options": {}
+        "resource": "file",
+        "fileId": "={{ $('Telegram Trigger').item.json.message.voice.file_id }}"
       },
-      "id": "8f36d4da-0593-4f47-8c22-0112bb20bc29",
-      "name": "HTTP_Fetch_Status1",
-      "type": "n8n-nodes-base.httpRequest",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
       "position": [
-        380,
-        1220
+        -320,
+        540
       ],
-      "typeVersion": 4.2,
+      "id": "803421b5-231d-421b-bce6-04765a054678",
+      "name": "Telegram_Download_Audio",
+      "webhookId": "4cc896c0-8311-48ce-b20b-bb13027b52bd",
       "credentials": {
-        "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
         }
       }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "version": 2,
-            "leftValue": "",
-            "caseSensitive": true,
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "ac50759b-e2f3-4efd-a2af-f28b7d209b45",
-              "operator": {
-                "name": "filter.operator.equals",
-                "type": "string",
-                "operation": "equals"
-              },
-              "leftValue": "={{ $('HTTP_Fetch_Status1').item.json.status }}",
-              "rightValue": "COMPLETED"
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "fe9fb5b1-8d1f-456b-a412-560f08dd3661",
-      "name": "IF_Is_Ready?1",
-      "type": "n8n-nodes-base.if",
-      "position": [
-        560,
-        1220
-      ],
-      "typeVersion": 2.2
-    },
-    {
-      "parameters": {
-        "url": "={{ $('IF_Is_Ready?1').item.json.response_url }}",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "options": {
-          "response": {
-            "response": {
-              "responseFormat": "json"
-            }
-          }
-        }
-      },
-      "id": "e2561a0d-4447-48d6-9e84-f2c447be4956",
-      "name": "HTTP_Fetch_Result1",
-      "type": "n8n-nodes-base.httpRequest",
-      "position": [
-        760,
-        1220
-      ],
-      "typeVersion": 4.2,
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "url": "={{ $('HTTP_Fetch_Result1').item.json.images[0].url }}",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "options": {
-          "response": {
-            "response": {
-              "responseFormat": "file"
-            }
-          }
-        }
-      },
-      "id": "2315f672-5786-4865-b760-ebdae968cc71",
-      "name": "HTTP_Download_Result1",
-      "type": "n8n-nodes-base.httpRequest",
-      "position": [
-        960,
-        1220
-      ],
-      "typeVersion": 4.2,
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "amount": 1
-      },
-      "id": "4ba94589-dfb8-4479-9146-f7d2f157df6c",
-      "name": "Wait_Text1",
-      "type": "n8n-nodes-base.wait",
-      "position": [
-        200,
-        1220
-      ],
-      "webhookId": "150069ed-885b-497f-a32a-09e7088136e6",
-      "typeVersion": 1.1
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "https://queue.fal.run/fal-ai/minimax/speech-02-turbo",
+        "url": "https://api.gladia.io/v2/upload",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "audio",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1bea794e-8489-41ef-9992-2b06682a6da2",
+      "name": "Upload Audio to Gladia",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -80,
+        540
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "fWd6Ag8SUAcPb1xf",
+          "name": "Header_Auth_gladia.io_account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.gladia.io/v2/pre-recorded",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
@@ -1755,23 +1720,120 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"prompt\": \"{{ $('LLM_For_Text').item.json.output.word_no }}\"}",
+        "jsonBody": "={\n  \"audio_url\": \"{{ $('Upload Audio to Gladia').item.json.audio_url }}\",\n  \"diarization\": false,\n  \"translation\": false,\n  \"subtitles\": false,\n  \"detect_language\": true,\n  \"enable_code_switching\": false\n}",
         "options": {}
       },
-      "id": "7c856751-57e7-4e02-bed9-b2a946e42474",
-      "name": "HTTP_Request_to_Fal_ai_Voice",
+      "id": "fb73fad6-a912-4b9d-9abc-283bfeb9ca7f",
+      "name": "Request Transcription",
       "type": "n8n-nodes-base.httpRequest",
-      "position": [
-        0,
-        1220
-      ],
       "typeVersion": 4.2,
+      "position": [
+        140,
+        540
+      ],
       "credentials": {
         "httpHeaderAuth": {
           "id": "fWd6Ag8SUAcPb1xf",
-          "name": "Header Auth account"
+          "name": "Header_Auth_gladia.io_account"
         }
       }
+    },
+    {
+      "parameters": {
+        "amount": 5,
+        "unit": "seconds"
+      },
+      "id": "45d0b0f5-a05d-4123-9e53-8d597029e80f",
+      "name": "Wait for Processing",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        380,
+        540
+      ],
+      "webhookId": "6426dfbf-8b53-4b1a-b3fe-4b51c14d7d81"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Request Transcription').item.json.result_url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "8ac12873-605b-476d-9412-1870af891527",
+      "name": "Get Transcription Result",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        540
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "fWd6Ag8SUAcPb1xf",
+          "name": "Header_Auth_gladia.io_account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "status-check",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "done",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "2c5c001b-b3af-4ad7-a84f-ab13a9d70814",
+      "name": "Check if Transcription Done",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        880,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 3,
+        "unit": "seconds"
+      },
+      "id": "144291cd-1699-4edd-badb-3c2521786b90",
+      "name": "Wait Before Retry",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        620
+      ],
+      "webhookId": "cf450254-1350-4da1-be0b-551066e1aa3d"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the Gladia API response from the previous node\nconst gladiaResult = $input.first().json;\n\n// Extract the transcript text safely\nlet transcript = \"\";\n\n// Check if transcription data exists and has the expected structure\nif (gladiaResult && gladiaResult.result && gladiaResult.result.transcription) {\n  if (gladiaResult.result.transcription.full_transcript) {\n    transcript = gladiaResult.result.transcription.full_transcript;\n  } else {\n    transcript = \"No transcription available\";\n  }\n} else {\n  transcript = \"No transcription data found\";\n}\n\n// Get original message info from the Telegram node (assuming it's the first node)\nconst telegramMessage = $('Telegram Trigger').first().json.message;\n\nreturn {\n  json: {\n    transcript: transcript\n  }\n};"
+      },
+      "id": "31b5b5b1-3ba9-4b40-aeee-a337f4fa0518",
+      "name": "Extract Transcript",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -620,
+        880
+      ]
     }
   ],
   "pinData": {},
@@ -1784,6 +1846,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-29T16:10:40.209Z",
-  "versionId": "e89d0f22-2600-4e23-8af5-3629599ece83"
+  "updatedAt": "2025-05-30T15:43:32.736Z",
+  "versionId": "81e70972-4001-43ac-bc9f-08126e81e1d3"
 }
