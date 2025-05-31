@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -326,7 +326,7 @@
       "main": [
         [
           {
-            "node": "HTTP_Request_FLUX.1-schnell",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -509,8 +509,8 @@
       "name": "HTTP_Request_to_Fal_ai",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        460,
-        1000
+        600,
+        1300
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -531,8 +531,8 @@
       "name": "HTTP_Fetch_Status",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        840,
-        1000
+        980,
+        1300
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -571,8 +571,8 @@
       "name": "IF_Is_Ready?",
       "type": "n8n-nodes-base.if",
       "position": [
-        1020,
-        1000
+        1160,
+        1300
       ],
       "typeVersion": 2.2
     },
@@ -593,8 +593,8 @@
       "name": "HTTP_Fetch_Result",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1220,
-        1000
+        1360,
+        1300
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -759,8 +759,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1620,
-        920
+        1760,
+        1220
       ],
       "id": "9620342b-44c7-4d9b-8dd3-069dea0426ff",
       "name": "Telegram_Send_Image",
@@ -789,8 +789,8 @@
       "name": "HTTP_Download_Result",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1420,
-        1000
+        1560,
+        1300
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -834,8 +834,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        260,
-        920
+        400,
+        1220
       ],
       "id": "ebca8636-e566-4d51-8bc3-45bfd882cd3e",
       "name": "HTTP_Request_FLUX.1-schnell",
@@ -1168,8 +1168,8 @@
       "name": "Wait_Text",
       "type": "n8n-nodes-base.wait",
       "position": [
-        660,
-        1000
+        800,
+        1300
       ],
       "webhookId": "150069ed-885b-497f-a32a-09e7088136e6",
       "typeVersion": 1.1
@@ -1224,8 +1224,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1820,
-        920
+        1960,
+        1220
       ],
       "id": "68ae7703-ca9e-4cd1-b66f-0f7581e74949",
       "name": "Telegram_Send_Text_Text",
@@ -1305,8 +1305,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2040,
-        920
+        2180,
+        1220
       ],
       "id": "3b7c2cfc-a8d7-4577-ae46-063db00c19f6",
       "name": "Telegram_Download_Photo1",
@@ -1565,8 +1565,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        2020,
-        1140
+        2160,
+        1440
       ],
       "id": "10dcf3f8-4831-4a8d-a98d-9d2dafdf8f69",
       "name": "Google Sheets",
@@ -1599,8 +1599,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        1820,
-        1140
+        1960,
+        1440
       ],
       "id": "0e1d40c6-fb76-4843-9536-c85d79596a0b",
       "name": "Google_Drive_Image1",
@@ -1618,8 +1618,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1620,
-        1140
+        1760,
+        1440
       ],
       "id": "15eedd90-ac7d-4f69-a159-c98b98683cf9",
       "name": "Code: Combine the data for Google Drive1"
@@ -1832,9 +1832,147 @@
         -300,
         920
       ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://speechgen.io/index.php?r=api/text",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "6c9ac16c-a742-4f5d-a0e7-531be28bea6d"
+            },
+            {
+              "name": "email",
+              "value": "oleksii.levenets@gmail.com"
+            },
+            {
+              "name": "voice",
+              "value": "Bjorn"
+            },
+            {
+              "name": "text",
+              "value": "={{ $('LLM_For_Text').item.json.output.word_no }}"
+            },
+            {
+              "name": "format"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        820,
+        900
+      ],
+      "id": "05c0fa55-d1b6-4c54-b6fa-2fefea68a0ff",
+      "name": "HTTP_Request_speechgen_io"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/minimax/speech-02-hd",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"text\": \"{{\"Jeg er så glad! Det er fordi jeg har en bestevenn som heter Emma.\" || $json.output.word_no }}\" }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        920
+      ],
+      "id": "adcb53a4-5f5e-4f53-8e35-8778cd622993",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 352801978,
+          "message": {
+            "message_id": 653,
+            "from": {
+              "id": 945884902,
+              "is_bot": false,
+              "first_name": "Oleksii",
+              "last_name": "LEVENETS",
+              "username": "oleksii_levenets",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 945884902,
+              "first_name": "Oleksii",
+              "last_name": "LEVENETS",
+              "username": "oleksii_levenets",
+              "type": "private"
+            },
+            "date": 1748709519,
+            "text": "кавомашина"
+          }
+        }
+      }
+    ],
+    "Code_Input_Analyzer": [
+      {
+        "json": {
+          "id": 945884902,
+          "name": "Oleksii LEVENETS",
+          "username": "oleksii_levenets",
+          "chatId": 945884902,
+          "timestamp": "2025-05-31T16:40:05.112Z",
+          "inputType": {
+            "isCommand": false,
+            "isPhoto": false,
+            "isVoice": false,
+            "isText": true
+          },
+          "command": null,
+          "originalMessage": {
+            "message_id": 653,
+            "from": {
+              "id": 945884902,
+              "is_bot": false,
+              "first_name": "Oleksii",
+              "last_name": "LEVENETS",
+              "username": "oleksii_levenets",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 945884902,
+              "first_name": "Oleksii",
+              "last_name": "LEVENETS",
+              "username": "oleksii_levenets",
+              "type": "private"
+            },
+            "date": 1748709519,
+            "text": "кавомашина"
+          },
+          "processingId": "proc_945884902_1748709605112"
+        }
+      }
+    ]
+  },
   "repo_name": "n8n_BackUp",
   "repo_owner": "Oleksii-Levenets",
   "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
@@ -1844,6 +1982,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-30T16:29:59.601Z",
-  "versionId": "87bc3a17-7174-49d4-b98a-915923a8ed45"
+  "updatedAt": "2025-05-31T17:11:47.797Z",
+  "versionId": "e00c270a-d5ad-4281-acd0-aeba6cc7d971"
 }
