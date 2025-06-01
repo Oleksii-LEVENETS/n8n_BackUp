@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -67,7 +67,7 @@
       "main": [
         [
           {
-            "node": "Code_Command_Handler",
+            "node": "Execute_Workflow_Command",
             "type": "main",
             "index": 0
           }
@@ -326,7 +326,12 @@
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "HTTP_Request_to_Fal_ai_minimax_speech-02-hd",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP_Request_FLUX.1-schnell",
             "type": "main",
             "index": 0
           }
@@ -427,12 +432,97 @@
           }
         ]
       ]
+    },
+    "HTTP_Fetch_Status1": {
+      "main": [
+        [
+          {
+            "node": "IF_Is_Ready?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF_Is_Ready?1": {
+      "main": [
+        [
+          {
+            "node": "HTTP_Fetch_Result1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait_Text1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP_Fetch_Result1": {
+      "main": [
+        [
+          {
+            "node": "HTTP_Download_Voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait_Text1": {
+      "main": [
+        [
+          {
+            "node": "HTTP_Fetch_Status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP_Request_to_Fal_ai_minimax_speech-02-hd": {
+      "main": [
+        [
+          {
+            "node": "Wait_Text1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram_Send_Voice": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP_Download_Voice": {
+      "main": [
+        [
+          {
+            "node": "Telegram_Send_Voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Response Command": {
+      "main": [
+        []
+      ]
     }
   },
   "createdAt": "2025-05-30T16:05:28.163Z",
   "id": "BiVVPky3IPAieIPj",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Norsk_Card_Voice",
   "nodes": [
     {
@@ -472,8 +562,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        220,
-        0
+        1800,
+        -40
       ],
       "id": "5b7c9c47-2e8d-4aa3-8c40-dbe874e3cbe5",
       "name": "Telegram Response Command",
@@ -483,7 +573,8 @@
           "id": "b1A5LbmUfw9IdV5u",
           "name": "Telegram_Norsk_Cards_bot"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -741,11 +832,12 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        0,
-        0
+        1600,
+        -40
       ],
       "id": "fe9ca5c7-cb6f-475a-9ee4-536350db3ab1",
-      "name": "Code_Command_Handler"
+      "name": "Code_Command_Handler",
+      "disabled": true
     },
     {
       "parameters": {
@@ -843,7 +935,7 @@
       "credentials": {
         "httpHeaderAuth": {
           "id": "u5lrdPk5ng1v2eJs",
-          "name": "Header_Auth_Flux_Shnell"
+          "name": "Header_Auth_Flux_Schnell"
         }
       },
       "onError": "continueErrorOutput"
@@ -1305,7 +1397,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2180,
+        2160,
         1220
       ],
       "id": "3b7c2cfc-a8d7-4577-ae46-063db00c19f6",
@@ -1835,42 +1927,101 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://speechgen.io/index.php?r=api/text",
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
+        "url": "=https://queue.fal.run/fal-ai/minimax/requests/{{ $('HTTP_Request_to_Fal_ai_minimax_speech-02-hd').first().json.request_id }}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "df49dc08-859b-457f-88b0-398661b59072",
+      "name": "HTTP_Fetch_Status1",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        940,
+        920
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
             {
-              "name": "token",
-              "value": "6c9ac16c-a742-4f5d-a0e7-531be28bea6d"
-            },
-            {
-              "name": "email",
-              "value": "oleksii.levenets@gmail.com"
-            },
-            {
-              "name": "voice",
-              "value": "Bjorn"
-            },
-            {
-              "name": "text",
-              "value": "={{ $('LLM_For_Text').item.json.output.word_no }}"
-            },
-            {
-              "name": "format"
+              "id": "ac50759b-e2f3-4efd-a2af-f28b7d209b45",
+              "operator": {
+                "name": "filter.operator.equals",
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $('HTTP_Fetch_Status1').item.json.status }}",
+              "rightValue": "COMPLETED"
             }
-          ]
+          ],
+          "combinator": "and"
         },
         "options": {}
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "id": "8bd0df61-456e-402a-860a-0df0f0067738",
+      "name": "IF_Is_Ready?1",
+      "type": "n8n-nodes-base.if",
       "position": [
-        820,
-        900
+        1120,
+        920
       ],
-      "id": "05c0fa55-d1b6-4c54-b6fa-2fefea68a0ff",
-      "name": "HTTP_Request_speechgen_io"
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "url": "={{ $('IF_Is_Ready?1').item.json.response_url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "cdf415c2-e1b9-473d-98dc-4b8f2dbbadd7",
+      "name": "HTTP_Fetch_Result1",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1320,
+        920
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "id": "e7e8528e-95de-480b-90ec-739e7b15dc39",
+      "name": "Wait_Text1",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        760,
+        920
+      ],
+      "webhookId": "150069ed-885b-497f-a32a-09e7088136e6",
+      "typeVersion": 1.1
     },
     {
       "parameters": {
@@ -1886,102 +2037,120 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={ \"text\": \"{{\"Jeg er så glad! Det er fordi jeg har en bestevenn som heter Emma.\" || $json.output.word_no }}\" }",
+        "jsonBody": "={ \"text\": \"{{$('LLM_For_Text').item.json.output.word_no }}\" }",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        260,
+        400,
         920
       ],
       "id": "adcb53a4-5f5e-4f53-8e35-8778cd622993",
-      "name": "HTTP Request",
+      "name": "HTTP_Request_to_Fal_ai_minimax_speech-02-hd",
       "credentials": {
         "httpHeaderAuth": {
           "id": "I7yyRYPasyPaTf3G",
           "name": "Header_Auth_fal "
         }
       }
-    }
-  ],
-  "pinData": {
-    "Telegram Trigger": [
-      {
-        "json": {
-          "update_id": 352801978,
-          "message": {
-            "message_id": 653,
-            "from": {
-              "id": 945884902,
-              "is_bot": false,
-              "first_name": "Oleksii",
-              "last_name": "LEVENETS",
-              "username": "oleksii_levenets",
-              "language_code": "en"
-            },
-            "chat": {
-              "id": 945884902,
-              "first_name": "Oleksii",
-              "last_name": "LEVENETS",
-              "username": "oleksii_levenets",
-              "type": "private"
-            },
-            "date": 1748709519,
-            "text": "кавомашина"
+    },
+    {
+      "parameters": {
+        "operation": "sendDocument",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id  }}",
+        "binaryData": true,
+        "additionalFields": {
+          "fileName": "={{ $now.format('yyyy-MM-dd_HH-ss') }}_{{ $('LLM_For_Text').item.json.output.word_no }}.mp3"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1760,
+        920
+      ],
+      "id": "70a8652a-4e51-4fd5-b79e-76050fca9b2f",
+      "name": "Telegram_Send_Voice",
+      "webhookId": "609386eb-4b52-4c67-a5c2-8ac765c42c52",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('HTTP_Fetch_Result1').item.json.audio.url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
           }
         }
-      }
-    ],
-    "Code_Input_Analyzer": [
-      {
-        "json": {
-          "id": 945884902,
-          "name": "Oleksii LEVENETS",
-          "username": "oleksii_levenets",
-          "chatId": 945884902,
-          "timestamp": "2025-05-31T16:40:05.112Z",
-          "inputType": {
-            "isCommand": false,
-            "isPhoto": false,
-            "isVoice": false,
-            "isText": true
-          },
-          "command": null,
-          "originalMessage": {
-            "message_id": 653,
-            "from": {
-              "id": 945884902,
-              "is_bot": false,
-              "first_name": "Oleksii",
-              "last_name": "LEVENETS",
-              "username": "oleksii_levenets",
-              "language_code": "en"
-            },
-            "chat": {
-              "id": 945884902,
-              "first_name": "Oleksii",
-              "last_name": "LEVENETS",
-              "username": "oleksii_levenets",
-              "type": "private"
-            },
-            "date": 1748709519,
-            "text": "кавомашина"
-          },
-          "processingId": "proc_945884902_1748709605112"
+      },
+      "id": "f564ee25-753d-4371-baa9-340447e3650a",
+      "name": "HTTP_Download_Voice",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1520,
+        920
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
         }
       }
-    ]
-  },
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "mNabs6iwJHljcCTr",
+          "mode": "list",
+          "cachedResultName": "Norsk_Card_SWF_Command"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        -40
+      ],
+      "id": "9bffc920-10d0-41f6-bc7a-196e01d68812",
+      "name": "Execute_Workflow_Command",
+      "notesInFlow": true,
+      "notes": "Norsk_Card_SWF_Command"
+    }
+  ],
+  "pinData": {},
   "repo_name": "n8n_BackUp",
   "repo_owner": "Oleksii-Levenets",
   "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Europe/Kyiv",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "bVbSoouoJTyzrhju"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-31T17:11:47.797Z",
-  "versionId": "e00c270a-d5ad-4281-acd0-aeba6cc7d971"
+  "updatedAt": "2025-06-01T17:28:37.818Z",
+  "versionId": "16d43e6e-f9df-4c5d-823b-713b4f707bae"
 }
