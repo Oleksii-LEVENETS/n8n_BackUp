@@ -1,0 +1,97 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Code_Command_Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code_Command_Handler": {
+      "main": [
+        [
+          {
+            "node": "Telegram Response Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-01T17:18:22.247Z",
+  "id": "mNabs6iwJHljcCTr",
+  "isArchived": false,
+  "meta": null,
+  "name": "Norsk_Card_SWF_Command",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        260,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Code_Input_Analyzer').item.json.chatId }}",
+        "text": "={{ $('Code_Command_Handler').item.json.response }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        680,
+        340
+      ],
+      "id": "f3caa691-5b93-4485-9ca1-6364c37a3d91",
+      "name": "Telegram Response Command",
+      "webhookId": "5f94bf85-7d21-49e7-a8ff-706fd6cfc057",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const command = $input.item.json.command;\nconst userId = $input.item.json.id;\nconst chatId = $input.item.json.chatId;\n\n// Enhanced command handling\nswitch(command) {\n  case '/start':\n    return {\n      json: {\n        chatId,\n        response: '🇳🇴 Welcome to Enhanced Norsk Cards Bot!\\n\\n📸 Send a photo - I\\'ll identify objects\\n📝 Send Ukrainian text - I\\'ll translate to Norwegian\\n🎤 Send voice message - I\\'ll process speech\\n📚 Use commands:\\n/stats - Your learning progress\\n/review - Practice words\\n/help - Full instructions\\n/settings - Preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/help':\n    return {\n      json: {\n        chatId,\n        response: '🔧 Enhanced Features:\\n\\n📸 Photo Recognition\\n📝 Text Translation (Ukrainian→Norwegian)\\n🎤 Voice Processing\\n📊 Progress Tracking\\n🔄 Batch Processing\\n📋 IPA Transcription\\n💾 Auto-save to Google Sheets\\n\\n🎯 Commands:\\n/stats - Learning statistics\\n/review - Practice session\\n/settings - User preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/stats':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_stats'\n      }\n    };\n    \n  case '/review':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_review'\n      }\n    };\n    \n  case '/settings':\n    return {\n      json: {\n        chatId,\n        response: '⚙️ Settings:\\n\\n🔊 Audio enabled: Yes\\n📝 IPA transcription: Yes\\n🎯 Difficulty level: Intermediate\\n📊 Progress tracking: Enabled\\n\\nUse inline buttons to modify settings.',\n        action: 'send_message'\n      }\n    };\n    \n  default:\n    return {\n      json: {\n        chatId,\n        response: '❓ Unknown command. Use /help for available commands.',\n        action: 'send_message'\n      }\n    };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        340
+      ],
+      "id": "b6416487-88cd-4917-9009-16a42b021003",
+      "name": "Code_Command_Handler"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n_BackUp",
+  "repo_owner": "Oleksii-Levenets",
+  "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-01T17:32:39.346Z",
+  "versionId": "47055307-dba5-480f-ab20-8eb2ae092088"
+}
