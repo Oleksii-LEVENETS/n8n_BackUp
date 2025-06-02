@@ -74,7 +74,7 @@
         ],
         [
           {
-            "node": "Telegram_Download_Photo",
+            "node": "Execute_Workflow_Photo",
             "type": "main",
             "index": 0
           }
@@ -100,17 +100,6 @@
         [
           {
             "node": "Switch",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code_Command_Handler": {
-      "main": [
-        [
-          {
-            "node": "Telegram Response Command",
             "type": "main",
             "index": 0
           }
@@ -510,11 +499,6 @@
           }
         ]
       ]
-    },
-    "Telegram Response Command": {
-      "main": [
-        []
-      ]
     }
   },
   "createdAt": "2025-05-30T16:05:28.163Z",
@@ -549,32 +533,6 @@
           "name": "Telegram_Norsk_Cards_bot"
         }
       }
-    },
-    {
-      "parameters": {
-        "chatId": "={{ $('Code_Input_Analyzer').item.json.chatId }}",
-        "text": "={{ $('Code_Command_Handler').item.json.response }}",
-        "additionalFields": {
-          "appendAttribution": false,
-          "parse_mode": "Markdown"
-        }
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        1800,
-        -40
-      ],
-      "id": "5b7c9c47-2e8d-4aa3-8c40-dbe874e3cbe5",
-      "name": "Telegram Response Command",
-      "webhookId": "5f94bf85-7d21-49e7-a8ff-706fd6cfc057",
-      "credentials": {
-        "telegramApi": {
-          "id": "b1A5LbmUfw9IdV5u",
-          "name": "Telegram_Norsk_Cards_bot"
-        }
-      },
-      "disabled": true
     },
     {
       "parameters": {
@@ -824,20 +782,6 @@
       ],
       "id": "615e1ffd-cc90-4798-99b5-4a01296e6683",
       "name": "Code_Input_Analyzer"
-    },
-    {
-      "parameters": {
-        "jsCode": "const command = $input.item.json.command;\nconst userId = $input.item.json.id;\nconst chatId = $input.item.json.chatId;\n\n// Enhanced command handling\nswitch(command) {\n  case '/start':\n    return {\n      json: {\n        chatId,\n        response: '🇳🇴 Welcome to Enhanced Norsk Cards Bot!\\n\\n📸 Send a photo - I\\'ll identify objects\\n📝 Send Ukrainian text - I\\'ll translate to Norwegian\\n🎤 Send voice message - I\\'ll process speech\\n📚 Use commands:\\n/stats - Your learning progress\\n/review - Practice words\\n/help - Full instructions\\n/settings - Preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/help':\n    return {\n      json: {\n        chatId,\n        response: '🔧 Enhanced Features:\\n\\n📸 Photo Recognition\\n📝 Text Translation (Ukrainian→Norwegian)\\n🎤 Voice Processing\\n📊 Progress Tracking\\n🔄 Batch Processing\\n📋 IPA Transcription\\n💾 Auto-save to Google Sheets\\n\\n🎯 Commands:\\n/stats - Learning statistics\\n/review - Practice session\\n/settings - User preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/stats':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_stats'\n      }\n    };\n    \n  case '/review':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_review'\n      }\n    };\n    \n  case '/settings':\n    return {\n      json: {\n        chatId,\n        response: '⚙️ Settings:\\n\\n🔊 Audio enabled: Yes\\n📝 IPA transcription: Yes\\n🎯 Difficulty level: Intermediate\\n📊 Progress tracking: Enabled\\n\\nUse inline buttons to modify settings.',\n        action: 'send_message'\n      }\n    };\n    \n  default:\n    return {\n      json: {\n        chatId,\n        response: '❓ Unknown command. Use /help for available commands.',\n        action: 'send_message'\n      }\n    };\n}"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1600,
-        -40
-      ],
-      "id": "fe9ca5c7-cb6f-475a-9ee4-536350db3ab1",
-      "name": "Code_Command_Handler",
-      "disabled": true
     },
     {
       "parameters": {
@@ -1159,8 +1103,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1360,
-        200
+        2340,
+        180
       ],
       "id": "73d4e85f-89b1-469f-8667-940c34e0fffa",
       "name": "Google Sheets2",
@@ -1169,7 +1113,8 @@
           "id": "9Mm6P9gevjQ7fdoN",
           "name": "Google Sheets account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1179,8 +1124,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        0,
-        200
+        980,
+        180
       ],
       "id": "357c2f0a-865d-4856-b082-44f578749300",
       "name": "Telegram_Download_Photo",
@@ -1190,7 +1135,8 @@
           "id": "b1A5LbmUfw9IdV5u",
           "name": "Telegram_Norsk_Cards_bot"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1203,8 +1149,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        380,
-        380
+        1360,
+        360
       ],
       "id": "494381f6-2041-4413-a5e6-2a7a6acfb9af",
       "name": "LLM_Text_Gemini_1.5_Flash_8B_Image",
@@ -1213,7 +1159,8 @@
           "id": "KRtSCc0YBK4WlQBs",
           "name": "OpenRouter account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1273,11 +1220,12 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        540,
-        380
+        1520,
+        360
       ],
       "id": "f7821488-8e3a-4d3f-b8d8-3f9ae7706206",
-      "name": "Structured_Output_Parser_Image"
+      "name": "Structured_Output_Parser_Image",
+      "disabled": true
     },
     {
       "parameters": {
@@ -1291,8 +1239,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        760,
-        200
+        1740,
+        180
       ],
       "id": "7abc3595-8874-4712-b585-57ccfb8494f7",
       "name": "Telegram_Send_Text_Image",
@@ -1302,7 +1250,8 @@
           "id": "b1A5LbmUfw9IdV5u",
           "name": "Telegram_Norsk_Cards_bot"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1349,11 +1298,12 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.6,
       "position": [
-        400,
-        200
+        1380,
+        180
       ],
       "id": "3e2de8e3-b792-47da-9a1c-dfb62944ed67",
-      "name": "LLM_For_Image"
+      "name": "LLM_For_Image",
+      "disabled": true
     },
     {
       "parameters": {
@@ -1377,8 +1327,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        1160,
-        200
+        2140,
+        180
       ],
       "id": "6f846f34-ad19-4503-950e-05f30a181c4f",
       "name": "Google_Drive_Image",
@@ -1387,7 +1337,8 @@
           "id": "mYfDOqdxlUrejckA",
           "name": "Google Drive account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1417,12 +1368,13 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        200,
-        200
+        1180,
+        180
       ],
       "id": "d4f1e102-f1f6-4ead-93a6-66e88c073754",
       "name": "Code_Fix_Image_MIME_Type1",
       "notesInFlow": true,
+      "disabled": true,
       "notes": "Fix Image MIME Type"
     },
     {
@@ -1432,11 +1384,12 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        960,
-        200
+        1940,
+        180
       ],
       "id": "8de43490-3b8b-466a-899f-cc127b74d5d9",
-      "name": "Code: Combine the data for Google Drive"
+      "name": "Code: Combine the data for Google Drive",
+      "disabled": true
     },
     {
       "parameters": {
@@ -2112,9 +2065,8 @@
       "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "mNabs6iwJHljcCTr",
-          "mode": "list",
-          "cachedResultName": "Norsk_Card_SWF_Command"
+          "mode": "id",
+          "value": "=mNabs6iwJHljcCTr"
         },
         "workflowInputs": {
           "mappingMode": "defineBelow",
@@ -2129,13 +2081,38 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        0,
+        20,
         -40
       ],
-      "id": "9bffc920-10d0-41f6-bc7a-196e01d68812",
-      "name": "Execute_Workflow_Command",
-      "notesInFlow": true,
-      "notes": "Norsk_Card_SWF_Command"
+      "id": "ab31cb49-a839-4b47-b5fe-2ebee02bd668",
+      "name": "Execute_Workflow_Command"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "eqVkPqSD7Bh18ROq",
+          "mode": "list",
+          "cachedResultName": "Norsk_Card_SWF_Photo"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        20,
+        320
+      ],
+      "id": "0a901ea3-bc1b-478a-9f2c-685557cd93b2",
+      "name": "Execute_Workflow_Photo"
     }
   ],
   "pinData": {},
@@ -2151,6 +2128,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-06-01T17:28:37.818Z",
-  "versionId": "16d43e6e-f9df-4c5d-823b-713b4f707bae"
+  "updatedAt": "2025-06-02T16:48:01.431Z",
+  "versionId": "6db7c1a2-8dac-4eb5-ad5e-d04a9bb81098"
 }
