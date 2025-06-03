@@ -341,7 +341,7 @@
     {
       "parameters": {
         "resource": "file",
-        "fileId": "={{ $('Telegram Trigger').item.json.message.photo[0].file_id }}"
+        "fileId": "={{ $('When Executed by Another Workflow').item. }}"
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
@@ -510,7 +510,8 @@
     },
     {
       "parameters": {
-        "inputSource": "passthrough"
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"fileName\": \"photo_2025-01-01_12-30-45.jpg\",\n  \"fileData\": {\n    \"data\": \"base64_encoded_file_content_here\",\n    \"mimeType\": \"image/jpeg\",\n    \"fileExtension\": \"jpg\",\n    \"fileName\": \"photo_2025-01-01_12-30-45.jpg\"\n  },\n  \"originalMessage\": {\n    \"message_id\": 123,\n    \"from\": {\n      \"id\": 123456789,\n      \"is_bot\": false,\n      \"first_name\": \"John\",\n      \"username\": \"john_doe\",\n      \"language_code\": \"en\"\n    },\n    \"chat\": {\n      \"id\": 123456789,\n      \"first_name\": \"John\",\n      \"username\": \"john_doe\",\n      \"type\": \"private\"\n    },\n    \"date\": 1704110445,\n    \"photo\": [\n      {\n        \"file_id\": \"AgACAgIAAxkBAAIBY2XYZ...\",\n        \"file_unique_id\": \"AQADGAADlQABY2XYZ\",\n        \"file_size\": 1350,\n        \"width\": 90,\n        \"height\": 67\n      }\n    ]\n  },\n  \"fileInfo\": {\n    \"file_id\": \"AgACAgIAAxkBAAIBY2XYZ...\",\n    \"file_unique_id\": \"AQADGAADlQABY2XYZ\",\n    \"file_size\": 15420,\n    \"file_path\": \"photos/file_123.jpg\"\n  },\n  \"metadata\": {\n    \"uploadDate\": \"2025-01-01T12:30:45.000Z\",\n    \"chatId\": 123456789,\n    \"userId\": 123456789,\n    \"fileType\": \"photo\"\n  }\n}"
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
@@ -522,7 +523,60 @@
       "name": "When Executed by Another Workflow"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "fileName": null,
+          "fileData": null,
+          "originalMessage": {
+            "message_id": 714,
+            "from": {
+              "id": 945884902,
+              "is_bot": false,
+              "first_name": "Oleksii",
+              "last_name": "LEVENETS",
+              "username": "oleksii_levenets",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 945884902,
+              "first_name": "Oleksii",
+              "last_name": "LEVENETS",
+              "username": "oleksii_levenets",
+              "type": "private"
+            },
+            "date": 1748892549,
+            "photo": [
+              {
+                "file_id": "AgACAgIAAxkBAAICymg9-4X1ezMWBJUtofS28e7_zseCAAKx7zEbkILwSfXS7Gc-1RU9AQADAgADcwADNgQ",
+                "file_unique_id": "AQADse8xG5CC8El4",
+                "file_size": 1297,
+                "width": 84,
+                "height": 90
+              },
+              {
+                "file_id": "AgACAgIAAxkBAAICymg9-4X1ezMWBJUtofS28e7_zseCAAKx7zEbkILwSfXS7Gc-1RU9AQADAgADeAADNgQ",
+                "file_unique_id": "AQADse8xG5CC8El9",
+                "file_size": 11815,
+                "width": 361,
+                "height": 385
+              },
+              {
+                "file_id": "AgACAgIAAxkBAAICymg9-4X1ezMWBJUtofS28e7_zseCAAKx7zEbkILwSfXS7Gc-1RU9AQADAgADbQADNgQ",
+                "file_unique_id": "AQADse8xG5CC8Ely",
+                "file_size": 13137,
+                "width": 300,
+                "height": 320
+              }
+            ]
+          },
+          "fileInfo": null,
+          "metadata": null
+        }
+      }
+    ]
+  },
   "repo_name": "n8n_BackUp",
   "repo_owner": "Oleksii-Levenets",
   "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
@@ -532,6 +586,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-06-02T16:47:40.507Z",
-  "versionId": "3951e285-f568-4e1d-bad7-65cadc289335"
+  "updatedAt": "2025-06-03T12:40:47.222Z",
+  "versionId": "f14311b5-1407-4530-bdd5-2e455364f4fc"
 }
