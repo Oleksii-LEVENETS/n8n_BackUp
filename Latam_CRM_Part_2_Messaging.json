@@ -1,0 +1,116 @@
+{
+  "active": false,
+  "connections": {
+    "Read Google Sheet": {
+      "main": [
+        [
+          {
+            "node": "Filter Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Contacts": {
+      "main": [
+        [
+          {
+            "node": "Send Connection Invite",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Connection Invite": {
+      "main": [
+        [
+          {
+            "node": "Update Sheet (M1 Sent)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-03T10:21:14.757Z",
+  "id": "15OmZ0URn9UOUqJU",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Latam_CRM_Part_2_Messaging",
+  "nodes": [
+    {
+      "parameters": {
+        "sheetId": "1qEXS0wwZwMdZgttVUMaiHN_k-IXIg-zsoQj3lPcIniA",
+        "range": "Sheet1",
+        "options": {}
+      },
+      "id": "df0659ee-1491-44d5-a912-4f7fa77615b0",
+      "name": "Read Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "return items.filter(item => item.json.Status === 'OK to Message' && !item.json.Message1_Status);"
+      },
+      "id": "9748f56c-3f04-44ea-8f39-b0013db2f585",
+      "name": "Filter Contacts",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        200,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "linkedin-connection-invite",
+        "requestOptions": {}
+      },
+      "id": "db5bf71b-c5d6-4067-93fe-c0e3b5e01ee1",
+      "name": "Send Connection Invite",
+      "type": "n8n-nodes-browserflow.browserflow",
+      "typeVersion": 1,
+      "position": [
+        400,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "sheetId": "1qEXS0wwZwMdZgttVUMaiHN_k-IXIg-zsoQj3lPcIniA",
+        "range": "Sheet1",
+        "options": {}
+      },
+      "id": "1a9ab470-213f-4a79-a86b-455fa1e53b77",
+      "name": "Update Sheet (M1 Sent)",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        600,
+        0
+      ]
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n_BackUp",
+  "repo_owner": "Oleksii-Levenets",
+  "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-03T10:22:04.415Z",
+  "versionId": "cdb793e8-5b90-4737-9feb-c78e985b06a0"
+}
