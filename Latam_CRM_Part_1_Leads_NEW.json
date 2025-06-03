@@ -1,0 +1,281 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Configuration1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rate Limit Delay": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple HTML Parser": {
+      "main": [
+        [
+          {
+            "node": "Check Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Success": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Handle Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configuration1": {
+      "main": [
+        [
+          {
+            "node": "Rate Limit Delay",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Simple HTML Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-03T10:47:58.134Z",
+  "id": "k8621nlOg8xYviTG",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Latam_CRM_Part_1_Leads_NEW",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1040,
+        740
+      ],
+      "id": "b39e7089-aecf-4f74-a23a-b9b439f6fc59",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Configuration1').item.json.delayMs }}",
+        "unit": "seconds"
+      },
+      "id": "0b6aeaab-d4eb-494d-aa8d-d7e96d295ded",
+      "name": "Rate Limit Delay",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        740
+      ],
+      "webhookId": "1e6f8161-ba46-4ce4-8df0-993a1323a8ac"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Simple HTML parsing without external dependencies\nconst html = items[0].json.body;\n\nif (!html || html.includes('Sign In') || html.includes('Challenge')) {\n  return [{ json: { error: 'LinkedIn authentication required or blocked' } }];\n}\n\nconst results = [];\n\n// Extract names using regex patterns\nconst namePattern = /<span[^>]*entity-result__title-text[^>]*>.*?<a[^>]*>.*?<span[^>]*aria-hidden=\"true\"[^>]*>([^<]+)<\\/span>/g;\nlet nameMatch;\nconst names = [];\nwhile ((nameMatch = namePattern.exec(html)) !== null) {\n  const name = nameMatch[1].trim();\n  if (name && !name.includes('View ') && name.length > 1) {\n    names.push(name);\n  }\n}\n\n// Extract job titles\nconst titlePattern = /<div[^>]*entity-result__primary-subtitle[^>]*>([^<]+)</g;\nlet titleMatch;\nconst titles = [];\nwhile ((titleMatch = titlePattern.exec(html)) !== null) {\n  titles.push(titleMatch[1].trim());\n}\n\n// Extract companies\nconst companyPattern = /<div[^>]*entity-result__secondary-subtitle[^>]*>([^<]+)</g;\nlet companyMatch;\nconst companies = [];\nwhile ((companyMatch = companyPattern.exec(html)) !== null) {\n  companies.push(companyMatch[1].trim());\n}\n\n// Extract profile URLs\nconst urlPattern = /<a[^>]*app-aware-link[^>]*href=\"([^\"]+)\"/g;\nlet urlMatch;\nconst urls = [];\nwhile ((urlMatch = urlPattern.exec(html)) !== null) {\n  let url = urlMatch[1];\n  if (url.includes('/in/')) {\n    // Clean URL\n    if (url.startsWith('/')) {\n      url = 'https://www.linkedin.com' + url;\n    }\n    url = url.split('?')[0]; // Remove tracking\n    urls.push(url);\n  }\n}\n\n// Fallback: try simpler patterns if main ones don't work\nif (names.length === 0) {\n  const fallbackNamePattern = /aria-label=\"View ([^\"]+)'s profile\"/g;\n  let fallbackMatch;\n  while ((fallbackMatch = fallbackNamePattern.exec(html)) !== null) {\n    names.push(fallbackMatch[1].trim());\n  }\n}\n\n// Combine all extracted data\nconst maxItems = Math.max(names.length, titles.length, companies.length, urls.length);\n\nfor (let i = 0; i < maxItems; i++) {\n  const name = names[i] || 'N/A';\n  const title = titles[i] || 'N/A';\n  const company = companies[i] || 'N/A';\n  const profileUrl = urls[i] || 'N/A';\n  \n  // Only add if we have at least a name\n  if (name !== 'N/A' && name.length > 1) {\n    results.push({\n      json: {\n        Name: name,\n        Title: title,\n        Company: company,\n        LinkedIn_URL: profileUrl,\n        Status: 'New',\n        Scraped_Date: new Date().toISOString().split('T')[0], // Just date\n        Source: 'LinkedIn Search'\n      }\n    });\n  }\n}\n\nif (results.length === 0) {\n  return [{ json: { error: 'No profiles found. LinkedIn may have changed structure.' } }];\n}\n\nconsole.log(`Found ${results.length} LinkedIn profiles`);\nreturn results;"
+      },
+      "id": "d9de58dc-07c9-4a97-bf4f-7144ee24f6a5",
+      "name": "Simple HTML Parser",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.error }}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "id": "195019b3-3b5b-45a7-af4e-be219902b242",
+      "name": "Check Success",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        80,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "18ghE42hTvg14n4Ff37ramPpv_jQMA7qh",
+        "range": "Sheet1!A1",
+        "options": {}
+      },
+      "id": "3351b7d9-4ce7-475d-8f3a-ee00e6486797",
+      "name": "Save to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        280,
+        640
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "9Mm6P9gevjQ7fdoN",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "// Simple error logging\nconst errorMsg = items[0].json.error || 'Unknown error';\nconsole.error('Scraping failed:', errorMsg);\n\nreturn [{\n  json: {\n    Name: 'ERROR',\n    Title: errorMsg,\n    Company: 'N/A',\n    LinkedIn_URL: 'N/A',\n    Status: 'Error',\n    Scraped_Date: new Date().toISOString().split('T')[0],\n    Source: 'Error Log'\n  }\n}];"
+      },
+      "id": "0f1d6294-e0f5-49ad-b696-a7312d6b44e0",
+      "name": "Handle Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        280,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "searchKeywords",
+              "value": "CRM Microsoft Salesforce SAP HubSpot MD365 Oracle NCR Diebold Hyosung"
+            },
+            {
+              "name": "delayMs",
+              "value": "2"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ae084f09-6b37-4d1e-b071-18abf7ccca8e",
+      "name": "Configuration1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -840,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.linkedin.com/search/results/people",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "keywords",
+              "value": "={{ $('Configuration1').item.json.searchKeywords }}"
+            },
+            {
+              "name": "origin",
+              "value": "GLOBAL_SEARCH_HEADER"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "cookie",
+              "value": "li_at=AQEDARVHWv8A7bddAAABkukqI9IAAAGXWfaX9k0AcLYhADRlLEOROXhnooUVIf4UqtlXG0K6W1QEyxwEJGQXqxUxJbwHwN9kWMP-_aJw4jIWsqY2tMqdgolPKg_tI1eT7RmziPuA8G5T62QALp8GT28W; bcookie=v=2&3d1a91c4-877b-4917-8c70-2d74a565422d"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "Accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-US,en;q=0.9"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          },
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "linkedin_response.html"
+            }
+          },
+          "timeout": 30000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -420,
+        740
+      ],
+      "id": "5d1d58ce-c023-442f-acad-2f632d99ea2e",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n_BackUp",
+  "repo_owner": "Oleksii-Levenets",
+  "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-03T15:47:23.713Z",
+  "versionId": "4f0551f4-81d7-41d0-b71a-2f0a1a48514a"
+}
