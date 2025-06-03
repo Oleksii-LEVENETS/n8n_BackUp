@@ -1,0 +1,24 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-06-03T10:20:07.692Z",
+  "id": "bNWgR6U8iUfKauRG",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Latam_CRM_Part_1_Leads",
+  "nodes": [],
+  "pinData": {},
+  "repo_name": "n8n_BackUp",
+  "repo_owner": "Oleksii-Levenets",
+  "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-03T15:48:05.989Z",
+  "versionId": "436ea499-efcc-4db0-aded-42e4c9b345c7"
+}
