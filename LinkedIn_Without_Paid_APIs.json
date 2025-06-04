@@ -5,7 +5,84 @@
       "main": [
         [
           {
-            "node": "Set_Fields",
+            "node": "Set Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Fields": {
+      "main": [
+        [
+          {
+            "node": "Search Google",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Google": {
+      "main": [
+        [
+          {
+            "node": "Extract Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Results": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add to Google": {
+      "main": [
+        [
+          {
+            "node": "Pagination",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pagination": {
+      "main": [
+        [
+          {
+            "node": "Pagination Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pagination Check": {
+      "main": [
+        [
+          {
+            "node": "Search Google",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Add to Google",
             "type": "main",
             "index": 0
           }
@@ -16,58 +93,36 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
+            "node": "Add to Google1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Google Sheets": {
+    "Set Fields1": {
       "main": [
         [
           {
-            "node": "Code_Pagination",
+            "node": "Search Google1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If": {
+    "Search Google1": {
       "main": [
         [
           {
-            "node": "HTTP_Request_Search_Google",
+            "node": "Extract Results1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Set_Fields": {
-      "main": [
-        [
-          {
-            "node": "HTTP_Request_Search_Google",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTTP_Request_Search_Google": {
-      "main": [
-        [
-          {
-            "node": "Code_Extract_Results",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code_Extract_Results": {
+    "Extract Results1": {
       "main": [
         [
           {
@@ -78,11 +133,33 @@
         ]
       ]
     },
-    "Code_Pagination": {
+    "Add to Google1": {
       "main": [
         [
           {
-            "node": "If",
+            "node": "Pagination1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pagination1": {
+      "main": [
+        [
+          {
+            "node": "Pagination Check1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pagination Check1": {
+      "main": [
+        [
+          {
+            "node": "Search Google1",
             "type": "main",
             "index": 0
           }
@@ -107,53 +184,216 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
       "position": [
-        0,
-        0
+        2260,
+        480
       ],
       "id": "cb75dfee-4509-4f84-9fd3-46b932272a82",
       "name": "When chat message received",
       "webhookId": "e5ab8051-2faf-416a-b130-35b2ddf6faee"
     },
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cc27b2d9-8de7-43ca-a741-2d150084f78e",
+              "name": "currentStartIndex",
+              "value": 1,
+              "type": "number"
+            },
+            {
+              "id": "fc552c57-4510-4f04-aa09-2294306d0d9f",
+              "name": "maxPages",
+              "value": 10,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
       "position": [
-        880,
-        0
+        2460,
+        480
       ],
-      "id": "b4349ac7-8336-43f9-88e1-166b37acf44b",
-      "name": "Wait",
-      "webhookId": "fb91d40a-b97c-4f28-a23c-52942fa21618"
+      "id": "36048330-002e-413f-8784-e4e178c212ea",
+      "name": "Set Fields"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/customsearch/v1",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "AIzaSyDlyrjGqBY5rZ5urYeVHtE7QnAr9ZRIe-Y"
+            },
+            {
+              "name": "cx",
+              "value": "91c638dcb1fc84861"
+            },
+            {
+              "name": "q",
+              "value": "ceo IT Companies colombia site:linkedin.com/in"
+            },
+            {
+              "name": "start",
+              "value": "={{ $runIndex == 0 ? $node[\"Set Fields\"].json.currentStartIndex : $node[\"Pagination Check\"].json.startIndex }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2640,
+        480
+      ],
+      "id": "33a3c111-6ba2-4bdb-8940-02dcebc6a6f9",
+      "name": "Search Google"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the response data\nconst response = $input.first().json;\nconst items = response.items || [];\n\n// Track pagination info\nlet nextStartIndex = 1;\nif (response.queries && response.queries.nextPage && response.queries.nextPage[0]) {\n  nextStartIndex = response.queries.nextPage[0].startIndex;\n}\n\n// Calculate if we should continue (Google only allows up to 100 results)\nconst hasMoreResults = nextStartIndex <= 100;\n\n// Process the items and include pagination info in each item\nconst results = items.map(item => {\n  const titleParts = item.title.split(\" - \");\n  return {\n    name: titleParts[0] || null,\n    title: titleParts.slice(1).join(\" - \") || null,\n    link: item.link || null,\n    snippet: item.snippet || null,\n    image: item.pagemap?.cse_thumbnail?.[0]?.src || null,\n    // Add pagination info to each item\n    startIndex: nextStartIndex,\n    hasMoreResults: hasMoreResults\n  };\n});\n\n// If there are no results, return at least one item with pagination info\nif (results.length === 0) {\n  return [{ \n    json: {\n      name: null,\n      title: null,\n      link: null,\n      snippet: null,\n      image: null,\n      startIndex: nextStartIndex,\n      hasMoreResults: false\n    }\n  }];\n}\n\n// Return the processed results\nreturn results.map(r => ({ json: r }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2820,
+        480
+      ],
+      "id": "0094678b-40f5-41dd-a9c6-a78ec15f2dc9",
+      "name": "Extract Results"
     },
     {
       "parameters": {
         "operation": "append",
         "documentId": {
           "__rl": true,
+          "value": "1w6lJflMrPclefIYYwFVDyfglAPOS_Q8g5FL1lzau-vY",
           "mode": "list",
-          "value": ""
+          "cachedResultName": "2025-06-03_Base_for_contacts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6lJflMrPclefIYYwFVDyfglAPOS_Q8g5FL1lzau-vY/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
+          "value": "gid=0",
           "mode": "list",
-          "value": ""
-        }
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6lJflMrPclefIYYwFVDyfglAPOS_Q8g5FL1lzau-vY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $json.name }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "snippet": "={{ $json.snippet }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "snippet",
+              "displayName": "snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "image",
+              "displayName": "image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "index",
+              "displayName": "index",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "result",
+              "displayName": "result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
       },
       "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.6,
+      "typeVersion": 4.5,
       "position": [
-        1100,
-        0
+        3180,
+        480
       ],
-      "id": "96655007-3682-41d9-9b00-4d0e39f25cbd",
-      "name": "Google Sheets",
+      "id": "64d58519-a4e3-4103-96fd-3326eac5e296",
+      "name": "Add to Google",
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "9Mm6P9gevjQ7fdoN",
           "name": "Google Sheets account"
         }
       }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all input items\nconst inputItems = $input.all();\nconsole.log(\"Input items count:\", inputItems.length);\n\n// Extract pagination values with fallbacks\nlet nextStartIndex = 1;\nlet hasMoreResults = false;\n\n// Try different approaches to find the pagination info\nif (inputItems && inputItems.length > 0) {\n  const firstItem = inputItems[0];\n  \n  // Check direct properties\n  if (firstItem.json) {\n    console.log(\"First item JSON:\", JSON.stringify(firstItem.json));\n    \n    // Check for \"index\" property (instead of startIndex)\n    if (firstItem.json.index !== undefined) {\n      nextStartIndex = firstItem.json.index;\n      console.log(\"Found index:\", nextStartIndex);\n    }\n    \n    // Check for \"results\" property (instead of hasMoreResults)\n    if (firstItem.json.results !== undefined) {\n      hasMoreResults = firstItem.json.results;\n      console.log(\"Found results:\", hasMoreResults);\n    }\n  }\n}\n\n// Return pagination control info\nreturn {\n  json: {\n    continueLoop: hasMoreResults,\n    startIndex: nextStartIndex\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3360,
+        480
+      ],
+      "id": "9dbe14b7-2371-4385-9d44-eb65d3acdaff",
+      "name": "Pagination"
     },
     {
       "parameters": {
@@ -166,13 +406,13 @@
           },
           "conditions": [
             {
-              "id": "7434fa00-4ea0-4ab0-a535-d24e86ed2f4a",
-              "leftValue": "",
-              "rightValue": "",
+              "id": "faef2862-80a4-465b-9e0b-be5b9753dcbd",
+              "leftValue": "={{ $json.continueLoop }}",
+              "rightValue": "true",
               "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
               }
             }
           ],
@@ -183,24 +423,65 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1540,
-        0
+        3540,
+        480
       ],
-      "id": "efc55712-3891-4863-86cc-996f3f140d04",
-      "name": "If"
+      "id": "b9634b8c-a964-4f40-8378-cab0f1bd6aa3",
+      "name": "Pagination Check"
+    },
+    {
+      "parameters": {
+        "content": "## Google API Instructions\n\n1. Go to [Google Cloud Console](https://console.cloud.google.com/)\n   - Create a new project  \n   - Enable **Custom Search API**  \n   - Go to **Credentials** and copy your **API Key**\n\n2. Go to [Programmable Search Engine](https://programmablesearchengine.google.com/controlpanel/create)\n   - Create a name  \n   - Select **Search entire web**  \n   - Copy the **cx** value\n\n## Usage Limits (Free Tier)\n\n- The free tier of the Google Custom Search API allows **100 requests per day**\n- Each request returns **up to 10 search results**\n- This means you can get **up to 1,000 search results per day** at no cost\n",
+        "height": 500,
+        "width": 360,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        300
+      ],
+      "id": "c58cbab7-eca1-4476-9396-a97026c2314f",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3000,
+        480
+      ],
+      "id": "d55d4613-8862-44ab-9bb6-01ad1a134ee9",
+      "name": "Wait1",
+      "webhookId": "d3bbbd53-2135-45e5-a847-aad35b1c518e"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4400,
+        960
+      ],
+      "id": "bfef3b3e-0db0-4de2-8e93-909f560caa03",
+      "name": "Wait",
+      "webhookId": "d3bbbd53-2135-45e5-a847-aad35b1c518e",
+      "disabled": true
     },
     {
       "parameters": {
         "assignments": {
           "assignments": [
             {
-              "id": "c1cd55cb-b1b1-4b3e-8cc3-4aa99b54591e",
+              "id": "cc27b2d9-8de7-43ca-a741-2d150084f78e",
               "name": "currentStartIndex",
               "value": 1,
               "type": "number"
             },
             {
-              "id": "2fd5eefe-6ad9-4819-b537-87d5905295df",
+              "id": "fc552c57-4510-4f04-aa09-2294306d0d9f",
               "name": "maxPages",
               "value": 10,
               "type": "number"
@@ -212,50 +493,233 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        220,
-        0
+        3860,
+        960
       ],
-      "id": "e0fda1f2-51fc-4a9c-bb90-e708ec19936d",
-      "name": "Set_Fields"
+      "id": "5c4eea8f-42c3-4df6-8223-5ef73eed27b9",
+      "name": "Set Fields1",
+      "disabled": true
     },
     {
       "parameters": {
+        "url": "https://www.googleapis.com/customsearch/v1",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "REDACTED_API_KEY"
+            },
+            {
+              "name": "cx",
+              "value": "REDACTED_CX_ID"
+            },
+            {
+              "name": "q",
+              "value": "ceo automotive united states site:linkedin.com/in"
+            },
+            {
+              "name": "start",
+              "value": "={{ $runIndex == 0 ? $node[\"Set Fields1\"].json.currentStartIndex : $node[\"Pagination Check1\"].json.startIndex }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        440,
-        0
+        4040,
+        960
       ],
-      "id": "146551df-8a90-4598-849c-edfc17937cc4",
-      "name": "HTTP_Request_Search_Google"
+      "id": "76fbf9ab-42f4-4c37-b5d9-938bfa8d3878",
+      "name": "Search Google1",
+      "disabled": true
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+        "jsCode": "// Get the response data\nconst response = $input.first().json;\nconst items = response.items || [];\n\n// Track pagination info\nlet nextStartIndex = 1;\nif (response.queries && response.queries.nextPage && response.queries.nextPage[0]) {\n  nextStartIndex = response.queries.nextPage[0].startIndex;\n}\n\n// Calculate if we should continue (Google only allows up to 100 results)\nconst hasMoreResults = nextStartIndex <= 100;\n\n// Process the items and include pagination info in each item\nconst results = items.map(item => {\n  const titleParts = item.title.split(\" - \");\n  return {\n    name: titleParts[0] || null,\n    title: titleParts.slice(1).join(\" - \") || null,\n    link: item.link || null,\n    snippet: item.snippet || null,\n    image: item.pagemap?.cse_thumbnail?.[0]?.src || null,\n    // Add pagination info to each item\n    startIndex: nextStartIndex,\n    hasMoreResults: hasMoreResults\n  };\n});\n\n// If there are no results, return at least one item with pagination info\nif (results.length === 0) {\n  return [{ \n    json: {\n      name: null,\n      title: null,\n      link: null,\n      snippet: null,\n      image: null,\n      startIndex: nextStartIndex,\n      hasMoreResults: false\n    }\n  }];\n}\n\n// Return the processed results\nreturn results.map(r => ({ json: r }));"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        660,
-        0
+        4220,
+        960
       ],
-      "id": "c8312e10-6a50-4646-99bb-c088fc7d6402",
-      "name": "Code_Extract_Results"
+      "id": "6caf6b55-fe79-4d5a-b79f-8cf9d032fac2",
+      "name": "Extract Results1",
+      "disabled": true
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "REDACTED_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "linkedin",
+          "cachedResultUrl": "REDACTED_GOOGLE_SHEET_URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "REDACTED_SHEET_URL"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $json.name }}",
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "snippet": "={{ $json.snippet }}",
+            "image": "={{ $json.image }}",
+            "results": "={{ $json.hasMoreResults }}",
+            "index": "={{ $json.startIndex }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "snippet",
+              "displayName": "snippet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "image",
+              "displayName": "image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "index",
+              "displayName": "index",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "results",
+              "displayName": "results",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4580,
+        960
+      ],
+      "id": "0713be68-5b5b-40fa-abd6-b280a66a4a5c",
+      "name": "Add to Google1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all input items\nconst inputItems = $input.all();\nconsole.log(\"Input items count:\", inputItems.length);\n\n// Extract pagination values with fallbacks\nlet nextStartIndex = 1;\nlet hasMoreResults = false;\n\n// Try different approaches to find the pagination info\nif (inputItems && inputItems.length > 0) {\n  const firstItem = inputItems[0];\n  \n  // Check direct properties\n  if (firstItem.json) {\n    console.log(\"First item JSON:\", JSON.stringify(firstItem.json));\n    \n    // Check for \"index\" property (instead of startIndex)\n    if (firstItem.json.index !== undefined) {\n      nextStartIndex = firstItem.json.index;\n      console.log(\"Found index:\", nextStartIndex);\n    }\n    \n    // Check for \"results\" property (instead of hasMoreResults)\n    if (firstItem.json.results !== undefined) {\n      hasMoreResults = firstItem.json.results;\n      console.log(\"Found results:\", hasMoreResults);\n    }\n  }\n}\n\n// Return pagination control info\nreturn {\n  json: {\n    continueLoop: hasMoreResults,\n    startIndex: nextStartIndex\n  }\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1320,
-        0
+        4760,
+        960
       ],
-      "id": "a2efe862-58e2-4441-8f55-043d9718e6e2",
-      "name": "Code_Pagination"
+      "id": "6fe31651-f686-40bf-8513-9c102f5239a2",
+      "name": "Pagination1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "faef2862-80a4-465b-9e0b-be5b9753dcbd",
+              "leftValue": "={{ $json.continueLoop }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4940,
+        960
+      ],
+      "id": "eabd90a6-0745-4cfc-a559-9d9c39a52b81",
+      "name": "Pagination Check1",
+      "disabled": true
     }
   ],
   "pinData": {},
@@ -266,8 +730,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-06-03T18:53:10.478Z",
+      "updatedAt": "2025-06-03T18:53:10.478Z",
+      "id": "NDxF94oCi3Q1JpLy",
+      "name": "youtube"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-06-03T16:49:00.522Z",
-  "versionId": "3bcf5577-a5d2-41d3-8ee0-c8c5f67b7ba3"
+  "updatedAt": "2025-06-03T19:31:12.632Z",
+  "versionId": "43c510ba-0441-4692-82d8-7de3d7839575"
 }
