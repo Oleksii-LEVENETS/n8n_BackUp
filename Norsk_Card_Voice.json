@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -558,8 +558,8 @@
       "name": "HTTP_Request_to_Fal_ai",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        600,
-        1300
+        640,
+        1780
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -567,7 +567,8 @@
           "id": "I7yyRYPasyPaTf3G",
           "name": "Header_Auth_fal "
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -580,8 +581,8 @@
       "name": "HTTP_Fetch_Status",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        980,
-        1300
+        1020,
+        1780
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -589,7 +590,8 @@
           "id": "I7yyRYPasyPaTf3G",
           "name": "Header_Auth_fal "
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -620,10 +622,11 @@
       "name": "IF_Is_Ready?",
       "type": "n8n-nodes-base.if",
       "position": [
-        1160,
-        1300
+        1200,
+        1780
       ],
-      "typeVersion": 2.2
+      "typeVersion": 2.2,
+      "disabled": true
     },
     {
       "parameters": {
@@ -642,8 +645,8 @@
       "name": "HTTP_Fetch_Result",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1360,
-        1300
+        1400,
+        1780
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -651,7 +654,8 @@
           "id": "I7yyRYPasyPaTf3G",
           "name": "Header_Auth_fal "
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -795,8 +799,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1760,
-        1220
+        1800,
+        1700
       ],
       "id": "9620342b-44c7-4d9b-8dd3-069dea0426ff",
       "name": "Telegram_Send_Image",
@@ -806,7 +810,8 @@
           "id": "b1A5LbmUfw9IdV5u",
           "name": "Telegram_Norsk_Cards_bot"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -825,8 +830,8 @@
       "name": "HTTP_Download_Result",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1560,
-        1300
+        1600,
+        1780
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -834,7 +839,8 @@
           "id": "I7yyRYPasyPaTf3G",
           "name": "Header_Auth_fal "
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -870,8 +876,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        400,
-        1220
+        440,
+        1700
       ],
       "id": "ebca8636-e566-4d51-8bc3-45bfd882cd3e",
       "name": "HTTP_Request_FLUX.1-schnell",
@@ -882,6 +888,7 @@
           "name": "Header_Auth_Flux_Schnell"
         }
       },
+      "disabled": true,
       "onError": "continueErrorOutput"
     },
     {
@@ -1103,8 +1110,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        2340,
-        180
+        1660,
+        440
       ],
       "id": "73d4e85f-89b1-469f-8667-940c34e0fffa",
       "name": "Google Sheets2",
@@ -1124,8 +1131,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        980,
-        180
+        300,
+        440
       ],
       "id": "357c2f0a-865d-4856-b082-44f578749300",
       "name": "Telegram_Download_Photo",
@@ -1149,8 +1156,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        1360,
-        360
+        680,
+        620
       ],
       "id": "494381f6-2041-4413-a5e6-2a7a6acfb9af",
       "name": "LLM_Text_Gemini_1.5_Flash_8B_Image",
@@ -1173,8 +1180,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        -120,
-        1100
+        -80,
+        1580
       ],
       "id": "0d1dea21-dbf6-4117-a1af-5a031449291a",
       "name": "LLM_Text_Gemini_1.5_Flash_8B_Text",
@@ -1183,7 +1190,8 @@
           "id": "KRtSCc0YBK4WlQBs",
           "name": "OpenRouter account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1193,11 +1201,12 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        60,
-        1100
+        100,
+        1580
       ],
       "id": "13433169-bc86-420b-9952-a01c7203b9dc",
-      "name": "Structured_Output_Parser_Text"
+      "name": "Structured_Output_Parser_Text",
+      "disabled": true
     },
     {
       "parameters": {
@@ -1207,11 +1216,12 @@
       "name": "Wait_Text",
       "type": "n8n-nodes-base.wait",
       "position": [
-        800,
-        1300
+        840,
+        1780
       ],
       "webhookId": "150069ed-885b-497f-a32a-09e7088136e6",
-      "typeVersion": 1.1
+      "typeVersion": 1.1,
+      "disabled": true
     },
     {
       "parameters": {
@@ -1220,8 +1230,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        1520,
-        360
+        840,
+        620
       ],
       "id": "f7821488-8e3a-4d3f-b8d8-3f9ae7706206",
       "name": "Structured_Output_Parser_Image",
@@ -1239,8 +1249,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1740,
-        180
+        1060,
+        440
       ],
       "id": "7abc3595-8874-4712-b585-57ccfb8494f7",
       "name": "Telegram_Send_Text_Image",
@@ -1265,8 +1275,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1960,
-        1220
+        2000,
+        1700
       ],
       "id": "68ae7703-ca9e-4cd1-b66f-0f7581e74949",
       "name": "Telegram_Send_Text_Text",
@@ -1276,7 +1286,8 @@
           "id": "b1A5LbmUfw9IdV5u",
           "name": "Telegram_Norsk_Cards_bot"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1298,8 +1309,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.6,
       "position": [
-        1380,
-        180
+        700,
+        440
       ],
       "id": "3e2de8e3-b792-47da-9a1c-dfb62944ed67",
       "name": "LLM_For_Image",
@@ -1327,8 +1338,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        2140,
-        180
+        1460,
+        440
       ],
       "id": "6f846f34-ad19-4503-950e-05f30a181c4f",
       "name": "Google_Drive_Image",
@@ -1348,8 +1359,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2160,
-        1220
+        2200,
+        1700
       ],
       "id": "3b7c2cfc-a8d7-4577-ae46-063db00c19f6",
       "name": "Telegram_Download_Photo1",
@@ -1359,7 +1370,8 @@
           "id": "b1A5LbmUfw9IdV5u",
           "name": "Telegram_Norsk_Cards_bot"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1368,8 +1380,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1180,
-        180
+        500,
+        440
       ],
       "id": "d4f1e102-f1f6-4ead-93a6-66e88c073754",
       "name": "Code_Fix_Image_MIME_Type1",
@@ -1384,8 +1396,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1940,
-        180
+        1260,
+        440
       ],
       "id": "8de43490-3b8b-466a-899f-cc127b74d5d9",
       "name": "Code: Combine the data for Google Drive",
@@ -1610,8 +1622,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        2160,
-        1440
+        2200,
+        1920
       ],
       "id": "10dcf3f8-4831-4a8d-a98d-9d2dafdf8f69",
       "name": "Google Sheets",
@@ -1620,7 +1632,8 @@
           "id": "9Mm6P9gevjQ7fdoN",
           "name": "Google Sheets account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1644,8 +1657,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        1960,
-        1440
+        2000,
+        1920
       ],
       "id": "0e1d40c6-fb76-4843-9536-c85d79596a0b",
       "name": "Google_Drive_Image1",
@@ -1654,7 +1667,8 @@
           "id": "mYfDOqdxlUrejckA",
           "name": "Google Drive account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1663,11 +1677,12 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1760,
-        1440
+        1800,
+        1920
       ],
       "id": "15eedd90-ac7d-4f69-a159-c98b98683cf9",
-      "name": "Code: Combine the data for Google Drive1"
+      "name": "Code: Combine the data for Google Drive1",
+      "disabled": true
     },
     {
       "parameters": {
@@ -1685,11 +1700,12 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.6,
       "position": [
-        -100,
-        920
+        -60,
+        1400
       ],
       "id": "cfd67001-bf1d-4d6c-a070-089968ad25e5",
-      "name": "LLM_For_Text"
+      "name": "LLM_For_Text",
+      "disabled": true
     },
     {
       "parameters": {
@@ -1699,8 +1715,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        0,
-        580
+        160,
+        940
       ],
       "id": "13797d39-877d-4525-8cf6-f731a7cf703a",
       "name": "Telegram_Download_Audio",
@@ -1710,7 +1726,8 @@
           "id": "b1A5LbmUfw9IdV5u",
           "name": "Telegram_Norsk_Cards_bot"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1736,15 +1753,16 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        240,
-        580
+        400,
+        940
       ],
       "credentials": {
         "httpHeaderAuth": {
           "id": "fWd6Ag8SUAcPb1xf",
           "name": "Header_Auth_gladia.io_account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1771,15 +1789,16 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        460,
-        580
+        620,
+        940
       ],
       "credentials": {
         "httpHeaderAuth": {
           "id": "fWd6Ag8SUAcPb1xf",
           "name": "Header_Auth_gladia.io_account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1791,10 +1810,11 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        700,
-        580
+        860,
+        940
       ],
-      "webhookId": "6426dfbf-8b53-4b1a-b3fe-4b51c14d7d81"
+      "webhookId": "6426dfbf-8b53-4b1a-b3fe-4b51c14d7d81",
+      "disabled": true
     },
     {
       "parameters": {
@@ -1808,15 +1828,16 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        980,
-        580
+        1140,
+        940
       ],
       "credentials": {
         "httpHeaderAuth": {
           "id": "fWd6Ag8SUAcPb1xf",
           "name": "Header_Auth_gladia.io_account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1846,9 +1867,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1200,
-        580
-      ]
+        1360,
+        940
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -1860,10 +1882,11 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        1400,
-        660
+        1560,
+        1020
       ],
-      "webhookId": "cf450254-1350-4da1-be0b-551066e1aa3d"
+      "webhookId": "cf450254-1350-4da1-be0b-551066e1aa3d",
+      "disabled": true
     },
     {
       "parameters": {
@@ -1875,8 +1898,9 @@
       "typeVersion": 2,
       "position": [
         -300,
-        920
-      ]
+        1400
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -1889,8 +1913,8 @@
       "name": "HTTP_Fetch_Status1",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        940,
-        920
+        980,
+        1400
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -1898,7 +1922,8 @@
           "id": "I7yyRYPasyPaTf3G",
           "name": "Header_Auth_fal "
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1929,10 +1954,11 @@
       "name": "IF_Is_Ready?1",
       "type": "n8n-nodes-base.if",
       "position": [
-        1120,
-        920
+        1160,
+        1400
       ],
-      "typeVersion": 2.2
+      "typeVersion": 2.2,
+      "disabled": true
     },
     {
       "parameters": {
@@ -1951,8 +1977,8 @@
       "name": "HTTP_Fetch_Result1",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1320,
-        920
+        1360,
+        1400
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -1960,7 +1986,8 @@
           "id": "I7yyRYPasyPaTf3G",
           "name": "Header_Auth_fal "
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1970,11 +1997,12 @@
       "name": "Wait_Text1",
       "type": "n8n-nodes-base.wait",
       "position": [
-        760,
-        920
+        800,
+        1400
       ],
       "webhookId": "150069ed-885b-497f-a32a-09e7088136e6",
-      "typeVersion": 1.1
+      "typeVersion": 1.1,
+      "disabled": true
     },
     {
       "parameters": {
@@ -1996,8 +2024,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        400,
-        920
+        440,
+        1400
       ],
       "id": "adcb53a4-5f5e-4f53-8e35-8778cd622993",
       "name": "HTTP_Request_to_Fal_ai_minimax_speech-02-hd",
@@ -2006,7 +2034,8 @@
           "id": "I7yyRYPasyPaTf3G",
           "name": "Header_Auth_fal "
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -2020,8 +2049,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1760,
-        920
+        1800,
+        1400
       ],
       "id": "70a8652a-4e51-4fd5-b79e-76050fca9b2f",
       "name": "Telegram_Send_Voice",
@@ -2031,7 +2060,8 @@
           "id": "b1A5LbmUfw9IdV5u",
           "name": "Telegram_Norsk_Cards_bot"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -2050,8 +2080,8 @@
       "name": "HTTP_Download_Voice",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1520,
-        920
+        1560,
+        1400
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -2059,7 +2089,8 @@
           "id": "I7yyRYPasyPaTf3G",
           "name": "Header_Auth_fal "
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -2098,7 +2129,7 @@
         "workflowInputs": {
           "mappingMode": "defineBelow",
           "value": {
-            "fileName": "={{ $('Telegram Trigger').item.   }}"
+            "fileName": "=data"
           },
           "matchingColumns": [],
           "schema": [
@@ -2156,13 +2187,15 @@
           "attemptToConvertTypes": false,
           "convertFieldsToString": true
         },
-        "options": {}
+        "options": {
+          "waitForSubWorkflow": false
+        }
       },
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        20,
-        320
+        -80,
+        460
       ],
       "id": "0a901ea3-bc1b-478a-9f2c-685557cd93b2",
       "name": "Execute_Workflow_Photo"
@@ -2181,6 +2214,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-06-02T19:36:18.617Z",
-  "versionId": "a50ae72f-7060-4ed6-b9c1-2f07e64ebe11"
+  "updatedAt": "2025-06-04T17:58:04.067Z",
+  "versionId": "684be0f4-26d1-4ee5-b00f-7e1cf3bd5c8a"
 }
