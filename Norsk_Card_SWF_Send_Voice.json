@@ -1,0 +1,311 @@
+{
+  "active": false,
+  "connections": {
+    "HTTP_Fetch_Status1": {
+      "main": [
+        [
+          {
+            "node": "IF_Is_Ready?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF_Is_Ready?1": {
+      "main": [
+        [
+          {
+            "node": "HTTP_Fetch_Result1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait_Text1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP_Fetch_Result1": {
+      "main": [
+        [
+          {
+            "node": "HTTP_Download_Voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait_Text1": {
+      "main": [
+        [
+          {
+            "node": "HTTP_Fetch_Status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP_Request_to_Fal_ai_minimax_speech-02-hd": {
+      "main": [
+        [
+          {
+            "node": "Wait_Text1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP_Download_Voice": {
+      "main": [
+        [
+          {
+            "node": "Telegram_Send_Voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "HTTP_Request_to_Fal_ai_minimax_speech-02-hd",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-04T18:45:13.008Z",
+  "id": "ywc3gKP5Ml1BmAu6",
+  "isArchived": false,
+  "meta": null,
+  "name": "Norsk_Card_SWF_Send_Voice",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/minimax/requests/{{ $('HTTP_Request_to_Fal_ai_minimax_speech-02-hd').first().json.request_id }}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "89b662f7-7996-4e7e-ab7b-6322aed39b9b",
+      "name": "HTTP_Fetch_Status1",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        540,
+        0
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "ac50759b-e2f3-4efd-a2af-f28b7d209b45",
+              "operator": {
+                "name": "filter.operator.equals",
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $('HTTP_Fetch_Status1').item.json.status }}",
+              "rightValue": "COMPLETED"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "12412405-9f1c-454f-93d7-a89ae8a9361c",
+      "name": "IF_Is_Ready?1",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        720,
+        0
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "url": "={{ $('IF_Is_Ready?1').item.json.response_url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "15e884df-ad97-4476-9d6b-b33a5a644082",
+      "name": "HTTP_Fetch_Result1",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        920,
+        0
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "id": "b63f2a37-b8b2-41b4-9180-ee6f3d532423",
+      "name": "Wait_Text1",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        360,
+        0
+      ],
+      "webhookId": "150069ed-885b-497f-a32a-09e7088136e6",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/minimax/speech-02-hd",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"text\": \"{{ $('When Executed by Another Workflow').item.json.text }}\" }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "6ff5293e-505c-4330-a637-4a7add314181",
+      "name": "HTTP_Request_to_Fal_ai_minimax_speech-02-hd",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendDocument",
+        "chatId": "={{ $('When Executed by Another Workflow').item.json.chatID }}",
+        "binaryData": true,
+        "additionalFields": {
+          "fileName": "={{ $now.format('yyyy-MM-dd_HH-ss') }}_{{ $('When Executed by Another Workflow').item.json.text }}.mp3"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1360,
+        0
+      ],
+      "id": "55d8d268-eb19-406b-98a1-5d5f90a7591e",
+      "name": "Telegram_Send_Voice",
+      "webhookId": "609386eb-4b52-4c67-a5c2-8ac765c42c52",
+      "credentials": {
+        "telegramApi": {
+          "id": "b1A5LbmUfw9IdV5u",
+          "name": "Telegram_Norsk_Cards_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('HTTP_Fetch_Result1').item.json.audio.url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "445cc08b-f6c0-4407-8c6a-bb6dbf5b0ac2",
+      "name": "HTTP_Download_Voice",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1120,
+        0
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "I7yyRYPasyPaTf3G",
+          "name": "Header_Auth_fal "
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -120,
+        0
+      ],
+      "id": "8e453cde-c919-45fa-82c3-c925d1871a97",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n_BackUp",
+  "repo_owner": "Oleksii-Levenets",
+  "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-06-04T18:47:53.116Z",
+      "updatedAt": "2025-06-04T18:47:53.116Z",
+      "id": "r8JFNL6SOHPkiP8L",
+      "name": "Norsk_Card"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-05T15:57:52.141Z",
+  "versionId": "73a953ca-9a16-4a5c-bd93-7477da56590d"
+}
