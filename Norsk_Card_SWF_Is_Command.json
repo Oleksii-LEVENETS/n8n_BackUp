@@ -70,7 +70,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const command = $input.item.json.command;\nconst userId = $input.item.json.id;\nconst chatId = $input.item.json.chatId;\n\n// Enhanced command handling\nswitch(command) {\n  case '/start':\n    return {\n      json: {\n        chatId,\n        response: '🇳🇴 Welcome to Enhanced Norsk Cards Bot!\\n\\n📸 Send a photo - I\\'ll identify objects\\n📝 Send Ukrainian text - I\\'ll translate to Norwegian\\n🎤 Send voice message - I\\'ll process speech\\n📚 Use commands:\\n/stats - Your learning progress\\n/review - Practice words\\n/help - Full instructions\\n/settings - Preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/help':\n    return {\n      json: {\n        chatId,\n        response: '🔧 Enhanced Features:\\n\\n📸 Photo Recognition\\n📝 Text Translation (Ukrainian→Norwegian)\\n🎤 Voice Processing\\n📊 Progress Tracking\\n🔄 Batch Processing\\n📋 IPA Transcription\\n💾 Auto-save to Google Sheets\\n\\n🎯 Commands:\\n/stats - Learning statistics\\n/review - Practice session\\n/settings - User preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/stats':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_stats'\n      }\n    };\n    \n  case '/review':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_review'\n      }\n    };\n    \n  case '/settings':\n    return {\n      json: {\n        chatId,\n        response: '⚙️ Settings:\\n\\n🔊 Audio enabled: Yes\\n📝 IPA transcription: Yes\\n🎯 Difficulty level: Intermediate\\n📊 Progress tracking: Enabled\\n\\nUse inline buttons to modify settings.',\n        action: 'send_message'\n      }\n    };\n    \n  default:\n    return {\n      json: {\n        chatId,\n        response: '❓ Unknown command. Use /help for available commands.',\n        action: 'send_message'\n      }\n    };\n}"
+        "jsCode": "const command = $input.item.json.command;\nconst userId = $input.item.json.id;\nconst chatId = $input.item.json.chatId;\n\n// Enhanced command handling\nswitch(command) {\n  case '/start':\n    return {\n      json: {\n        chatId,\n        response: '🇳🇴 Welcome to Enhanced Norsk Cards Bot!\\n\\n📸 Send a photo - I\\'ll identify objects\\n📝 Send Ukrainian text - I\\'ll translate to Norwegian\\n🎤 Send voice message - I\\'ll process speech\\n📚 Use commands:\\n/help - Full instructions',\n        action: 'send_message'\n      }\n    };\n    \n  case '/help':\n    return {\n      json: {\n        chatId,\n        response: '🔧 Enhanced Features:\\n\\n📸 Photo Recognition\\n📝 Text Translation (Ukrainian→Norwegian)\\n🎤 Voice Processing\\n📋 IPA Transcription\\n💾 Auto-save to Google Sheets',\n        action: 'send_message'\n      }\n    };\n    \n  default:\n    return {\n      json: {\n        chatId,\n        response: '❓ Unknown command. Use /help for available commands.',\n        action: 'send_message'\n      }\n    };\n}\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -80,6 +80,20 @@
       ],
       "id": "b6416487-88cd-4917-9009-16a42b021003",
       "name": "Code_Command_Handler"
+    },
+    {
+      "parameters": {
+        "jsCode": "const command = $input.item.json.command;\nconst userId = $input.item.json.id;\nconst chatId = $input.item.json.chatId;\n\n// Enhanced command handling\nswitch(command) {\n  case '/start':\n    return {\n      json: {\n        chatId,\n        response: '🇳🇴 Welcome to Enhanced Norsk Cards Bot!\\n\\n📸 Send a photo - I\\'ll identify objects\\n📝 Send Ukrainian text - I\\'ll translate to Norwegian\\n🎤 Send voice message - I\\'ll process speech\\n📚 Use commands:\\n/stats - Your learning progress\\n/review - Practice words\\n/help - Full instructions\\n/settings - Preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/help':\n    return {\n      json: {\n        chatId,\n        response: '🔧 Enhanced Features:\\n\\n📸 Photo Recognition\\n📝 Text Translation (Ukrainian→Norwegian)\\n🎤 Voice Processing\\n📊 Progress Tracking\\n🔄 Batch Processing\\n📋 IPA Transcription\\n💾 Auto-save to Google Sheets\\n\\n🎯 Commands:\\n/stats - Learning statistics\\n/review - Practice session\\n/settings - User preferences',\n        action: 'send_message'\n      }\n    };\n    \n  case '/stats':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_stats'\n      }\n    };\n    \n  case '/review':\n    return {\n      json: {\n        chatId,\n        userId,\n        action: 'get_review'\n      }\n    };\n    \n  case '/settings':\n    return {\n      json: {\n        chatId,\n        response: '⚙️ Settings:\\n\\n🔊 Audio enabled: Yes\\n📝 IPA transcription: Yes\\n🎯 Difficulty level: Intermediate\\n📊 Progress tracking: Enabled\\n\\nUse inline buttons to modify settings.',\n        action: 'send_message'\n      }\n    };\n    \n  default:\n    return {\n      json: {\n        chatId,\n        response: '❓ Unknown command. Use /help for available commands.',\n        action: 'send_message'\n      }\n    };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        520
+      ],
+      "id": "255ec1b4-dea4-47e8-82f1-07a87afc558f",
+      "name": "Code_Command_Handler1",
+      "disabled": true
     }
   ],
   "pinData": {},
@@ -102,6 +116,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-06-05T16:47:22.745Z",
-  "versionId": "1ac857e0-4d9b-4a9b-abd2-5403268431d2"
+  "updatedAt": "2025-06-05T18:51:25.353Z",
+  "versionId": "691e828b-d06a-44db-b90f-c7297a4d5198"
 }
