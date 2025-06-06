@@ -95,6 +95,17 @@
           }
         ]
       ]
+    },
+    "Extract Transcript": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-06-05T16:43:21.904Z",
@@ -106,7 +117,7 @@
     {
       "parameters": {
         "resource": "file",
-        "fileId": "={{ $('Switch').item.json.originalMessage.voice.file_id }}"
+        "fileId": "={{ $('When Executed by Another Workflow').item.json.originalMessage.voice.file_id }}"
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
@@ -236,7 +247,8 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 1
           },
           "conditions": [
             {
@@ -272,22 +284,22 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        -260,
+        -480,
         160
       ],
       "webhookId": "cf450254-1350-4da1-be0b-551066e1aa3d"
     },
     {
       "parameters": {
-        "jsCode": "// Get the Gladia API response from the previous node\nconst gladiaResult = $input.first().json;\n\n// Extract the transcript text safely\nlet transcript = \"\";\n\n// Check if transcription data exists and has the expected structure\nif (gladiaResult && gladiaResult.result && gladiaResult.result.transcription) {\n  if (gladiaResult.result.transcription.full_transcript) {\n    transcript = gladiaResult.result.transcription.full_transcript;\n  } else {\n    transcript = \"No transcription available\";\n  }\n} else {\n  transcript = \"No transcription data found\";\n}\n\n// Get original message info from the Telegram node (assuming it's the first node)\nconst telegramMessage = $('Telegram Trigger').first().json.message;\n\nreturn {\n  json: {\n    transcript: transcript\n  }\n};"
+        "jsCode": "// Get the Gladia API response from the previous node\nconst gladiaResult = $input.first().json;\n\n// Extract the transcript text safely\nlet transcript = \"\";\n\n// Check if transcription data exists and has the expected structure\nif (gladiaResult && gladiaResult.result && gladiaResult.result.transcription) {\n  if (gladiaResult.result.transcription.full_transcript) {\n    transcript = gladiaResult.result.transcription.full_transcript;\n  } else {\n    transcript = \"No transcription available\";\n  }\n} else {\n  transcript = \"No transcription data found\";\n}\n\n// Get original message info from the Telegram node (assuming it's the first node)\n// const telegramMessage = $('Telegram Trigger').first().json.message;\n\nreturn {\n  json: {\n    transcript: transcript\n  }\n};"
       },
       "id": "58455253-f13e-4fec-8df7-e3fd383f62d1",
       "name": "Extract Transcript",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -260,
-        0
+        -480,
+        -80
       ]
     },
     {
@@ -302,6 +314,35 @@
       ],
       "id": "4044fc20-a37e-4e10-bf36-5f066d20b429",
       "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cca6b051-6d96-4a4c-9519-bb53f2afaaf1",
+              "name": "text",
+              "value": "={{ $('Extract Transcript').item.json.transcript}}",
+              "type": "string"
+            },
+            {
+              "id": "37710d8f-cbbd-42d3-83bd-0c9c63f546d8",
+              "name": "originalMessage.chat.id",
+              "value": "={{ $('When Executed by Another Workflow').item.json.originalMessage.chat.id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -300,
+        -80
+      ],
+      "id": "bac82bad-1ed6-4fe6-9a91-4e08a61c9cb2",
+      "name": "Edit Fields"
     }
   ],
   "pinData": {},
@@ -321,6 +362,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-06-05T16:45:45.985Z",
-  "versionId": "4d68dfa4-bf0f-482d-a0d6-fbfaa2464ff3"
+  "updatedAt": "2025-06-06T16:58:56.972Z",
+  "versionId": "08142c42-1381-46fa-aba7-4cd7fd75152e"
 }
