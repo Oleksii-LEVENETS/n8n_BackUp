@@ -190,6 +190,17 @@
           }
         ]
       ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-06-05T16:56:27.994Z",
@@ -333,7 +344,7 @@
     {
       "parameters": {
         "operation": "sendPhoto",
-        "chatId": "={{ $('Telegram Trigger').first().json.message.from.id }}",
+        "chatId": "={{ $('When Executed by Another Workflow').item.json.originalMessage.chat.id }}",
         "binaryData": true,
         "additionalFields": {
           "fileName": "={{ $now.format('yyyy-MM-dd_HH-mm') }}_{{ $('LLM_For_Text').first().json.output.word_en }}.png"
@@ -342,8 +353,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2560,
-        340
+        2480,
+        140
       ],
       "id": "bc2439d9-2a33-4d99-a46b-925df3d9f8e3",
       "name": "Telegram_Send_Image",
@@ -462,7 +473,7 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        920,
+        980,
         520
       ],
       "id": "b7f6c103-8596-4932-ac49-df1f879d1bba",
@@ -484,7 +495,7 @@
     },
     {
       "parameters": {
-        "chatId": "={{ $('Code_Input_Analyzer').item.json.chatId }}",
+        "chatId": "={{ $('Telegram_Send_Image').item.json.result.chat.id }}",
         "text": "=🇳🇴 **{{ $('LLM_For_Text').item.json.output.word_no }}** → `{{ $('LLM_For_Text').item.json.output.word_no_IPA }}`\n🇬🇧 {{ $('LLM_For_Text').item.json.output.word_en }}\n🇺🇦 {{ $('LLM_For_Text').item.json.output.word_ukr }}\n\n📊 **Level:** {{ $('LLM_For_Text').item.json.difficulty || 'intermediate' }} | **Frequency:** {{ $('LLM_For_Text').item.json.frequency || 'common' }}\n\n📝 **Examples:**\n1️⃣ {{ $('LLM_For_Text').item.json.output.example[0] }}\n   → `{{ $('LLM_For_Text').item.json.output.examples_IPA[0] }}`\n   → {{ $('LLM_For_Text').item.json.output.examples_ukr[0] }}\n\n2️⃣ {{ $('LLM_For_Text').item.json.output.example[1] }}\n   → `{{ $('LLM_For_Text').item.json.output.examples_IPA[1] }}`\n   → {{ $('LLM_For_Text').item.json.output.examples_ukr[1] }}\n\n3️⃣ {{ $('LLM_For_Text').item.json.output.example[2] }}\n   → `{{ $('LLM_For_Text').item.json.output.examples_IPA[2] }}`\n   → {{ $('LLM_For_Text').item.json.output.examples_ukr[2] }}\n\n{{ $('LLM_For_Text').item.json.output.grammar_notes ? '📚 **Grammar:** ' + $('LLM_For_Text').item.json.output.grammar_notes : '' }}\n\n🗣️ **Pronunciation:**\n{{ $('LLM_For_Text').item.json.output.pronunciation_tips }}\n\n\n🔗 **Related:**\n{{ $('LLM_For_Text').item.json.output.related_word.related_word_no }}\n  --> `{{ $('LLM_For_Text').item.json.output.related_word.related_word_no_IPA }}`\n  --> {{ $('LLM_For_Text').item.json.output.related_word.related_word_en }} (English)\n  --> {{ $('LLM_For_Text').item.json.output.related_word.related_word_ukr }}",
         "additionalFields": {
           "appendAttribution": false,
@@ -494,8 +505,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2760,
-        340
+        2680,
+        140
       ],
       "id": "c566b231-3fcf-4b0a-90a9-486b3f1d7a27",
       "name": "Telegram_Send_Text_Text",
@@ -515,8 +526,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2960,
-        340
+        2920,
+        140
       ],
       "id": "28d40628-be09-4484-80d8-5c6ddc9e15bc",
       "name": "Telegram_Download_Photo1",
@@ -561,8 +572,8 @@
             "examples_UKR": "=1 -->  {{ $('LLM_For_Text').item.json.output.examples_ukr[0] }}\n2 --> {{ $('LLM_For_Text').item.json.output.examples_ukr[1] }}\n3 --> {{ $('LLM_For_Text').item.json.output.examples_ukr[2] }}",
             "pronunciation_tips": "={{ $('LLM_For_Text').item.json.output.pronunciation_tips }}",
             "related_words": "={{ $('LLM_For_Text').item.json.output.related_word.related_word_no }} --> {{ $('LLM_For_Text').item.json.output.related_word.related_word_no_IPA }} --> {{ $('LLM_For_Text').item.json.output.related_word.related_word_en }} (Eng) --> {{ $('LLM_For_Text').item.json.output.related_word.related_word_ukr }}",
-            "userName": "={{ $('Telegram Trigger').item.json.message.chat.username }}",
-            "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+            "userName": "={{ $('When Executed by Another Workflow').item.json.username }}: {{ $('When Executed by Another Workflow').item.json.name }}",
+            "chatId": "={{ $('When Executed by Another Workflow').item.json.chatId }}",
             "timestamp": "={{ $now.format('yyyy-MM-dd_HH:mm') }}",
             "image_prompt": "={{ $('LLM_For_Text').item.json.output.image_prompt }}"
           },
@@ -747,8 +758,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        2960,
-        560
+        2980,
+        380
       ],
       "id": "c95c1da0-cf26-4e5f-818b-55ec28318977",
       "name": "Google Sheets",
@@ -781,8 +792,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        2760,
-        560
+        2800,
+        380
       ],
       "id": "3305b36b-8249-4dbf-ab96-309bc5f4866f",
       "name": "Google_Drive_Image1",
@@ -800,8 +811,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2560,
-        560
+        2620,
+        380
       ],
       "id": "67f54579-bcaa-4351-954d-d688c4754b7e",
       "name": "Code: Combine the data for Google Drive1"
@@ -809,7 +820,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Process this input: {{ $('When Executed by Another Workflow').item.json.originalMessage.text  || $('Extract Transcript').item.json.transcript }}",
+        "text": "=Process this input: {{ $('When Executed by Another Workflow').item.json.originalMessage.text  || $('When Executed by Another Workflow').item.json.text}}",
         "hasOutputParser": true,
         "messages": {
           "messageValues": [
@@ -827,45 +838,47 @@
       ],
       "id": "81e4b300-53c7-45b6-b7e7-907c4e357726",
       "name": "LLM_For_Text"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5f7dc893-a074-4499-b167-310676ebfcaf",
+              "name": "word_no",
+              "value": "={{ $json.word_no }}",
+              "type": "string"
+            },
+            {
+              "id": "413a9e90-ca41-455a-a675-aa54fb1fe095",
+              "name": "chatId",
+              "value": "={{ $json.chatId }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3180,
+        380
+      ],
+      "id": "28cd0402-5e80-4067-b397-335785d1ad1c",
+      "name": "Edit Fields"
     }
   ],
   "pinData": {
     "When Executed by Another Workflow": [
       {
         "json": {
-          "id": 945884902,
-          "name": "Oleksii LEVENETS",
-          "username": "oleksii_levenets",
-          "chatId": 945884902,
-          "timestamp": "2025-06-05T17:03:48.335Z",
-          "inputType": {
-            "isCommand": false,
-            "isPhoto": false,
-            "isVoice": false,
-            "isText": true
-          },
-          "command": null,
+          "text": "ПРАЗКА",
           "originalMessage": {
-            "message_id": 753,
-            "from": {
-              "id": 945884902,
-              "is_bot": false,
-              "first_name": "Oleksii",
-              "last_name": "LEVENETS",
-              "username": "oleksii_levenets",
-              "language_code": "en"
-            },
             "chat": {
-              "id": 945884902,
-              "first_name": "Oleksii",
-              "last_name": "LEVENETS",
-              "username": "oleksii_levenets",
-              "type": "private"
-            },
-            "date": 1749143028,
-            "text": "мʼясо"
-          },
-          "processingId": "proc_945884902_1749143028335"
+              "id": 945884902
+            }
+          }
         }
       }
     ]
@@ -889,6 +902,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-06-05T17:08:24.393Z",
-  "versionId": "76f94736-535a-41d5-82f3-82af035b2545"
+  "updatedAt": "2025-06-06T17:03:42.621Z",
+  "versionId": "f7f192af-c91f-4b9c-bdc4-9b957e24ea6d"
 }
