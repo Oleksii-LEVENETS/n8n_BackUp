@@ -204,7 +204,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={ \"text\": \"{{ $('When Executed by Another Workflow').item.json.text }}\" }",
+        "jsonBody": "={ \"text\": \"{{ $('When Executed by Another Workflow').item.json.text ||  $('When Executed by Another Workflow').item.json.word_no}}\" }",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -225,10 +225,10 @@
     {
       "parameters": {
         "operation": "sendDocument",
-        "chatId": "={{ $('When Executed by Another Workflow').item.json.chatID }}",
+        "chatId": "={{ $('When Executed by Another Workflow').item.json.chatId || $('When Executed by Another Workflow').item.json.chatID}}",
         "binaryData": true,
         "additionalFields": {
-          "fileName": "={{ $now.format('yyyy-MM-dd_HH-ss') }}_{{ $('When Executed by Another Workflow').item.json.text }}.mp3"
+          "fileName": "={{ $now.format('yyyy-MM-dd_HH-ss') }}_{{ $('When Executed by Another Workflow').item.json.text || $('When Executed by Another Workflow').item.json.word_no }}.mp3"
         }
       },
       "type": "n8n-nodes-base.telegram",
@@ -306,6 +306,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-06-05T15:57:52.141Z",
-  "versionId": "73a953ca-9a16-4a5c-bd93-7477da56590d"
+  "updatedAt": "2025-06-06T19:28:54.517Z",
+  "versionId": "6fd43972-3dea-4738-8f70-9af8178722fb"
 }
