@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-06-07T16:03:44.167Z",
+  "id": "FLpUBxKRi6fIv1y5",
+  "isArchived": false,
+  "meta": null,
+  "name": "ATB",
+  "nodes": [],
+  "pinData": {},
+  "repo_name": "n8n_BackUp",
+  "repo_owner": "Oleksii-Levenets",
+  "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-07T16:03:44.167Z",
+  "versionId": "ea4d6d1d-442f-4a46-bb76-bd74cac6eeeb"
+}
