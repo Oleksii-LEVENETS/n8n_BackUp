@@ -758,8 +758,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        2980,
-        380
+        3060,
+        360
       ],
       "id": "c95c1da0-cf26-4e5f-818b-55ec28318977",
       "name": "Google Sheets",
@@ -772,7 +772,7 @@
     },
     {
       "parameters": {
-        "name": "={{ $now.format('yyyy-MM-dd_HH-mm') }}_{{ $('LLM_For_Text').item.json.output.word_en }}.jpg",
+        "name": "={{ $now.format('yyyy-MM-dd_HH-mm') }}_{{ $('LLM_For_Text').item.json.output.word_en.replace(/[^a-zA-Z0-9-_]/g, '') || 'default' }}.jpg",
         "driveId": {
           "__rl": true,
           "value": "My Drive",
@@ -797,12 +797,14 @@
       ],
       "id": "3305b36b-8249-4dbf-ab96-309bc5f4866f",
       "name": "Google_Drive_Image1",
+      "alwaysOutputData": true,
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "mYfDOqdxlUrejckA",
           "name": "Google Drive account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -846,13 +848,13 @@
             {
               "id": "5f7dc893-a074-4499-b167-310676ebfcaf",
               "name": "word_no",
-              "value": "={{ $json.word_no }}",
+              "value": "={{ $('Google Sheets').item.json.word_no }}",
               "type": "string"
             },
             {
               "id": "413a9e90-ca41-455a-a675-aa54fb1fe095",
               "name": "chatId",
-              "value": "={{ $json.chatId }}",
+              "value": "={{ $('When Executed by Another Workflow').item.json.originalMessage.chat.id }}",
               "type": "number"
             }
           ]
@@ -862,27 +864,14 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3180,
-        380
+        3200,
+        360
       ],
       "id": "28cd0402-5e80-4067-b397-335785d1ad1c",
       "name": "Edit Fields"
     }
   ],
-  "pinData": {
-    "When Executed by Another Workflow": [
-      {
-        "json": {
-          "text": "ПРАЗКА",
-          "originalMessage": {
-            "chat": {
-              "id": 945884902
-            }
-          }
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "repo_name": "n8n_BackUp",
   "repo_owner": "Oleksii-Levenets",
   "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
@@ -902,6 +891,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-06-06T17:03:42.621Z",
-  "versionId": "f7f192af-c91f-4b9c-bdc4-9b957e24ea6d"
+  "updatedAt": "2025-06-07T15:14:57.975Z",
+  "versionId": "9dcdd20e-f0ae-4bec-89e6-0648e017b047"
 }
