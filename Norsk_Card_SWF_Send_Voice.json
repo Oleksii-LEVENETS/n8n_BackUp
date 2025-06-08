@@ -294,7 +294,10 @@
   "repo_owner": "Oleksii-Levenets",
   "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Europe/Kyiv",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "bVbSoouoJTyzrhju"
   },
   "staticData": null,
   "tags": [
@@ -306,6 +309,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-06-06T19:28:54.517Z",
-  "versionId": "6fd43972-3dea-4738-8f70-9af8178722fb"
+  "updatedAt": "2025-06-08T11:43:10.530Z",
+  "versionId": "cb89e2fc-93fc-4831-90bd-407cbf9f22d1"
 }
