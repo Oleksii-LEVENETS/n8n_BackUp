@@ -349,7 +349,7 @@
       "typeVersion": 4.5,
       "position": [
         1020,
-        -80
+        -180
       ],
       "id": "3d89cc9e-e243-41fe-913f-ccddfd6f466a",
       "name": "Google Sheets2",
@@ -470,7 +470,7 @@
     },
     {
       "parameters": {
-        "name": "={{ $now.format('yyyy-MM-dd_HH-mm') }}_{{ $('LLM_For_Image').item.json.output.word_no.replace(/[^a-zA-Z0-9_-]/g, '_') }}.jpg",
+        "name": "={{ $now.format('yyyy-MM-dd_HH-mm') }}_{{ \n  $('LLM_For_Image').item.json.output.word_no ? \n$('LLM_For_Image').item.json.output.word_no.toString().replace(/[^a-zA-Z0-9-_]/g, '_').substring(0, 50) : \n  'default' \n}}.jpg",
         "driveId": {
           "__rl": true,
           "value": "My Drive",
@@ -480,10 +480,8 @@
         },
         "folderId": {
           "__rl": true,
-          "value": "1yXgbRlQNUtex7PjdTrNFUvNuhCjDlOJp",
-          "mode": "list",
-          "cachedResultName": "Imagies",
-          "cachedResultUrl": "https://drive.google.com/drive/folders/1yXgbRlQNUtex7PjdTrNFUvNuhCjDlOJp"
+          "value": "=1yXgbRlQNUtex7PjdTrNFUvNuhCjDlOJp",
+          "mode": "id"
         },
         "options": {}
       },
@@ -495,12 +493,14 @@
       ],
       "id": "6fc1e266-8c5b-46c8-9685-5ffe9975ee05",
       "name": "Google_Drive_Image",
+      "alwaysOutputData": true,
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "mYfDOqdxlUrejckA",
           "name": "Google Drive account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -580,8 +580,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1200,
-        -80
+        1180,
+        -180
       ],
       "id": "d262ab11-f87b-4324-9bef-e3b335e9741f",
       "name": "Edit Fields"
@@ -592,7 +592,10 @@
   "repo_owner": "Oleksii-Levenets",
   "repo_path": "https://github.com/Oleksii-LEVENETS/n8n_BackUp",
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Europe/Kyiv",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "bVbSoouoJTyzrhju"
   },
   "staticData": null,
   "tags": [
@@ -604,6 +607,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-06-05T16:47:09.712Z",
-  "versionId": "13c8479b-3c3c-4fdf-b82c-d50bba150728"
+  "updatedAt": "2025-06-08T12:05:03.278Z",
+  "versionId": "68b09517-d237-4d48-8724-f63de05690d3"
 }
