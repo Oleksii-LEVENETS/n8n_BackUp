@@ -1,12 +1,50 @@
 {
   "active": false,
-  "connections": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2025-06-07T16:03:44.167Z",
   "id": "FLpUBxKRi6fIv1y5",
   "isArchived": false,
   "meta": null,
   "name": "ATB",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "36ed2c7a-2502-4826-a8c7-81cfae3e54eb",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://www.atbmarket.com/catalog",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "cc376cbb-87a3-42df-a774-0ac3a56d937d",
+      "name": "HTTP Request"
+    }
+  ],
   "pinData": {},
   "repo_name": "n8n_BackUp",
   "repo_owner": "Oleksii-Levenets",
@@ -17,6 +55,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-06-07T16:03:44.167Z",
-  "versionId": "ea4d6d1d-442f-4a46-bb76-bd74cac6eeeb"
+  "updatedAt": "2025-06-08T11:41:55.631Z",
+  "versionId": "2548c368-ff40-43d9-91f5-2e6c39e2f94c"
 }
